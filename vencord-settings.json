@@ -395,7 +395,7 @@
                 "hideUnreads": true
             },
             "ShowMeYourName": {
-                "enabled": true,
+                "enabled": false,
                 "displayNames": false,
                 "mode": "user-nick",
                 "inReplies": false
@@ -592,7 +592,7 @@
             "authenticated": false,
             "url": "https://api.vencord.dev/",
             "settingsSync": false,
-            "settingsSyncVersion": 1716052796280
+            "settingsSyncVersion": 1716055008861
         }
     },
     "quickCss": ""
