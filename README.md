@@ -2,13 +2,6 @@
 Starting point: Blank Arch install
 
 ## Things to install
-1. Yay
-2. Plasma
-3. SDDM
-4. Command Line Utilities
-5. Envycontrol
-6. Other Apps
-
 ```bash
 pacman -S --needed git base-devel
 git clone https://aur.archlinux.org/yay-bin.git
@@ -20,33 +13,18 @@ gimp jump neovim obsidian qalculate-gtk maliit-keyboard spectacle spotify-launch
 steam tree ttf-jetbrains-mono-nerd ttf-ms-win11-auto unzip vesktip-bin vscodium-bin \
 vscodium-bin-marketplace pipewire plasma-meta sddm
 ```
-## Things to configure
-### Fish
-Alias
-Config
-
-### Alacritty
-
-### Starship
-
-### Vesktop
-Plugins
-Theme
-
-### VSCodium
-Settings
-Theme
-Extensions
-
-### Plasma
-Shortcuts
-Theme
-SDDM Theme
-
-### Pacman
-Multithreading
-Color
-
-### Sudo
-Password preview
-
+## Setup
+- Run Envycontrol `sudo envycontrol -s hybrid --rtd3`
+- Stow Dotfiles `stow -t ~ .`
+- Change Shell `chsh -s /bin/fish`
+- Plasma Theme `https://github.com/catppuccin/kde`
+- Vesktop Theme `https://catppuccin.github.io/discord/dist/catppuccin-mocha-mauve.theme.css`
+- Import Vesktop Settings `vencord-settings.json`
+- Install VSC Extensions `cat vscodium-extensions.txt | xargs -n 1 codium --install-extension`
+- Pacman Configs `/etc/pacman.conf` 
+  1. Uncomment `COLOR` 
+  2. Set `ParallelDownloads = 16`
+- Sudo Config `/etc/sudoers`
+  - Add `Defaults env_reset,pwfeedback`
+- Configure Plasma Shortcuts
+- Configure Everything else Plasma
