@@ -10,7 +10,7 @@ makepkg -si
 
 yay -S alacritty fish ark bat eza rustup docker dolphin envycontrol fastfetch firefox fish fzf \
 gimp jump neovim obsidian qalculate-gtk maliit-keyboard spectacle spotify-launcher starship \
-steam tree ttf-jetbrains-mono-nerd ttf-ms-win11-auto unzip vesktip-bin vscodium-bin \
+steam tree ttf-jetbrains-mono-nerd ttf-ms-win11-auto unzip vesktop-bin vscodium-bin \
 vscodium-bin-marketplace pipewire plasma-meta sddm stow
 ```
 ## Setup
