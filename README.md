@@ -36,3 +36,8 @@ vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
 - Better install instruction (makepkg?)
 - One folder for wallpapers
 - Optimise Nvim (remove redundencies)
+- Add advaita cursor
+- Missing configs (waybar, swaync, wofi)
+- fix dolphin theming
+- fix clipboard history
+- fix hyprpaper
