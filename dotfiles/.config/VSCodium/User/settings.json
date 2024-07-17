@@ -11,4 +11,11 @@
     "editor.fontFamily": "'JetBrainsMono Nerd Font', 'monospace', monospace",
     "git.openRepositoryInParentFolders": "never",
     "svelte.enable-ts-plugin": true,
+    "tailwindCSS.includeLanguages": {
+        "rust": "html"
+    },
+    "editor.linkedEditing": true,
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
 }
