@@ -99,16 +99,16 @@ require("lazy").setup({
 					"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 					desc = "Buffer Diagnostics (Trouble)",
 				},
-				{
-					"<leader>cs",
-					"<cmd>Trouble symbols toggle focus=false<cr>",
-					desc = "Symbols (Trouble)",
-				},
-				{
-					"<leader>cl",
-					"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-					desc = "LSP Definitions / references / ... (Trouble)",
-				},
+				-- {
+				-- 	"<leader>cs",
+				-- 	"<cmd>Trouble symbols toggle focus=false<cr>",
+				-- 	desc = "Symbols (Trouble)",
+				-- },
+				-- {
+				-- 	"<leader>cl",
+				-- 	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+				-- 	desc = "LSP Definitions / references / ... (Trouble)",
+				-- },
 				{
 					"<leader>xL",
 					"<cmd>Trouble loclist toggle<cr>",
@@ -134,6 +134,7 @@ require("lazy").setup({
 		{ "danilamihailov/beacon.nvim" },
 		{ "tpope/vim-fugitive" },
 		{ "airblade/vim-gitgutter" },
+		{ "chrisbra/Colorizer" },
 		{ "lewis6991/hover.nvim" },
 	},
 

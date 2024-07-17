@@ -28,3 +28,11 @@ vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
   - Add `Defaults env_reset,pwfeedback`
 - Configure Plasma Shortcuts
 - Configure Everything else Plasma
+
+## TODO
+
+- Powermenu for Hyprland
+- Dependency update
+- Better install instruction (makepkg?)
+- One folder for wallpapers
+- Optimise Nvim (remove redundencies)

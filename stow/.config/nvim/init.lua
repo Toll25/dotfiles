@@ -19,3 +19,4 @@ require("general.keybinds")
 
 -- Misc --
 require("general.autoformat")
+require("general.hyprlang")

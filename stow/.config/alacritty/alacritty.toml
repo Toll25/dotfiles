@@ -14,9 +14,8 @@ padding = { x = 5, y = 0 }
 dynamic_padding = true
 
 [font]
-
-normal.family = "ComicMono Nerd Font"
-bold.family = "ComicMono Nerd Font"
-italic.family = "ComicMono Nerd Font"
-bold_italic.family = "ComicMono Nerd Font"
-size = 13.0
+normal.family = "JetbrainsMono Nerd Font"
+bold.family = "JetbrainsMono Nerd Font"
+italic.family = "JetbrainsMono Nerd Font"
+bold_italic.family = "JetbrainsMono Nerd Font"
+size = 12.0
