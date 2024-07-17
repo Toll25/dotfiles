@@ -1,6 +1,5 @@
--- General Options --
-require("opts")
-require("keybinds")
+-- Options --
+require("general.opts")
 
 -- Lazy --
 require("config.lazy")
@@ -14,6 +13,10 @@ require("config.cmp")
 require("config.FTerm")
 require("config.telescope")
 require("config.hlargs")
+require("config.hover")
 
--- AutoCMD --
-require("autocmd")
+-- Keybinds --
+require("general.keybinds")
+
+-- Misc --
+require("general.autoformat")

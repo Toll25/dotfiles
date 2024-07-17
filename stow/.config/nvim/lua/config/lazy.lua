@@ -134,6 +134,7 @@ require("lazy").setup({
 		{ "danilamihailov/beacon.nvim" },
 		{ "tpope/vim-fugitive" },
 		{ "airblade/vim-gitgutter" },
+		{ "lewis6991/hover.nvim" },
 	},
 
 	install = { colorscheme = { "catppuccin-mocha" } },
