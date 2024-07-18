@@ -39,5 +39,5 @@ vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
 - [X] Add Breeze cursor
 - [ ] Missing configs (waybar, swaync, wofi)
 - [ ] fix dolphin theming
-- [ ] fix clipboard history
-- [ ] fix hyprpaper
+- [X] fix clipboard history
+- [X] fix hyprpaper
