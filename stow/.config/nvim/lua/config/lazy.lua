@@ -16,7 +16,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+		{ "lewis6991/gitsigns.nvim" },
+		{
+			"catppuccin/nvim",
+			name = "catppuccin",
+			priority = 1000,
+			config = function()
+				-- load the colorscheme here
+				vim.cmd([[colorscheme catppuccin-mocha]])
+			end,
+		},
 		{
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
@@ -58,7 +67,16 @@ require("lazy").setup({
 		{ "nvim-treesitter/nvim-treesitter" },
 
 		{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
-		{ "nvim-tree/nvim-tree.lua" },
+		{
+			"nvim-neo-tree/neo-tree.nvim",
+			branch = "v3.x",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+				"MunifTanjim/nui.nvim",
+				-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+			},
+		},
 		{
 			"windwp/nvim-autopairs",
 			event = "InsertEnter",
@@ -121,7 +139,6 @@ require("lazy").setup({
 				},
 			},
 		},
-		{ "numToStr/FTerm.nvim" },
 		{
 			"nvim-telescope/telescope.nvim",
 			tag = "0.1.8",
@@ -133,7 +150,7 @@ require("lazy").setup({
 		{ "preservim/tagbar" },
 		{ "danilamihailov/beacon.nvim" },
 		{ "tpope/vim-fugitive" },
-		{ "airblade/vim-gitgutter" },
+		-- { "airblade/vim-gitgutter" },
 		{ "chrisbra/Colorizer" },
 		{ "lewis6991/hover.nvim" },
 	},
@@ -141,5 +158,3 @@ require("lazy").setup({
 	install = { colorscheme = { "catppuccin-mocha" } },
 	checker = { enabled = true },
 })
-
-vim.cmd.colorscheme("catppuccin-mocha")

@@ -4,7 +4,7 @@
     // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
-    "spacing": 4, // Gaps between modules (4px)
+    "spacing": 0, // Gaps between modules (4px)
     // Choose the order of the modules
     "modules-left": [
         "hyprland/workspaces",
@@ -13,10 +13,10 @@
         "custom/media"
     ],
     "modules-center": [
-        "hyprland/window"
+		"custom/mediaplayer"
     ],
     "modules-right": [
-        "mpd",
+        //"mpd",
         //"idle_inhibitor",
         "pulseaudio",
         "network",
@@ -128,7 +128,7 @@
     "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["󰃞", "󰃟", "󰃠"]
     },
     "battery": {
         "states": {
@@ -172,8 +172,8 @@
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-bluetooth-muted": "  {icon} {format_source}",
+        "format-muted": "  {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -198,5 +198,22 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
+	"image": {
+  "path": "/tmp/waybar-mediaplayer-art",
+  "size": 32,
+  "signal": 4,
+  "on-click": "feh --auto-zoom --borderless --title 'feh-float' /tmp/waybar-mediaplayer-art"
+},
+
+"custom/mediaplayer": {
+    "exec": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer monitor",
+    "return-type": "json",
+    "format": "{}",
+    "on-click": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer play-pause",
+    "on-scroll-up": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer next",
+    "on-scroll-down": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer previous",
+    "min-length": 20,
+    "max-length": 20
+},
 }

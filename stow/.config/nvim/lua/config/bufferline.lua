@@ -7,6 +7,8 @@ bufferline.setup({
 		modified_icon = "●",
 		left_trunc_marker = "",
 		right_trunc_marker = "",
+		close_icon = " ",
+		buffer_close_icon = "󰅖",
 		--- name_formatter can be used to change the buffer's label in the bufferline.
 		--- Please note some names can/will break the
 		--- bufferline so use this at your discretion knowing that it has
@@ -23,7 +25,7 @@ bufferline.setup({
 		-- NOTE: this will be called a lot so don't do any heavy processing here
 		offsets = {
 			{
-				filetype = "NvimTree",
+				filetype = "neo-tree",
 				text = "File Explorer",
 				text_align = "center",
 				separator = true,
@@ -31,8 +33,8 @@ bufferline.setup({
 		},
 		color_icons = true, -- whether or not to add the filetype icon highlights
 		show_buffer_icons = true, -- disable filetype icons for buffers
-		show_buffer_close_icons = false,
-		show_close_icon = false,
+		show_buffer_close_icons = true,
+		show_close_icon = true,
 		show_tab_indicators = true,
 		show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
 		duplicates_across_groups = true, -- whether to consider duplicate paths in different groups as duplicates

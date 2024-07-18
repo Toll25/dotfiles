@@ -1,13 +1,13 @@
 * {
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-family: FontAwesome, JetbrainsMono Nerd Font, Roboto, Helvetica, Arial, sans-serif;
     font-size: 13px;
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
+	background-color: rgba(17, 17, 27, 0.5);
+    /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
+    color: rgba(205, 214, 244, 1);
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -325,3 +325,10 @@ label:focus {
 #privacy-item.audio-out {
     background-color: #0069d4;
 }
+
+#custom-mediaplayer
+{
+  font-size: 16px;
+  border-radius: 2%;
+}
+@import "./waybar-mediaplayer/src/style-catppuccin.css";

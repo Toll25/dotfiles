@@ -1,7 +1,7 @@
 local opts = { noremap = true, silent = true }
 -- File Manager --
-vim.api.nvim_set_keymap("n", "<F7>", ":NvimTreeToggle<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeFocus<CR>", opts)
+vim.api.nvim_set_keymap("n", "<F7>", ":Neotree toggle<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>e", ":Neotree . reveal<CR>", opts)
 
 -- General Purpose --
 vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", opts)

@@ -7,12 +7,12 @@ require("config.lazy")
 -- Plugins --
 require("config.mason")
 require("config.treesitter")
-require("config.nvim-tree")
 require("config.bufferline")
 require("config.cmp")
-require("config.FTerm")
 require("config.hlargs")
 require("config.hover")
+require("config.gitsigns")
+require("config.neotree")
 
 -- Keybinds --
 require("general.keybinds")

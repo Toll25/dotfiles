@@ -38,6 +38,6 @@ vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
 - [ ] Optimise Nvim (remove redundencies)
 - [X] Add Breeze cursor
 - [ ] Missing configs (waybar, swaync, wofi)
-- [ ] fix dolphin theming
+- [X] fix dolphin theming
 - [X] fix clipboard history
 - [X] fix hyprpaper
