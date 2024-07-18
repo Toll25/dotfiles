@@ -34,7 +34,7 @@ vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
 - [ ] Powermenu for Hyprland
 - [ ] Dependency update
 - [ ] Better install instruction (makepkg?)
-- [ ] One folder for wallpapers
+- [X] One folder for wallpapers
 - [ ] Optimise Nvim (remove redundencies)
 - [X] Add Breeze cursor
 - [ ] Missing configs (waybar, swaync, wofi)
