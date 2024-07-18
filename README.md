@@ -31,13 +31,13 @@ vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
 
 ## TODO
 
-- Powermenu for Hyprland
-- Dependency update
-- Better install instruction (makepkg?)
-- One folder for wallpapers
-- Optimise Nvim (remove redundencies)
-- Add advaita cursor
-- Missing configs (waybar, swaync, wofi)
-- fix dolphin theming
-- fix clipboard history
-- fix hyprpaper
+- [ ] Powermenu for Hyprland
+- [ ] Dependency update
+- [ ] Better install instruction (makepkg?)
+- [ ] One folder for wallpapers
+- [ ] Optimise Nvim (remove redundencies)
+- [X] Add Breeze cursor
+- [ ] Missing configs (waybar, swaync, wofi)
+- [ ] fix dolphin theming
+- [ ] fix clipboard history
+- [ ] fix hyprpaper
