@@ -18,4 +18,5 @@
     "[css]": {
         "editor.defaultFormatter": "vscode.css-language-features"
     },
+    "color-highlight.useARGB": true,
 }

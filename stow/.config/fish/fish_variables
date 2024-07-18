@@ -2,6 +2,7 @@
 # VERSION: 3.0
 SETUVAR --export EDITOR:/usr/bin/nvim
 SETUVAR --export --path GOPATH:/home/elena/\x2elocal/go
+SETUVAR --export QT_QPA_PLATFORMTHEME:qt6ct
 SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:brblack
 SETUVAR fish_color_cancel:\x2dr
