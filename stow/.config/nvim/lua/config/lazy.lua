@@ -152,7 +152,6 @@ require("lazy").setup({
 		{ "tpope/vim-fugitive" },
 		-- { "airblade/vim-gitgutter" },
 		{ "chrisbra/Colorizer" },
-		{ "lewis6991/hover.nvim" },
 	},
 
 	install = { colorscheme = { "catppuccin-mocha" } },

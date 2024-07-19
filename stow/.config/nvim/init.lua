@@ -10,7 +10,6 @@ require("config.treesitter")
 require("config.bufferline")
 require("config.cmp")
 require("config.hlargs")
-require("config.hover")
 require("config.gitsigns")
 require("config.neotree")
 
