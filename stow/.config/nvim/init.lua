@@ -12,6 +12,7 @@ require("config.cmp")
 require("config.hlargs")
 require("config.gitsigns")
 require("config.neotree")
+require("config.hover")
 
 -- Keybinds --
 require("general.keybinds")

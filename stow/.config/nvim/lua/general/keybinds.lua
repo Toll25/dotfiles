@@ -30,6 +30,10 @@ vim.api.nvim_set_keymap("n", "<leader>t", ":FTermToggle<CR>", opts)
 -- Tagbar --
 vim.api.nvim_set_keymap("n", "<F8>", ":TagbarToggle<CR>", opts)
 
+-- Hover Tooltips --
+vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
+vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
+
 -- Telescope --
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
