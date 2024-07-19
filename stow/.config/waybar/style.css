@@ -5,7 +5,7 @@
 }
 
 window#waybar {
-	background-color: rgba(17, 17, 27, 0.5);
+	background-color: rgba(17, 17, 27, 0.8);
     /*border-bottom: 3px solid rgba(100, 114, 125, 0.5);*/
     color: rgba(205, 214, 244, 1);
     transition-property: background-color;
