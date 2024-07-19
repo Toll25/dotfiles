@@ -42,3 +42,4 @@ vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
 - [X] fix clipboard history
 - [X] fix hyprpaper
 - [ ] new colorzier plugin
+- [ ] configure neotree

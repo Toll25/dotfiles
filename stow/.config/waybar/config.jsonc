@@ -13,7 +13,6 @@
         "custom/media"
     ],
     "modules-center": [
-		"custom/mediaplayer"
     ],
     "modules-right": [
         //"mpd",
@@ -199,21 +198,4 @@
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
-	"image": {
-  "path": "/tmp/waybar-mediaplayer-art",
-  "size": 32,
-  "signal": 4,
-  "on-click": "feh --auto-zoom --borderless --title 'feh-float' /tmp/waybar-mediaplayer-art"
-},
-
-"custom/mediaplayer": {
-    "exec": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer monitor",
-    "return-type": "json",
-    "format": "{}",
-    "on-click": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer play-pause",
-    "on-scroll-up": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer next",
-    "on-scroll-down": "$HOME/.config/waybar/waybar-mediaplayer/src/mediaplayer previous",
-    "min-length": 20,
-    "max-length": 20
-},
 }
