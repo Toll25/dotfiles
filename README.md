@@ -51,7 +51,6 @@ man-db
 firefox
 dolphin
 libreoffice-fresh
-fastfetch
 
 ## File Viewers and Dolphin plugins
 kdegraphics-thumbnailers
@@ -98,6 +97,7 @@ envycontrol
 jump
 nushell
 unzip
+fastfetch
 
 ## Other GUI apps
 obsidian
