@@ -4,100 +4,101 @@ Starting point: Blank Arch install
 ## Things to install
 ```
 # Bare Minimum
+
 alacritty
-yay
-hyprland
-brightnessctl
-ttf-jetbrains-mono-nerd
+bat
 blueberry-wayland
-waybar
-wl-clip-persist
-wl-clipboard
-xdg-desktop-portal-hyprland
-fish
-tree
+brightnessctl
+cliphist
+ctags
 dex
 eza
-less
-fzf
-ctags
-cliphist
-bat
+fish
 fuzzel
+fzf
 hypridle
+hyprland
 hyprlock
 hyprpaper
 hyprpicker
 hyprshot
-neovim
-network-manager-applet
-network-manager 
-power-profiles-daemon
-stow
-swaync
 kdeconnect
+less
+man-db
+neovim
+network-manager 
+network-manager-applet
 pamixer
 pavucontrol
+power-profiles-daemon
 qalculate-gtk
 qt5ct
 qt6ct
 ripgrep
 starship
-man-db
+stow
+swaync
+tree
+ttf-jetbrains-mono-nerd
+waybar
+wl-clip-persist
+wl-clipboard
+xdg-desktop-portal-hyprland
+yay
 
 # Other
 
 ## Important System things
-firefox
 dolphin
+firefox
 libreoffice-fresh
 
 ## File Viewers and Dolphin plugins
-kdegraphics-thumbnailers
-kimageforamts
-qt6-imageformats
-resvg
-kdesdk-thumbnailers
-ffmpegthumbs
-raw-thumbnailer
-taglib
-kompare
-dolphin-plugins
-udiskie
 ark
+dolphin-plugins
+ffmpegthumbs
+kdegraphics-thumbnailers
+kdesdk-thumbnailers
+kimageforamts
+kompare
 okular
 qbittorrent
+qt6-imageformats
+raw-thumbnailer
+resvg
+taglib
+udiskie
 
 ## Art Programms
+cura-bin
 inkscape
 kdenlive
 krita
 obs-studio
 pixelorama-bin
-cura-bin
 
 ## Development Tools
-rustup
-qemu-full
-virt-manager
+docker
+docker-compose
+git-filter-repo
 go 
 npm
 pnpm
-docker
-docker-compose
+qemu-full
+rustup
+virt-manager
 yarn
-git-filter-repo
 
 ## Command Line utils
 btop
+envycontrol
+fastfetch
+jump
+lostfiles
+nushell
 pacseek
 taskwarrior-tui
-lostfiles
-envycontrol
-jump
-nushell
 unzip
-fastfetch
 
 ## Other GUI apps
 obsidian
@@ -106,9 +107,9 @@ steam
 vesktop
 
 ## Extra Fonts
-ttf-ms-win11-auto
 noto-fonts-cjk
 ttf-joypixels
+ttf-ms-win11-auto
 
 ```
 Dolphin plugins !!!!
