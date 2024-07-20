@@ -31,15 +31,7 @@ vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
 
 ## TODO
 
-- [ ] Powermenu for Hyprland
 - [ ] Dependency update
 - [ ] Better install instruction (makepkg?)
-- [X] One folder for wallpapers
 - [ ] Optimise Nvim (remove redundencies)
-- [X] Add Breeze cursor
-- [ ] Missing configs (waybar, swaync, wofi)
-- [X] fix dolphin theming
-- [X] fix clipboard history
-- [X] fix hyprpaper
 - [ ] new colorzier plugin
-- [ ] configure neotree
