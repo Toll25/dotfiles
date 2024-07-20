@@ -30,3 +30,9 @@ Remove yay directory
 Install rest
 *Pacman failsafe*
 *Pacman multiple dependencies*
+
+Install dotfiles (with https), stow
+
+Change shell
+
+
