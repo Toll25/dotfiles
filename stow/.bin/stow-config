@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-cd /home/elena/Documents/dotfiles/stow || { echo "Failed to change directory"; exit 1; }
+cd $HOME/.dotfiles/stow || { echo "Failed to change directory"; exit 1; }
 
-stow --adopt -t /home/elena . "$@"
+stow --adopt -t $HOME . "$@"

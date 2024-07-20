@@ -1,4 +1,4 @@
-function cd-config --wraps='cd /home/elena/Documents/dotfiles' --description 'alias cdconfig=cd /home/elena/Documents/dotfiles'
-    cd /home/elena/Documents/dotfiles $argv
-
+function cd-config --wraps='cd $HOME/.dotfiles' --description 'alias cd-config=cd $HOME/.dotfiles'
+  cd $HOME/.dotfiles $argv
+        
 end

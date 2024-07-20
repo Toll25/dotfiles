@@ -8,6 +8,7 @@ Starting point: Blank Arch install
 alacritty
 bat
 blueberry-wayland
+breeze
 brightnessctl
 cliphist
 ctags
@@ -35,6 +36,7 @@ qalculate-gtk
 qt5ct
 qt6ct
 ripgrep
+sddm
 starship
 stow
 swaync
