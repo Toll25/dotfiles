@@ -2,17 +2,117 @@
 Starting point: Blank Arch install
 
 ## Things to install
-```bash
-pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/yay-bin.git
-cd yay-bin
-makepkg -si
-
-yay -S alacritty fish ark bat eza rustup docker dolphin envycontrol fastfetch firefox fish fzf \
-gimp jump neovim obsidian qalculate-gtk maliit-keyboard spectacle spotify-launcher starship \
-steam tree ttf-jetbrains-mono-nerd ttf-ms-win11-auto unzip vesktop-bin vscodium-bin \
-vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
 ```
+# Bare Minimum
+alacritty
+yay
+hyprland
+brightnessctl
+ttf-jetbrains-mono-nerd
+blueberry-wayland
+waybar
+wl-clip-persist
+wl-clipboard
+xdg-desktop-portal-hyprland
+fish
+tree
+dex
+eza
+less
+fzf
+ctags
+cliphist
+bat
+fuzzel
+hypridle
+hyprlock
+hyprpaper
+hyprpicker
+hyprshot
+neovim
+network-manager-applet
+network-manager 
+power-profiles-daemon
+stow
+swaync
+kdeconnect
+pamixer
+pavucontrol
+qalculate-gtk
+qt5ct
+qt6ct
+ripgrep
+starship
+man-db
+
+# Other
+
+## Important System things
+firefox
+dolphin
+libreoffice-fresh
+fastfetch
+
+## File Viewers and Dolphin plugins
+kdegraphics-thumbnailers
+kimageforamts
+qt6-imageformats
+resvg
+kdesdk-thumbnailers
+ffmpegthumbs
+raw-thumbnailer
+taglib
+kompare
+dolphin-plugins
+udiskie
+ark
+okular
+qbittorrent
+
+## Art Programms
+inkscape
+kdenlive
+krita
+obs-studio
+pixelorama-bin
+cura-bin
+
+## Development Tools
+rustup
+qemu-full
+virt-manager
+go 
+npm
+pnpm
+docker
+docker-compose
+yarn
+git-filter-repo
+
+## Command Line utils
+btop
+pacseek
+taskwarrior-tui
+lostfiles
+envycontrol
+jump
+nushell
+unzip
+
+## Other GUI apps
+obsidian
+spotify
+steam
+vesktop
+
+## Extra Fonts
+ttf-ms-win11-auto
+noto-fonts-cjk
+ttf-joypixels
+
+```
+Dolphin plugins !!!!
+Bluetooth !!!!
 ## Setup
 - Run Envycontrol `sudo envycontrol -s hybrid --rtd3`
 - Stow Dotfiles `stow -t ~ .`
@@ -33,5 +133,3 @@ vscodium-bin-marketplace pipewire plasma-meta sddm stow xclip
 
 - [ ] Dependency update
 - [ ] Better install instruction (makepkg?)
-- [ ] Optimise Nvim (remove redundencies)
-- [ ] new colorzier plugin
