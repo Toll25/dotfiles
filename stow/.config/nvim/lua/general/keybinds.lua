@@ -21,12 +21,6 @@ vim.api.nvim_set_keymap("n", "<C-x>", ":bd<CR>", opts)
 -- Formatting --
 vim.api.nvim_set_keymap("n", "<leader>f", ":Neoformat<CR>", opts)
 
--- Termimal --
--- vim.api.nvim_set_keymap("n", "<leader>to", ":FTermOpen<CR>", opts)
--- vim.api.nvim_set_keymap("n", "<leader>tc", ":FTermClose<CR>", opts)
--- vim.api.nvim_set_keymap("n", "<leader>te", ":FTermExit<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>t", ":FTermToggle<CR>", opts)
-
 -- Tagbar --
 vim.api.nvim_set_keymap("n", "<F8>", ":TagbarToggle<CR>", opts)
 
@@ -42,4 +36,4 @@ vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
 -- Colorize --
-vim.api.nvim_set_keymap("n", "<leader>c", ":ColorToggle<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>c", ":ColorizerToggle<CR>", opts)

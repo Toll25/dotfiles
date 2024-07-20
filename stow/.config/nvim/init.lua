@@ -13,6 +13,7 @@ require("config.hlargs")
 require("config.gitsigns")
 require("config.neotree")
 require("config.hover")
+require("config.colorizer")
 
 -- Keybinds --
 require("general.keybinds")

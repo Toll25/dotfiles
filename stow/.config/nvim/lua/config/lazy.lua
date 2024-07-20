@@ -16,7 +16,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	spec = {
-		{ "lewis6991/gitsigns.nvim" },
+
+		-- FORMATTING AND COLORS --
+
 		{
 			"catppuccin/nvim",
 			name = "catppuccin",
@@ -26,37 +28,14 @@ require("lazy").setup({
 				vim.cmd([[colorscheme catppuccin-mocha]])
 			end,
 		},
-		{
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"neovim/nvim-lspconfig",
-			init_options = {
-				userLanguages = {
-					eelixir = "html-eex",
-					eruby = "erb",
-					rust = "html",
-				},
-			},
-		},
-		{
-			"saecki/crates.nvim",
-			event = { "BufRead Cargo.toml" },
-			config = function()
-				require("crates").setup()
-			end,
-		},
-		{
-			"mrcjkb/rustaceanvim",
-			version = "^4", -- Recommended
-			lazy = false, -- This plugin is already lazy
-		},
-		-- Completion framework:
+		{ "NvChad/nvim-colorizer.lua" },
+		{ "sbdchd/neoformat" },
+
+		-- AUTO COMPLETION --
+
 		{ "hrsh7th/nvim-cmp" },
 
-		-- LSP completion source:
 		{ "hrsh7th/cmp-nvim-lsp" },
-
-		-- Useful completion sources:
 		{ "hrsh7th/cmp-nvim-lua" },
 		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 		{ "hrsh7th/cmp-vsnip" },
@@ -64,28 +43,18 @@ require("lazy").setup({
 		{ "hrsh7th/cmp-buffer" },
 		{ "hrsh7th/vim-vsnip" },
 
-		{ "nvim-treesitter/nvim-treesitter" },
-
-		{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
-		{
-			"nvim-neo-tree/neo-tree.nvim",
-			branch = "v3.x",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
-				"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-				"MunifTanjim/nui.nvim",
-				-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-			},
-		},
 		{
 			"windwp/nvim-autopairs",
 			event = "InsertEnter",
 			config = true,
 		},
-		{ "tpope/vim-surround" },
+
+		-- QUALITY OF LIFE --
+
+		{ "lewis6991/gitsigns.nvim" },
+
 		{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-		{ "sbdchd/neoformat" },
-		-- { "rust-lang/rust.vim" },
+
 		{
 			"numToStr/Comment.nvim",
 			opts = {
@@ -101,7 +70,35 @@ require("lazy").setup({
 				},
 			},
 		},
+
 		{ "vim-airline/vim-airline" },
+
+		{ "m-demare/hlargs.nvim" },
+
+		{ "hadronized/hop.nvim" },
+
+		{ "RRethy/vim-illuminate" },
+
+		{ "preservim/tagbar" },
+
+		{ "danilamihailov/beacon.nvim" },
+
+		{ "lewis6991/hover.nvim" },
+
+		{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+
+		-- UTILITIES --
+
+		{ "tpope/vim-surround" },
+
+		{ "tpope/vim-fugitive" },
+
+		{
+			"nvim-telescope/telescope.nvim",
+			tag = "0.1.8",
+			dependencies = { "nvim-lua/plenary.nvim" },
+		},
+
 		{
 			"folke/trouble.nvim",
 			opts = {}, -- for default options, refer to the configuration section for custom setup.
@@ -139,20 +136,48 @@ require("lazy").setup({
 				},
 			},
 		},
+
 		{
-			"nvim-telescope/telescope.nvim",
-			tag = "0.1.8",
-			dependencies = { "nvim-lua/plenary.nvim" },
+			"nvim-neo-tree/neo-tree.nvim",
+			branch = "v3.x",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+				"MunifTanjim/nui.nvim",
+				-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+			},
 		},
-		{ "m-demare/hlargs.nvim" },
-		{ "hadronized/hop.nvim" },
-		{ "RRethy/vim-illuminate" },
-		{ "preservim/tagbar" },
-		{ "danilamihailov/beacon.nvim" },
-		{ "tpope/vim-fugitive" },
-		-- { "airblade/vim-gitgutter" },
-		{ "chrisbra/Colorizer" },
-		{ "lewis6991/hover.nvim" }
+
+		-- LSP SUPPORT --
+
+		{
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"neovim/nvim-lspconfig",
+			init_options = {
+				userLanguages = {
+					eelixir = "html-eex",
+					eruby = "erb",
+					rust = "html",
+				},
+			},
+		},
+
+		{
+			"saecki/crates.nvim",
+			event = { "BufRead Cargo.toml" },
+			config = function()
+				require("crates").setup()
+			end,
+		},
+
+		{
+			"mrcjkb/rustaceanvim",
+			version = "^4", -- Recommended
+			lazy = false, -- This plugin is already lazy
+		},
+
+		{ "nvim-treesitter/nvim-treesitter" },
 	},
 
 	install = { colorscheme = { "catppuccin-mocha" } },
