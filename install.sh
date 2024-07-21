@@ -24,7 +24,7 @@ makepkg -si --noconfirm
 cd ..
 rm -rf yay
 
-yay --save --answerclean All --answerdiff All
+yay --save --answerclean None --answerdiff None
 
 file="$HOME/.dotfiles/packages/base.txt"
 
@@ -56,36 +56,15 @@ else
     echo "No packages to install."
 fi
 
-sudo chsh -s /bin/fish
+chsh -s /bin/fish
 
-# Install remaining packages
-# Pacman multiple dependencies
-# Dotfiles installation using stow
-# Change shell
-# Set GOPATH
-# Git configuration
-# Activate bluetooth
-# Activate power profiles
+$HOME/.dotfiles/stow/.bin/stow-config
 
-# Example placeholders for additional steps
-# Uncomment and modify according to your needs
+git config --global user.name "Toll"
+git config --global user.email "toll25@proton.me"
+git config --global init.defaultBranch main
 
-# install_with_pacman <additional_packages>
-
-# Clone dotfiles and use stow to manage them
-# git clone https://github.com/yourusername/dotfiles.git
-# cd dotfiles
-# stow *
-
-# Change shell to zsh (example)
-# chsh -s $(which zsh)
-
-# Set GOPATH (example)
-# export GOPATH=$HOME/go
-
-# Configure git (example)
-# git config --global user.name "Your Name"
-# git config --global user.email "your.email@example.com"
+fish -c "set GOPATH $HOME/.local/share/go"
 
 # Enable and start Bluetooth service (example)
 # systemctl enable bluetooth

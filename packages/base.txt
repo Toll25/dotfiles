@@ -26,6 +26,7 @@ pavucontrol
 polkit-kde-agent
 power-profiles-daemon
 ripgrep
+rustup
 starship
 stow
 swaync

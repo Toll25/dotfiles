@@ -1,7 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export EDITOR:/usr/bin/nvim
-SETUVAR --export --path GOPATH:\x2elocal/share/go
+SETUVAR --export --path GOPATH:/home/elena/\x2elocal/share/go
 SETUVAR --export QT_QPA_PLATFORM:wayland
 SETUVAR --export QT_QPA_PLATFORMTHEME:qt5ct
 SETUVAR __fish_initialized:3400
