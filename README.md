@@ -3,47 +3,6 @@ Starting point: Blank Arch install
 
 ## Things to install
 ```
-# Bare Minimum
-
-alacritty
-bat
-breeze
-breeze-gtk
-brightnessctl
-cliphist
-ctags
-eza
-fish
-fuzzel
-fzf
-hypridle
-hyprland
-hyprlock
-hyprpaper
-hyprpicker
-hyprshot
-jump
-less
-man-db
-neovim
-network-manager-applet
-noto-fonts
-pamixer
-pavucontrol
-polkit-kde-agent
-power-profiles-daemon
-ripgrep
-starship
-stow
-swaync
-ttf-jetbrains-mono-nerd
-waybar
-wl-clip-persist
-wl-clipboard
-xdg-desktop-portal-hyprland
-
-# Other
-
 ## Bluetooth
 blueberry-wayland
 

@@ -1,8 +1,8 @@
 #!/bin/env bash
-install_with_pacman() {
+install_with_yay() {
   local packages=("$@")
   for package in "${packages[@]}"; do
-    until sudo pacman -S --noconfirm "$package"; do
+    until yay -S "$package"; do
       echo "Pacman install of $package failed. Retrying..."
       sleep 5
     done
@@ -11,7 +11,7 @@ install_with_pacman() {
 
 # Clean slate and install necessary packages
 sudo pacman -Syu --noconfirm
-install_with_pacman neovim
+sudo pacman -S neovim
 
 # Edit sudoers file to include pwfeedback
 echo "Defaults env_reset,pwfeedback" > /tmp/sudoers.tmp
@@ -34,8 +34,36 @@ makepkg -si --noconfirm
 cd ..
 rm -rf yay
 
+yay --save --answerclean All --answerdiff All
+
+file="packages/base.txt"
+
+read_packages() {
+    local file="$1"
+    local packages=()
+
+    if [ ! -f "$file" ]; then
+        echo "$file not found!"
+        exit 1
+    fi
+
+    while IFS= read -r package
+    do
+        [[ -z "$package" || "$package" == \#* ]] && continue
+
+        packages+=("$package")
+    done < "$file"
+
+    echo "${packages[@]}"
+}
+
+packages=($(read_packages "$file"))
+
+install_with_yay ${packages[@]} 
+
+sudo chsh -s /bin/fish
+
 # Install remaining packages
-# Pacman failsafe
 # Pacman multiple dependencies
 # Dotfiles installation using stow
 # Change shell
