@@ -17,22 +17,31 @@ install_with_pacman() {
 
 # Clean slate and install necessary packages
 pacman -Syu --noconfirm
-install_with_pacman git
-
 
 # Edit sudoers file to include pwfeedback
 echo "Defaults env_reset,pwfeedback" > /tmp/sudoers.tmp
 visudo -c -f /tmp/sudoers.tmp && cat /tmp/sudoers.tmp | EDITOR='tee -a' visudo
 
 # Edit pacman.conf
-vim /etc/pacman.conf -c ':%s/^#Color/Color/' -c ':%s/^#ParallelDownloads = 5/ParallelDownloads = 16/' -c '/# Misc options/put! =\"ILoveCandy\"' -c ':%s/^#\[multilib\]/[multilib]/' -c ':%s/^#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/' -c ':wq'
+vim /etc/pacman.conf -c ':%s/^#Color/Color/' -c ':%s/^#ParallelDownloads = 5/ParallelDownloads = 16/' -c '/# Misc options/put! ="ILoveCandy"' -c ':%s/^#\[multilib\]/[multilib]/' -c ':%s/^#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/' -c ':wq'
 
-# Install yay
+# Create a temporary user for installing yay
+TEMP_USER="tempuser"
+useradd -m $TEMP_USER
+echo "$TEMP_USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+# Switch to the temporary user and install yay
+su - $TEMP_USER <<EOF
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
 cd ..
 rm -rf yay
+EOF
+
+# Remove the temporary user
+userdel -r $TEMP_USER
+sed -i "/$TEMP_USER ALL=(ALL) NOPASSWD: ALL/d" /etc/sudoers
 
 # Install remaining packages
 # Pacman failsafe
@@ -73,4 +82,3 @@ rm -rf yay
 # systemctl start power-profiles-daemon
 
 echo "Installation and configuration complete!"
-
