@@ -7,12 +7,11 @@ Starting point: Blank Arch install
 
 alacritty
 bat
-blueberry-wayland
 breeze
+breeze-gtk
 brightnessctl
 cliphist
 ctags
-dex
 eza
 fish
 fuzzel
@@ -23,37 +22,38 @@ hyprlock
 hyprpaper
 hyprpicker
 hyprshot
-kdeconnect
+jump
 less
 man-db
 neovim
-network-manager 
 network-manager-applet
+noto-fonts
 pamixer
 pavucontrol
+polkit-kde-agent
 power-profiles-daemon
-qalculate-gtk
-qt5ct
-qt6ct
 ripgrep
-sddm
 starship
 stow
 swaync
-tree
 ttf-jetbrains-mono-nerd
 waybar
 wl-clip-persist
 wl-clipboard
 xdg-desktop-portal-hyprland
-yay
 
 # Other
+
+## Bluetooth
+blueberry-wayland
 
 ## Important System things
 dolphin
 firefox
 libreoffice-fresh
+dex
+kdeconnect
+qalculate-gtk
 
 ## File Viewers and Dolphin plugins
 ark
@@ -95,12 +95,12 @@ yarn
 btop
 envycontrol
 fastfetch
-jump
 lostfiles
 nushell
 pacseek
 taskwarrior-tui
 unzip
+tree
 
 ## Other GUI apps
 obsidian
@@ -108,10 +108,12 @@ spotify
 steam
 vesktop
 
-## Extra Fonts
+## Extra Fonts And Color
 noto-fonts-cjk
 ttf-joypixels
 ttf-ms-win11-auto
+qt5ct
+qt6ct
 
 ```
 Dolphin plugins !!!!

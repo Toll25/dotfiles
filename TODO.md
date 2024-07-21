@@ -16,7 +16,6 @@ Uncomment ParallelDownloads, set to 16
 Insert ILoveCandy
 Uncomment multilib header and mirrorlist
 
-*GIT CONFIG*
 
 Install yay
 ```bash
@@ -35,4 +34,7 @@ Install dotfiles (with https), stow
 
 Change shell
 
-
+*set gopath*
+*GIT CONFIG*
+*activate bluetooth*
+*activeate power profiles*
