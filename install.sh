@@ -1,17 +1,7 @@
 #!/bin/env bash
-install_with_yay() {
-  local packages=("$@")
-  for package in "${packages[@]}"; do
-    until yay -S "$package"; do
-      echo "Pacman install of $package failed. Retrying..."
-      sleep 5
-    done
-  done
-}
-
 # Clean slate and install necessary packages
 sudo pacman -Syu --noconfirm
-sudo pacman -S neovim
+sudo pacman -S --noconfirm neovim
 
 # Edit sudoers file to include pwfeedback
 echo "Defaults env_reset,pwfeedback" > /tmp/sudoers.tmp
@@ -59,7 +49,12 @@ read_packages() {
 
 packages=($(read_packages "$file"))
 
-install_with_yay ${packages[@]} 
+if [ ${#packages[@]} -ne 0 ]; then
+    echo "Installing packages: ${packages[@]}"
+    yay -S --noconfirm "${packages[@]}"
+else
+    echo "No packages to install."
+fi
 
 sudo chsh -s /bin/fish
 
