@@ -26,7 +26,7 @@ rm -rf yay
 
 yay --save --answerclean All --answerdiff All
 
-file="packages/base.txt"
+file="$HOME/.dotfiles/packages/base.txt"
 
 read_packages() {
     local file="$1"
