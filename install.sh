@@ -56,12 +56,10 @@ else
     echo "No packages to install."
 fi
 
-chsh -s /bin/fish
+sudo chsh -s $(which fish) $(whoami)
 
 $HOME/.dotfiles/stow/.bin/stow-config
 
-git config --global user.name "Toll"
-git config --global user.email "toll25@proton.me"
 git config --global init.defaultBranch main
 
 fish -c "set GOPATH $HOME/.local/share/go"
