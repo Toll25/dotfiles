@@ -1,14 +1,8 @@
 #!/bin/env bash
-# Ensure the script is running as root
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root"
-  exit 1
-fi
-
 install_with_pacman() {
   local packages=("$@")
   for package in "${packages[@]}"; do
-    until pacman -S --noconfirm "$package"; do
+    until sudo pacman -S --noconfirm "$package"; do
       echo "Pacman install of $package failed. Retrying..."
       sleep 5
     done
@@ -16,15 +10,15 @@ install_with_pacman() {
 }
 
 # Clean slate and install necessary packages
-pacman -Syu --noconfirm
+sudo pacman -Syu --noconfirm
 install_with_pacman neovim
 
 # Edit sudoers file to include pwfeedback
 echo "Defaults env_reset,pwfeedback" > /tmp/sudoers.tmp
-visudo -c -f /tmp/sudoers.tmp && cat /tmp/sudoers.tmp | EDITOR='tee -a' visudo
+sudo visudo -c -f /tmp/sudoers.tmp && cat /tmp/sudoers.tmp | EDITOR='tee -a' visudo
 
 # Edit pacman.conf
-nvim /etc/pacman.conf \
+sudo nvim /etc/pacman.conf \
 -c ':%s/^#Color/Color/' \
 -c ':%s/^#ParallelDownloads = 5/ParallelDownloads = 16/' \
 -c '/# Misc options/+1put =\"ILoveCandy\"' \
@@ -32,24 +26,13 @@ nvim /etc/pacman.conf \
 -c '/\[multilib\]/+1s/^#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/' \
 -c ':wq'
 
-pacman -Syu --noconfirm
-# Create a temporary user for installing yay
-TEMP_USER="tempuser"
-useradd -m $TEMP_USER
-echo "$TEMP_USER ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+sudo pacman -Syu --noconfirm
 
-# Switch to the temporary user and install yay
-su - $TEMP_USER <<EOF
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si --noconfirm
 cd ..
 rm -rf yay
-EOF
-
-# Remove the temporary user
-userdel -r $TEMP_USER
-sed -i "/$TEMP_USER ALL=(ALL) NOPASSWD: ALL/d" /etc/sudoers
 
 # Install remaining packages
 # Pacman failsafe
