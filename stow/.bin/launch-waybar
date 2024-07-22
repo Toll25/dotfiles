@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-. ~/.config/waybar/venv/bin/activate
-waybar

@@ -95,5 +95,5 @@ Bluetooth !!!!
 
 ## TODO
 
-- [ ] Dependency update
 - [ ] Better install instruction (makepkg?)
+- [ ] Include greetd
