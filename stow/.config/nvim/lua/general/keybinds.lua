@@ -7,6 +7,7 @@ vim.api.nvim_set_keymap("n", "<leader>e", ":Neotree . reveal<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-s>", ":w<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", ":q<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader><leader>q", ":qa<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-f>", "/", opts)
 
 -- Split Navigation --
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)

@@ -73,6 +73,13 @@ require("lazy").setup({
 
 		{ "vim-airline/vim-airline" },
 
+		{
+			"j-hui/fidget.nvim",
+			opts = {
+				-- options
+			},
+		},
+
 		{ "m-demare/hlargs.nvim" },
 
 		{ "hadronized/hop.nvim" },
@@ -88,6 +95,18 @@ require("lazy").setup({
 		{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 
 		-- UTILITIES --
+
+		{ "vimwiki/vimwiki" },
+
+		{
+			"iamcco/markdown-preview.nvim",
+			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+			build = "cd app && yarn install",
+			init = function()
+				vim.g.mkdp_filetypes = { "markdown" }
+			end,
+			ft = { "markdown" },
+		},
 
 		{ "tpope/vim-surround" },
 
