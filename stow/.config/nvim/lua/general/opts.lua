@@ -12,7 +12,7 @@ vim.cmd("noremap <Right> <Nop>")
 vim.cmd("set clipboard=unnamedplus")
 vim.cmd("set nocompatible")
 vim.cmd("filetype plugin on")
-vim.cmd("syntax on")
+-- vim.cmd("syntax on")
 vim.cmd("set conceallevel=3")
 vim.cmd("set foldlevelstart=99")
 vim.diagnostic.config({

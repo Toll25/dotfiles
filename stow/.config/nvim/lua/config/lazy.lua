@@ -67,12 +67,12 @@ require("lazy").setup({
 			opts = {
 				formatters_by_ft = {
 					lua = { "stylua" },
-					python = { "isort", "black" },
+					-- python = { "isort", "black" },
 					rust = { "rustfmt", "yew-fmt", lsp_format = "fallback" },
 				},
 				format_on_save = {
 					-- These options will be passed to conform.format()
-					timeout_ms = 500,
+					timeout_ms = 5000,
 					lsp_format = "fallback",
 				},
 			},
@@ -178,6 +178,22 @@ require("lazy").setup({
 		},
 
 		-- UTILITIES --
+
+		{
+			"linux-cultist/venv-selector.nvim",
+			dependencies = {
+				"neovim/nvim-lspconfig",
+				{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+			},
+			lazy = false,
+			branch = "regexp", -- This is the regexp branch, use this for the new version
+			config = function()
+				require("venv-selector").setup()
+			end,
+			keys = {
+				{ "<leader>vs", "<cmd>VenvSelect<cr>" },
+			},
+		},
 
 		{
 			"NeogitOrg/neogit",
@@ -307,32 +323,89 @@ require("lazy").setup({
 			version = "^4", -- Recommended
 			lazy = false, -- This plugin is already lazy
 		},
-
 		{
 			"nvim-treesitter/nvim-treesitter",
-			opts = {
-				ensure_installed = { "lua", "rust", "toml", "hyprlang", "python" },
-				auto_install = true,
-				highlight = {
-					enable = true,
-					additional_vim_regex_highlighting = false,
-				},
-				ident = { enable = true },
-				rainbow = {
-					enable = true,
-					extended_mode = true,
-					max_file_lines = nil,
-				},
-				vim.filetype.add({
-					extension = { rasi = "rasi" },
-					pattern = {
-						[".*/waybar/config"] = "jsonc",
-						[".*/mako/config"] = "dosini",
-						[".*/kitty/*.conf"] = "bash",
-						[".*/hypr/.*%.conf"] = "hyprlang",
-					},
-				}),
+			version = false, -- last release is way too old and doesn't work on Windows
+			build = ":TSUpdate",
+			event = { "VeryLazy" },
+			lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+			init = function(plugin)
+				require("lazy.core.loader").add_to_rtp(plugin)
+				require("nvim-treesitter.query_predicates")
+			end,
+			cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+			keys = {
+				{ "<c-space>", desc = "Increment Selection" },
+				{ "<bs>", desc = "Decrement Selection", mode = "x" },
 			},
+			opts_extend = { "ensure_installed" },
+			opts = {
+				highlight = { enable = true },
+				indent = { enable = true },
+				ensure_installed = {
+					"bash",
+					"diff",
+					"html",
+					"javascript",
+					"jsdoc",
+					"json",
+					"jsonc",
+					"lua",
+					"luadoc",
+					"luap",
+					"markdown",
+					"markdown_inline",
+					"printf",
+					"python",
+					"query",
+					"regex",
+					"toml",
+					"tsx",
+					"typescript",
+					"vim",
+					"vimdoc",
+					"xml",
+					"yaml",
+					"rust",
+				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "<C-space>",
+						node_incremental = "<C-space>",
+						scope_incremental = false,
+						node_decremental = "<bs>",
+					},
+				},
+				textobjects = {
+					move = {
+						enable = true,
+						goto_next_start = {
+							["]f"] = "@function.outer",
+							["]c"] = "@class.outer",
+							["]a"] = "@parameter.inner",
+						},
+						goto_next_end = {
+							["]F"] = "@function.outer",
+							["]C"] = "@class.outer",
+							["]A"] = "@parameter.inner",
+						},
+						goto_previous_start = {
+							["[f"] = "@function.outer",
+							["[c"] = "@class.outer",
+							["[a"] = "@parameter.inner",
+						},
+						goto_previous_end = {
+							["[F"] = "@function.outer",
+							["[C"] = "@class.outer",
+							["[A"] = "@parameter.inner",
+						},
+					},
+				},
+			},
+			config = function(_, opts)
+				require("nvim-treesitter.configs").setup(opts)
+			end,
 		},
 	},
 
