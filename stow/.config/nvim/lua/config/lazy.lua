@@ -98,6 +98,8 @@ require("lazy").setup({
 
 		-- QUALITY OF LIFE --
 
+		{ "f-person/git-blame.nvim", opts = { enabled = false }, cmd = { "GitBlameToggle" } },
+
 		{ "lewis6991/gitsigns.nvim", opts = {} },
 
 		{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
@@ -188,6 +190,7 @@ require("lazy").setup({
 				"ibhagwan/fzf-lua", -- optional
 			},
 			config = true,
+			cmd = { "Neogit" },
 		},
 
 		{

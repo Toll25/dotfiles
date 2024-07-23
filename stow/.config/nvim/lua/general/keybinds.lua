@@ -41,3 +41,7 @@ vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {
 
 -- Lazy --
 vim.api.nvim_set_keymap("n", "<leader>lu", ":Lazy update<CR>", opts)
+
+-- Git --
+vim.api.nvim_set_keymap("n", "<leader>gi", ":Neogit<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gb", ":GitBlameToggle<CR>", opts)
