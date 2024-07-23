@@ -20,14 +20,10 @@ vim.api.nvim_set_keymap("n", "<C-n>", ":BufferLineCycleNext<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-x>", ":bd<CR>", opts)
 
 -- Formatting --
-vim.api.nvim_set_keymap("n", "<leader>f", ":Neoformat<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>f", ":Format<CR>", opts)
 
 -- Tagbar --
 vim.api.nvim_set_keymap("n", "<F8>", ":TagbarToggle<CR>", opts)
-
--- Hover Tooltips --
-vim.keymap.set("n", "K", require("hover").hover, { desc = "hover.nvim" })
-vim.keymap.set("n", "gK", require("hover").hover_select, { desc = "hover.nvim (select)" })
 
 -- Telescope --
 local builtin = require("telescope.builtin")
@@ -38,3 +34,10 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
 -- Colorize --
 vim.api.nvim_set_keymap("n", "<leader>c", ":ColorizerToggle<CR>", opts)
+
+-- Neorg --
+vim.api.nvim_set_keymap("n", "<up>", "<Plug>(neorg.text-objects.item-up)", {})
+vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {})
+
+-- Lazy --
+vim.api.nvim_set_keymap("n", "<leader>lu", ":Lazy update<CR>", opts)

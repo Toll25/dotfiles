@@ -28,8 +28,55 @@ require("lazy").setup({
 				vim.cmd([[colorscheme catppuccin-mocha]])
 			end,
 		},
-		{ "NvChad/nvim-colorizer.lua" },
-		{ "sbdchd/neoformat" },
+
+		{
+			"NvChad/nvim-colorizer.lua",
+			opts = {
+				filetypes = { "*" },
+				user_default_options = {
+					RGB = true, -- #RGB hex codes
+					RRGGBB = true, -- #RRGGBB hex codes
+					names = true, -- "Name" codes like Blue or blue
+					RRGGBBAA = true, -- #RRGGBBAA hex codes
+					AARRGGBB = false, -- 0xAARRGGBB hex codes
+					rgb_fn = true, -- CSS rgb() and rgba() functions
+					hsl_fn = true, -- CSS hsl() and hsla() functions
+					css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+					css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+					-- Available modes for `mode`: foreground, background,  virtualtext
+					mode = "background", -- Set the display mode.
+					-- Available methods are false / true / "normal" / "lsp" / "both"
+					-- True is same as normal
+					tailwind = true, -- Enable tailwind colors
+					-- parsers can contain values used in |user_default_options|
+					sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
+					virtualtext = "■",
+					-- update color values even if buffer is not focused
+					-- example use: cmp_menu, cmp_docs
+					always_update = false,
+				},
+				-- all the sub-options of filetypes apply to buftypes
+				buftypes = {},
+			},
+		},
+
+		{
+			"stevearc/conform.nvim",
+			event = { "BufWritePre" },
+			cmd = { "ConformInfo" },
+			opts = {
+				formatters_by_ft = {
+					lua = { "stylua" },
+					python = { "isort", "black" },
+					rust = { "rustfmt", "yew-fmt", lsp_format = "fallback" },
+				},
+				format_on_save = {
+					-- These options will be passed to conform.format()
+					timeout_ms = 500,
+					lsp_format = "fallback",
+				},
+			},
+		},
 
 		-- AUTO COMPLETION --
 
@@ -51,7 +98,7 @@ require("lazy").setup({
 
 		-- QUALITY OF LIFE --
 
-		{ "lewis6991/gitsigns.nvim" },
+		{ "lewis6991/gitsigns.nvim", opts = {} },
 
 		{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 
@@ -71,18 +118,25 @@ require("lazy").setup({
 			},
 		},
 
-		{ "vim-airline/vim-airline" },
-
 		{
-			"j-hui/fidget.nvim",
+			"nvim-lualine/lualine.nvim",
+			dependencies = { "nvim-tree/nvim-web-devicons" },
 			opts = {
-				-- options
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_c = { "filename" },
+					lualine_x = { "filesize", "encoding", "fileformat", "filetype" },
+					lualine_y = { "progress" },
+					lualine_z = { "location" },
+				},
+				extensions = { "neo-tree", "trouble" },
 			},
 		},
 
-		{ "m-demare/hlargs.nvim" },
+		{ "j-hui/fidget.nvim", opts = {} },
 
-		{ "hadronized/hop.nvim" },
+		{ "m-demare/hlargs.nvim", opts = {} },
 
 		{ "RRethy/vim-illuminate" },
 
@@ -90,22 +144,80 @@ require("lazy").setup({
 
 		{ "danilamihailov/beacon.nvim" },
 
-		{ "lewis6991/hover.nvim" },
-
-		{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+		{
+			"akinsho/bufferline.nvim",
+			version = "*",
+			dependencies = "nvim-tree/nvim-web-devicons",
+			opts = {
+				options = {
+					indicator = {
+						style = "underline",
+					},
+					diagnostics = "nvim_lsp",
+					offsets = {
+						{
+							filetype = "neo-tree",
+							text = "File Explorer",
+							text_align = "center",
+							separator = true,
+						},
+					},
+					color_icons = true, -- whether or not to add the filetype icon highlights
+					show_buffer_icons = true, -- disable filetype icons for buffers
+					show_buffer_close_icons = true,
+					show_close_icon = true,
+					show_tab_indicators = true,
+					show_duplicate_prefix = true, -- whether to show duplicate buffer prefix
+					duplicates_across_groups = true, -- whether to consider duplicate paths in different groups as duplicates
+					move_wraps_at_ends = true, -- whether or not the move command "wraps" at the first or last position
+					separator_style = "thin",
+				},
+			},
+		},
 
 		-- UTILITIES --
 
-		{ "vimwiki/vimwiki" },
+		{
+			"NeogitOrg/neogit",
+			dependencies = {
+				"nvim-lua/plenary.nvim", -- required
+				"sindrets/diffview.nvim", -- optional - Diff integration
+
+				-- Only one of these is needed, not both.
+				"nvim-telescope/telescope.nvim", -- optional
+				"ibhagwan/fzf-lua", -- optional
+			},
+			config = true,
+		},
 
 		{
-			"iamcco/markdown-preview.nvim",
-			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-			build = "cd app && yarn install",
-			init = function()
-				vim.g.mkdp_filetypes = { "markdown" }
-			end,
-			ft = { "markdown" },
+			"nvim-neorg/neorg",
+			cmd = "Neorg",
+			ft = "norg",
+			-- lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+			version = "*", -- Pin Neorg to the latest stable release
+			config = true,
+			opts = {
+				load = {
+					["core.defaults"] = {},
+					["core.dirman"] = {
+						config = {
+							workspaces = {
+								notes = "~/Documents/Notes",
+								mitschrift = "~/Documents/Mitschrift-Norg",
+							},
+						},
+					},
+					["core.concealer"] = {},
+					["core.completion"] = {
+						config = {
+							engine = "nvim-cmp",
+						},
+					},
+					["core.integrations.nvim-cmp"] = {},
+					["core.text-objects"] = {},
+				},
+			},
 		},
 
 		{ "tpope/vim-surround" },
@@ -163,7 +275,6 @@ require("lazy").setup({
 				"nvim-lua/plenary.nvim",
 				"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 				"MunifTanjim/nui.nvim",
-				-- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 			},
 		},
 
@@ -175,8 +286,6 @@ require("lazy").setup({
 			"neovim/nvim-lspconfig",
 			init_options = {
 				userLanguages = {
-					eelixir = "html-eex",
-					eruby = "erb",
 					rust = "html",
 				},
 			},
@@ -196,7 +305,32 @@ require("lazy").setup({
 			lazy = false, -- This plugin is already lazy
 		},
 
-		{ "nvim-treesitter/nvim-treesitter" },
+		{
+			"nvim-treesitter/nvim-treesitter",
+			opts = {
+				ensure_installed = { "lua", "rust", "toml", "hyprlang", "python" },
+				auto_install = true,
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = false,
+				},
+				ident = { enable = true },
+				rainbow = {
+					enable = true,
+					extended_mode = true,
+					max_file_lines = nil,
+				},
+				vim.filetype.add({
+					extension = { rasi = "rasi" },
+					pattern = {
+						[".*/waybar/config"] = "jsonc",
+						[".*/mako/config"] = "dosini",
+						[".*/kitty/*.conf"] = "bash",
+						[".*/hypr/.*%.conf"] = "hyprlang",
+					},
+				}),
+			},
+		},
 	},
 
 	install = { colorscheme = { "catppuccin-mocha" } },

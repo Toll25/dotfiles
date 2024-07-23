@@ -6,18 +6,15 @@ require("config.lazy")
 
 -- Plugins --
 require("config.mason")
-require("config.treesitter")
-require("config.bufferline")
 require("config.cmp")
-require("config.hlargs")
-require("config.gitsigns")
-require("config.neotree")
-require("config.hover")
-require("config.colorizer")
+require("config.neo-tree")
 
--- Keybinds --
+-- Keybinds and Commands --
+require("general.commands")
 require("general.keybinds")
 
 -- Misc --
-require("general.autoformat")
-require("general.hyprlang")
+-- require("general.autocmd.auto-format")
+require("general.autocmd.hl-yank")
+require("general.autocmd.open-images")
+-- require("general.hyprlang")
