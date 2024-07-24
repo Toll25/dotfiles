@@ -8,6 +8,7 @@ require("config.lazy")
 require("config.mason")
 -- require("config.cmp")
 require("config.neo-tree")
+require("config.harpoon")
 
 -- Keybinds and Commands --
 require("general.commands")

@@ -69,7 +69,30 @@ require("lazy").setup({
 		{
 			"folke/noice.nvim",
 			event = { "VeryLazy" },
-			opts = {},
+			opts = {
+				lsp = {
+					progress = {
+						enabled = false,
+					},
+					override = {
+						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+						["vim.lsp.util.stylize_markdown"] = true,
+						["cmp.entry.get_documentation"] = false, -- requires hrsh7th/nvim-cmp
+					},
+				},
+				-- you can enable a preset for easier configuration
+				presets = {
+					bottom_search = true, -- use a classic bottom cmdline for search
+					-- command_palette = true, -- position the cmdline and popupmenu together
+					long_message_to_split = true, -- long messages will be sent to a split
+					inc_rename = true, -- enables an input dialog for inc-rename.nvim
+					lsp_doc_border = true, -- add a border to hover docs and signature help
+				},
+				cmdline = {
+					enabled = true,
+					view = "cmdline",
+				},
+			},
 			dependencies = {
 				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 				"MunifTanjim/nui.nvim",
@@ -78,45 +101,6 @@ require("lazy").setup({
 				--   If not available, we use `mini` as the fallback
 				"rcarriga/nvim-notify",
 			},
-			config = function()
-				require("lualine").setup({
-					sections = {
-						lualine_x = {
-							{
-								require("noice").api.status.command.get,
-								cond = require("noice").api.status.command.has,
-							},
-							"encoding",
-							"fileformat",
-							"filetype",
-						},
-					},
-				})
-				require("noice").setup({
-					lsp = {
-						progress = {
-							enabled = false,
-						},
-						override = {
-							["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-							["vim.lsp.util.stylize_markdown"] = true,
-							["cmp.entry.get_documentation"] = false, -- requires hrsh7th/nvim-cmp
-						},
-					},
-					-- you can enable a preset for easier configuration
-					presets = {
-						bottom_search = true, -- use a classic bottom cmdline for search
-						-- command_palette = true, -- position the cmdline and popupmenu together
-						long_message_to_split = true, -- long messages will be sent to a split
-						inc_rename = true, -- enables an input dialog for inc-rename.nvim
-						lsp_doc_border = true, -- add a border to hover docs and signature help
-					},
-					cmdline = {
-						enabled = true,
-						view = "cmdline",
-					},
-				})
-			end,
 		},
 
 		-- {
@@ -153,6 +137,7 @@ require("lazy").setup({
 				},
 				buftypes = {},
 			},
+			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		},
 
 		{
@@ -222,7 +207,7 @@ require("lazy").setup({
 						{ name = "neorg" },
 					}),
 					formatting = {
-						format = function(entry, item)
+						format = function(_, item)
 							-- local icons = LazyVim.config.icons.kinds
 							-- if icons[item.kind] then
 							-- 	item.kind = icons[item.kind] .. item.kind
@@ -260,6 +245,23 @@ require("lazy").setup({
 
 		-- QUALITY OF LIFE --
 
+		{
+			"folke/which-key.nvim",
+			event = "VeryLazy",
+			opts = {
+				preset = "modern",
+			},
+			keys = {
+				{
+					"<leader>?",
+					function()
+						require("which-key").show({ global = false })
+					end,
+					desc = "Buffer Local Keymaps (which-key)",
+				},
+			},
+		},
+
 		{ "f-person/git-blame.nvim", opts = { enabled = false }, cmd = { "GitBlameToggle" } },
 
 		{ "lewis6991/gitsigns.nvim", opts = {} },
@@ -283,7 +285,7 @@ require("lazy").setup({
 			opts = {},
 			{
 				"folke/todo-comments.nvim",
-				event = { "BufEnter", "BufWinEnter" },
+				event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 				dependencies = { "nvim-lua/plenary.nvim" },
 				opts = {},
 			},
@@ -306,7 +308,7 @@ require("lazy").setup({
 					lualine_y = { "progress" },
 					lualine_z = { "location" },
 				},
-				extensions = { "neo-tree", "trouble" },
+				extensions = { "neo-tree", "trouble", "toggleterm" },
 			},
 		},
 
@@ -323,7 +325,7 @@ require("lazy").setup({
 		{
 			"akinsho/bufferline.nvim",
 			version = "*",
-			event = { "BufEnter", "BufWinEnter" },
+			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 			dependencies = "nvim-tree/nvim-web-devicons",
 			opts = {
 				options = {
@@ -353,6 +355,45 @@ require("lazy").setup({
 		},
 
 		-- UTILITIES --
+
+		{
+			"akinsho/toggleterm.nvim",
+			version = "*",
+			opts = {},
+		},
+
+		{
+			"folke/flash.nvim",
+			event = "VeryLazy",
+			opts = {
+				modes = { search = { enabled = false } } --[[ things you want to change go here]],
+			},
+			-- stylua: ignore
+			keys = {
+					{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+					{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+					{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+					{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+					{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+			},
+		},
+
+		{
+			"ThePrimeagen/harpoon",
+			branch = "harpoon2",
+			dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+		},
+
+		-- {
+		-- 	"tomiis4/Hypersonic.nvim",
+		-- 	event = "CmdlineEnter",
+		-- 	cmd = "Hypersonic",
+		-- 	config = function()
+		-- 		require("hypersonic").setup({
+		-- 			-- config
+		-- 		})
+		-- 	end,
+		-- },
 
 		{
 			"smjonas/inc-rename.nvim",
