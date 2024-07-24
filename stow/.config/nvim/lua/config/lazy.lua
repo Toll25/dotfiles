@@ -14,48 +14,143 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- local header = [[
+--    ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣭⣿⣶⣿⣦⣼⣆
+--     ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦
+--           ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷⠄⠄⠄⠄⠻⠿⢿⣿⣧⣄
+--            ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄
+--           ⢠⣿⣿⣿⠈  ⠡⠌⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀
+--    ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘⠄ ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄
+--   ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄
+--  ⣠⣿⠿⠛⠄⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄
+--  ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇⠄⠛⠻⢷⣄
+--       ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆
+--        ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃
+--      ⢰⣶  ⣶ ⢶⣆⢀⣶⠂⣶⡶⠶⣦⡄⢰⣶⠶⢶⣦  ⣴⣶
+--      ⢸⣿⠶⠶⣿ ⠈⢻⣿⠁ ⣿⡇ ⢸⣿⢸⣿⢶⣾⠏ ⣸⣟⣹⣧
+--      ⠸⠿  ⠿  ⠸⠿  ⠿⠷⠶⠿⠃⠸⠿⠄⠙⠷⠤⠿⠉⠉⠿⠆
+-- ]]
+
+local header = {
+	" ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
+	" ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
+	" ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║",
+	" ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║",
+	" ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
+	" ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
+}
+
+-- Splitting the header into lines
 require("lazy").setup({
 	spec = {
 
-		-- FORMATTING AND COLORS --
+		-- FORMATTING, COLORS AND WINDOWDRESSING --
 
 		{
 			"catppuccin/nvim",
 			name = "catppuccin",
+			lazy = true,
 			priority = 1000,
+		},
+		{
+			"nvimdev/dashboard-nvim",
+			event = "VimEnter",
 			config = function()
-				-- load the colorscheme here
-				vim.cmd([[colorscheme catppuccin-mocha]])
+				require("dashboard").setup({
+					config = {
+						header = header,
+						shortcut = {},
+					},
+				})
+			end,
+			dependencies = { { "nvim-tree/nvim-web-devicons" } },
+		},
+
+		{
+			"folke/noice.nvim",
+			event = { "VeryLazy" },
+			opts = {},
+			dependencies = {
+				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+				"MunifTanjim/nui.nvim",
+				-- OPTIONAL:
+				--   `nvim-notify` is only needed, if you want to use the notification view.
+				--   If not available, we use `mini` as the fallback
+				"rcarriga/nvim-notify",
+			},
+			config = function()
+				require("lualine").setup({
+					sections = {
+						lualine_x = {
+							{
+								require("noice").api.status.command.get,
+								cond = require("noice").api.status.command.has,
+							},
+							"encoding",
+							"fileformat",
+							"filetype",
+						},
+					},
+				})
+				require("noice").setup({
+					lsp = {
+						progress = {
+							enabled = false,
+						},
+						override = {
+							["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+							["vim.lsp.util.stylize_markdown"] = true,
+							["cmp.entry.get_documentation"] = false, -- requires hrsh7th/nvim-cmp
+						},
+					},
+					-- you can enable a preset for easier configuration
+					presets = {
+						bottom_search = true, -- use a classic bottom cmdline for search
+						-- command_palette = true, -- position the cmdline and popupmenu together
+						long_message_to_split = true, -- long messages will be sent to a split
+						inc_rename = true, -- enables an input dialog for inc-rename.nvim
+						lsp_doc_border = true, -- add a border to hover docs and signature help
+					},
+					cmdline = {
+						enabled = true,
+						view = "cmdline",
+					},
+				})
 			end,
 		},
+
+		-- {
+		-- 	"TobinPalmer/Tip.nvim",
+		-- 	event = "VimEnter",
+		-- 	init = function()
+		-- 		require("tip").setup({
+		-- 			seconds = 2,
+		-- 			title = "Tip!",
+		-- 			url = "https://vtip.43z.one", -- Or https://vimiscool.tech/neotip
+		-- 		})
+		-- 	end,
+		-- },
 
 		{
 			"NvChad/nvim-colorizer.lua",
 			opts = {
 				filetypes = { "*" },
 				user_default_options = {
-					RGB = true, -- #RGB hex codes
-					RRGGBB = true, -- #RRGGBB hex codes
-					names = true, -- "Name" codes like Blue or blue
-					RRGGBBAA = true, -- #RRGGBBAA hex codes
-					AARRGGBB = false, -- 0xAARRGGBB hex codes
-					rgb_fn = true, -- CSS rgb() and rgba() functions
-					hsl_fn = true, -- CSS hsl() and hsla() functions
-					css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-					css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-					-- Available modes for `mode`: foreground, background,  virtualtext
-					mode = "background", -- Set the display mode.
-					-- Available methods are false / true / "normal" / "lsp" / "both"
-					-- True is same as normal
-					tailwind = true, -- Enable tailwind colors
-					-- parsers can contain values used in |user_default_options|
-					sass = { enable = false, parsers = { "css" } }, -- Enable sass colors
+					RGB = true,
+					RRGGBB = true,
+					names = true,
+					RRGGBBAA = true,
+					AARRGGBB = false,
+					rgb_fn = true,
+					hsl_fn = true,
+					css = true,
+					css_fn = true,
+					mode = "background",
+					tailwind = true,
+					sass = { enable = false, parsers = { "css" } },
 					virtualtext = "■",
-					-- update color values even if buffer is not focused
-					-- example use: cmp_menu, cmp_docs
 					always_update = false,
 				},
-				-- all the sub-options of filetypes apply to buftypes
 				buftypes = {},
 			},
 		},
@@ -67,11 +162,10 @@ require("lazy").setup({
 			opts = {
 				formatters_by_ft = {
 					lua = { "stylua" },
-					python = { "isort", "black" },
+					python = { "isort", "autopep8" },
 					rust = { "rustfmt", "yew-fmt", lsp_format = "fallback" },
 				},
 				format_on_save = {
-					-- These options will be passed to conform.format()
 					timeout_ms = 5000,
 					lsp_format = "fallback",
 				},
@@ -80,15 +174,83 @@ require("lazy").setup({
 
 		-- AUTO COMPLETION --
 
-		{ "hrsh7th/nvim-cmp" },
+		{
+			"hrsh7th/nvim-cmp",
+			version = false, -- last release is way too old
+			event = "InsertEnter",
+			dependencies = {
+				{ "hrsh7th/cmp-nvim-lsp" },
+				{ "hrsh7th/cmp-nvim-lua" },
+				{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+				{ "hrsh7th/cmp-vsnip" },
+				{ "hrsh7th/cmp-path" },
+				{ "hrsh7th/cmp-buffer" },
+				{ "hrsh7th/vim-vsnip" },
+			},
+			opts = function()
+				-- vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+				local cmp = require("cmp")
+				local defaults = require("cmp.config.default")()
+				local auto_select = true
+				return {
+					auto_brackets = {}, -- configure any filetype to auto add brackets
+					completion = {
+						completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
+					},
+					preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
+					mapping = cmp.mapping.preset.insert({
 
-		{ "hrsh7th/cmp-nvim-lsp" },
-		{ "hrsh7th/cmp-nvim-lua" },
-		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
-		{ "hrsh7th/cmp-vsnip" },
-		{ "hrsh7th/cmp-path" },
-		{ "hrsh7th/cmp-buffer" },
-		{ "hrsh7th/vim-vsnip" },
+						["<S-Tab>"] = cmp.mapping.select_prev_item(),
+						["<Tab>"] = cmp.mapping.select_next_item(),
+						["<C-S-f>"] = cmp.mapping.scroll_docs(-4),
+						["<C-f>"] = cmp.mapping.scroll_docs(4),
+						["<C-Space>"] = cmp.mapping.complete(),
+						["<C-e>"] = cmp.mapping.close(),
+						["<CR>"] = cmp.mapping.confirm({
+							behavior = cmp.ConfirmBehavior.Insert,
+							select = true,
+						}),
+					}),
+					sources = cmp.config.sources({
+						{ name = "path" }, -- file paths
+						{ name = "nvim_lsp", keyword_length = 3 }, -- from language server
+						{ name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
+						{ name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
+						{ name = "buffer", keyword_length = 2 }, -- source current buffer
+						{ name = "vsnip", keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
+						{ name = "calc" }, -- source for math calculation
+						{ name = "neorg" },
+					}),
+					formatting = {
+						format = function(entry, item)
+							-- local icons = LazyVim.config.icons.kinds
+							-- if icons[item.kind] then
+							-- 	item.kind = icons[item.kind] .. item.kind
+							-- end
+
+							local widths = {
+								abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
+								menu = vim.g.cmp_widths and vim.g.cmp_widths.menu or 30,
+							}
+
+							for key, width in pairs(widths) do
+								if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
+									item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. "…"
+								end
+							end
+
+							return item
+						end,
+					},
+					experimental = {
+						ghost_text = {
+							-- hl_group = "CmpGhostText",
+						},
+					},
+					sorting = defaults.sorting,
+				}
+			end,
+		},
 
 		{
 			"windwp/nvim-autopairs",
@@ -102,33 +264,45 @@ require("lazy").setup({
 
 		{ "lewis6991/gitsigns.nvim", opts = {} },
 
-		{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-
 		{
-			"numToStr/Comment.nvim",
+			"lukas-reineke/indent-blankline.nvim",
+			main = "ibl",
+			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 			opts = {
-				-- add any options here
-			},
-			{
-				"folke/todo-comments.nvim",
-				dependencies = { "nvim-lua/plenary.nvim" },
-				opts = {
-					-- your configuration comes here
-					-- or leave it empty to use the default settings
-					-- refer to the configuration section below
+				exclude = {
+					filetypes = {
+						"dashboard",
+					},
 				},
 			},
 		},
 
 		{
+			"numToStr/Comment.nvim",
+			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+			opts = {},
+			{
+				"folke/todo-comments.nvim",
+				event = { "BufEnter", "BufWinEnter" },
+				dependencies = { "nvim-lua/plenary.nvim" },
+				opts = {},
+			},
+		},
+
+		{
 			"nvim-lualine/lualine.nvim",
+			event = "VeryLazy",
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			opts = {
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch", "diff", "diagnostics" },
 					lualine_c = { "filename" },
-					lualine_x = { "filesize", "encoding", "fileformat", "filetype" },
+					-- lualine_x = {
+					-- 	"encoding",
+					-- 	"fileformat",
+					-- 	"filetype",
+					-- },
 					lualine_y = { "progress" },
 					lualine_z = { "location" },
 				},
@@ -136,19 +310,20 @@ require("lazy").setup({
 			},
 		},
 
-		{ "j-hui/fidget.nvim", opts = {} },
+		{ "j-hui/fidget.nvim", opts = {}, event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
 
-		{ "m-demare/hlargs.nvim", opts = {} },
+		{ "m-demare/hlargs.nvim", opts = {}, event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
 
-		{ "RRethy/vim-illuminate" },
+		{ "RRethy/vim-illuminate", event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
 
-		{ "preservim/tagbar" },
+		{ "preservim/tagbar", cmd = "TagbarToggle" },
 
-		{ "danilamihailov/beacon.nvim" },
+		{ "danilamihailov/beacon.nvim", event = { "VeryLazy" } },
 
 		{
 			"akinsho/bufferline.nvim",
 			version = "*",
+			event = { "BufEnter", "BufWinEnter" },
 			dependencies = "nvim-tree/nvim-web-devicons",
 			opts = {
 				options = {
@@ -180,12 +355,41 @@ require("lazy").setup({
 		-- UTILITIES --
 
 		{
+			"smjonas/inc-rename.nvim",
+			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+			config = function()
+				require("inc_rename").setup()
+			end,
+		},
+
+		{
+			"code-biscuits/nvim-biscuits",
+			opts = { cursor_line_only = true },
+			keys = {
+				{
+					"<leader>bb",
+					function()
+						local nvim_biscuits = require("nvim-biscuits")
+						nvim_biscuits.BufferAttach()
+						nvim_biscuits.toggle_biscuits()
+					end,
+					mode = "n",
+					desc = "Enable Biscuits",
+				},
+			},
+		},
+
+		{ "jbyuki/nabla.nvim", keys = {
+			{ "<leader>la", ":lua require('nabla').popup()<CR>" },
+		} },
+
+		{
 			"linux-cultist/venv-selector.nvim",
 			dependencies = {
 				"neovim/nvim-lspconfig",
 				{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
 			},
-			lazy = false,
+			-- lazy = false,
 			branch = "regexp", -- This is the regexp branch, use this for the new version
 			config = function()
 				require("venv-selector").setup()
@@ -203,7 +407,6 @@ require("lazy").setup({
 
 				-- Only one of these is needed, not both.
 				"nvim-telescope/telescope.nvim", -- optional
-				"ibhagwan/fzf-lua", -- optional
 			},
 			config = true,
 			cmd = { "Neogit" },
@@ -239,7 +442,7 @@ require("lazy").setup({
 			},
 		},
 
-		{ "tpope/vim-surround" },
+		{ "tpope/vim-surround", event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
 
 		{ "tpope/vim-fugitive" },
 

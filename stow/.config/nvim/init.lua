@@ -6,7 +6,7 @@ require("config.lazy")
 
 -- Plugins --
 require("config.mason")
-require("config.cmp")
+-- require("config.cmp")
 require("config.neo-tree")
 
 -- Keybinds and Commands --
@@ -18,3 +18,4 @@ require("general.keybinds")
 require("general.autocmd.hl-yank")
 require("general.autocmd.open-images")
 -- require("general.hyprlang")
+vim.cmd([[colorscheme catppuccin-mocha]])

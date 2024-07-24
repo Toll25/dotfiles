@@ -45,3 +45,8 @@ vim.api.nvim_set_keymap("n", "<leader>lu", ":Lazy update<CR>", opts)
 -- Git --
 vim.api.nvim_set_keymap("n", "<leader>gi", ":Neogit<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>gb", ":GitBlameToggle<CR>", opts)
+
+-- Rename --
+vim.keymap.set("n", "<leader>rn", function()
+	return ":IncRename " .. vim.fn.expand("<cword>")
+end, { expr = true })
