@@ -122,9 +122,9 @@ require("lazy").setup({
 				user_default_options = {
 					RGB = true,
 					RRGGBB = true,
-					names = true,
+					names = false,
 					RRGGBBAA = true,
-					AARRGGBB = false,
+					AARRGGBB = true,
 					rgb_fn = true,
 					hsl_fn = true,
 					css = true,
@@ -137,7 +137,7 @@ require("lazy").setup({
 				},
 				buftypes = {},
 			},
-			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+			event = { "VeryLazy" },
 		},
 
 		{
@@ -229,6 +229,7 @@ require("lazy").setup({
 					},
 					experimental = {
 						ghost_text = {
+							ghost_text = false,
 							-- hl_group = "CmpGhostText",
 						},
 					},
@@ -405,24 +406,10 @@ require("lazy").setup({
 
 		{
 			"code-biscuits/nvim-biscuits",
-			opts = { cursor_line_only = true },
-			keys = {
-				{
-					"<leader>bb",
-					function()
-						local nvim_biscuits = require("nvim-biscuits")
-						nvim_biscuits.BufferAttach()
-						nvim_biscuits.toggle_biscuits()
-					end,
-					mode = "n",
-					desc = "Enable Biscuits",
-				},
-			},
+			opts = { cursor_line_only = true, show_on_start = true },
 		},
 
-		{ "jbyuki/nabla.nvim", keys = {
-			{ "<leader>la", ":lua require('nabla').popup()<CR>" },
-		} },
+		{ "jbyuki/nabla.nvim" },
 
 		{
 			"linux-cultist/venv-selector.nvim",
@@ -435,9 +422,7 @@ require("lazy").setup({
 			config = function()
 				require("venv-selector").setup()
 			end,
-			keys = {
-				{ "<leader>vs", "<cmd>VenvSelect<cr>" },
-			},
+			cmd = "VenvSelect",
 		},
 
 		{
@@ -479,8 +464,10 @@ require("lazy").setup({
 					},
 					["core.integrations.nvim-cmp"] = {},
 					["core.text-objects"] = {},
+					["core.integrations.telescope"] = {},
 				},
 			},
+			dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
 		},
 
 		{ "tpope/vim-surround", event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
@@ -490,45 +477,20 @@ require("lazy").setup({
 		{
 			"nvim-telescope/telescope.nvim",
 			tag = "0.1.8",
-			dependencies = { "nvim-lua/plenary.nvim" },
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-telescope/telescope-symbols.nvim",
+				"adoyle-h/lsp-toggle.nvim",
+				"cljoly/telescope-repo.nvim",
+				{ "polirritmico/telescope-lazy-plugins.nvim" },
+				"keyvchan/telescope-find-pickers.nvim",
+				"crispgm/telescope-heading.nvim",
+			},
 		},
-
 		{
 			"folke/trouble.nvim",
 			opts = {}, -- for default options, refer to the configuration section for custom setup.
 			cmd = "Trouble",
-			keys = {
-				{
-					"<leader>xx",
-					"<cmd>Trouble diagnostics toggle<cr>",
-					desc = "Diagnostics (Trouble)",
-				},
-				{
-					"<leader>xX",
-					"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-					desc = "Buffer Diagnostics (Trouble)",
-				},
-				-- {
-				-- 	"<leader>cs",
-				-- 	"<cmd>Trouble symbols toggle focus=false<cr>",
-				-- 	desc = "Symbols (Trouble)",
-				-- },
-				-- {
-				-- 	"<leader>cl",
-				-- 	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-				-- 	desc = "LSP Definitions / references / ... (Trouble)",
-				-- },
-				{
-					"<leader>xL",
-					"<cmd>Trouble loclist toggle<cr>",
-					desc = "Location List (Trouble)",
-				},
-				{
-					"<leader>xQ",
-					"<cmd>Trouble qflist toggle<cr>",
-					desc = "Quickfix List (Trouble)",
-				},
-			},
 		},
 
 		{

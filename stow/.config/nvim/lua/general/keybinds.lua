@@ -1,13 +1,29 @@
+local wk = require("which-key")
+wk.add({
+	{ "<leader>l", group = "Lazy" },
+	{ "<leader>g", group = "Git" },
+	{ "<leader>f", group = "Telescope" },
+	{ "<leader>s", group = "Show" },
+	{ "<leader>r", group = "Rename" },
+	{ "<leader>t", group = "Terminal" },
+	{ "<leader>d", group = "Diagnostics" },
+	{ "<leader>h", group = "Harpoon" },
+	{ "<leader>m", group = "Managers" },
+	{ "<leader>mm", group = "Mason" },
+	{ "<leader>mt", group = "Treesitter" },
+	{ "<leader>ml", group = "Lazy" },
+})
 local opts = { noremap = true, silent = true }
 -- File Manager --
-vim.api.nvim_set_keymap("n", "<F7>", "<CMD>Neotree toggle<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Neotree . reveal<CR>", opts)
+vim.api.nvim_set_keymap("n", "<F7>", "<CMD>Neotree toggle<CR>", { desc = "Toggle filetree" })
+vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Neotree . reveal<CR>", { desc = "Reveal file in filetree" })
 
 -- General Purpose --
 vim.api.nvim_set_keymap("n", "<C-s>", "<CMD>w<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader><leader>q", "<CMD>qa<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
+-- vim.api.nvim_set_keymap("n", "<leader><leader>q", "<CMD>qa<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-f>", "/", opts)
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show Hover information" })
 
 -- Split Navigation --
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
@@ -27,40 +43,55 @@ vim.api.nvim_set_keymap("n", "<F8>", "<CMD>TagbarToggle<CR>", opts)
 
 -- Telescope --
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-
--- Colorize --
-vim.api.nvim_set_keymap("n", "<leader>c", "<CMD>ColorizerToggle<CR>", opts)
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffer" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tags" })
+vim.keymap.set("n", "<leader>fv", "<CMD>VenvSelect<CR>", { desc = "Select venv" })
+vim.keymap.set("n", "<leader>fs", "<CMD>Telescope symbols<CR>", { desc = "Find symbols" })
+vim.keymap.set("n", "<leader>fl", "<CMD>Telescope ToggleLSP<CR>", { desc = "Toggle LSPs" })
+vim.keymap.set("n", "<leader>fr", "<CMD>Telescope repo list<CR>", { desc = "Find repos" })
+vim.keymap.set("n", "<leader>fl", "<CMD>Telescope lazy_plugins<CR>", { desc = "Find Lazy plugins" })
+vim.keymap.set("n", "<leader>fp", "<CMD>Telescope pickers<CR>", { desc = "Find Telescope pickers" })
+vim.keymap.set("n", "<leader>ft", "<CMD>Telescope headings<CR>", { desc = "Find headings" })
 
 -- Neorg --
 vim.api.nvim_set_keymap("n", "<up>", "<Plug>(neorg.text-objects.item-up)", {})
 vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {})
 
 -- Lazy --
-vim.api.nvim_set_keymap("n", "<leader>lu", "<CMD>Lazy update<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>ll", "<CMD>Lazy<CR>", { desc = "Open home" })
+vim.api.nvim_set_keymap("n", "<leader>lx", "<CMD>Lazy clean<CR>", { desc = "Clean" })
+vim.api.nvim_set_keymap("n", "<leader>lu", "<CMD>Lazy update<CR>", { desc = "Update" })
+vim.api.nvim_set_keymap("n", "<leader>lp", "<CMD>Lazy profile<CR>", { desc = "Profile" })
+
+vim.api.nvim_set_keymap("n", "<leader>mll", "<CMD>Lazy<CR>", { desc = "Open home" })
+vim.api.nvim_set_keymap("n", "<leader>mlx", "<CMD>Lazy clean<CR>", { desc = "Clean" })
+vim.api.nvim_set_keymap("n", "<leader>mlu", "<CMD>Lazy update<CR>", { desc = "Update" })
+vim.api.nvim_set_keymap("n", "<leader>mlp", "<CMD>Lazy profile<CR>", { desc = "Profile" })
 
 -- Git --
-vim.api.nvim_set_keymap("n", "<leader>gi", "<CMD>Neogit<CR>", opts)
-vim.api.nvim_set_keymap("n", "<leader>gb", "<CMD>GitBlameToggle<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>gi", "<CMD>Neogit<CR>", { desc = "Open Git UI" })
+vim.api.nvim_set_keymap("n", "<leader>gb", "<CMD>GitBlameToggle<CR>", { desc = "Toggle inline Git blame" })
 
 -- Rename --
 vim.keymap.set("n", "<leader>rn", function()
 	return "<CMD>IncRename " .. vim.fn.expand("<cword>")
-end, { expr = true })
+end, { expr = true, desc = "Rename with IncRename" })
+vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Rename with substitute" })
 
 -- Harpoon --
 local harpoon = require("harpoon")
 
-vim.keymap.set("n", "<leader>a", function()
+vim.keymap.set("n", "<leader>ha", function()
 	harpoon:list():add()
-end)
+end, { desc = "Add file" })
 vim.keymap.set("n", "<C-e>", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
-
+vim.keymap.set("n", "<leader>hl", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end, { desc = "Show list" })
 -- vim.keymap.set("n", "<C-h>", function()
 -- 	harpoon:list():select(1)
 -- end)
@@ -87,5 +118,31 @@ end)
 
 -- Terminal --
 vim.keymap.set("t", "<ESC>", "<C-\\><C-N>")
-vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm<CR>")
+vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm<CR>", { desc = "Toggle Terminal" })
 vim.keymap.set("t", ":q", "<CMD>ToggleTerm<CR>")
+
+-- Show --
+vim.keymap.set("n", "<leader>sl", "<CMD>lua require('nabla').popup()<CR>", { desc = "Show latex interpretation" })
+vim.keymap.set("n", "<leader>sb", function()
+	local nvim_biscuits = require("nvim-biscuits")
+	nvim_biscuits.BufferAttach()
+	nvim_biscuits.toggle_biscuits()
+end, { desc = "Show biscuits" })
+vim.keymap.set("n", "<leader>sc", "<CMD>ColorizerToggle<CR>", { desc = "Show colors" })
+
+-- Diagnostics --
+vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })
+-- vim.api.nvim_set_keymap('n', '<leader>xX', '<CMD>Trouble diagnostics toggle filter.buf=0<CR>', { desc = 'Buffer Diagnostics (Trouble)' })
+vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })
+vim.api.nvim_set_keymap("n", "<leader>dq", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List" })
+
+-- Managers --
+vim.keymap.set("n", "<leader>mmm", "<CMD>Mason<CR>", { desc = "Open home" })
+vim.keymap.set("n", "<leader>mmu", "<CMD>MasonUpdate<CR>", { desc = "Update" })
+vim.keymap.set("n", "<leader>mmi", ":MasonInstall ", { desc = "Install" })
+vim.keymap.set("n", "<leader>mmd", ":MasonUninstall ", { desc = "Uninstall" })
+
+vim.keymap.set("n", "<leader>mtt", "<CMD>TSToggle<CR>", { desc = "Toggle" })
+vim.keymap.set("n", "<leader>mtu", "<CMD>TSUpdate<CR>", { desc = "Update" })
+vim.keymap.set("n", "<leader>mti", ":TSInstall ", { desc = "Install" })
+vim.keymap.set("n", "<leader>mtd", ":TSUninstall ", { desc = "Uninstall" })
