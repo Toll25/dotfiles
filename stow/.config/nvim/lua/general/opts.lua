@@ -5,16 +5,13 @@ vim.cmd("set number relativenumber")
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.opt.termguicolors = true
-vim.cmd("noremap <Up> <Nop>")
-vim.cmd("noremap <Down> <Nop>")
-vim.cmd("noremap <Left> <Nop>")
-vim.cmd("noremap <Right> <Nop>")
 vim.cmd("set clipboard=unnamedplus")
 vim.cmd("set nocompatible")
 vim.cmd("filetype plugin on")
 -- vim.cmd("syntax on")
 vim.cmd("set conceallevel=3")
 vim.cmd("set foldlevelstart=99")
+vim.g.nvim_tree_respect_buf_cwd = 1
 vim.diagnostic.config({
 	signs = {
 
