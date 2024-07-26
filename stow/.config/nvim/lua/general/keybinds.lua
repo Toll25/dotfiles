@@ -123,11 +123,11 @@ vim.keymap.set("t", ":q", "<CMD>ToggleTerm<CR>")
 
 -- Show --
 vim.keymap.set("n", "<leader>sl", "<CMD>lua require('nabla').popup()<CR>", { desc = "Show latex interpretation" })
-vim.keymap.set("n", "<leader>sb", function()
-	local nvim_biscuits = require("nvim-biscuits")
-	nvim_biscuits.BufferAttach()
-	nvim_biscuits.toggle_biscuits()
-end, { desc = "Show biscuits" })
+-- vim.keymap.set("n", "<leader>sb", function()
+-- 	local nvim_biscuits = require("nvim-biscuits")
+-- 	nvim_biscuits.BufferAttach()
+-- 	nvim_biscuits.toggle_biscuits()
+-- end, { desc = "Show biscuits" })
 vim.keymap.set("n", "<leader>sc", "<CMD>ColorizerToggle<CR>", { desc = "Show colors" })
 
 -- Diagnostics --

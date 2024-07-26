@@ -360,6 +360,7 @@ require("lazy").setup({
 		{
 			"akinsho/toggleterm.nvim",
 			version = "*",
+			cmd = "ToggleTerm",
 			opts = {},
 		},
 
@@ -404,10 +405,10 @@ require("lazy").setup({
 			end,
 		},
 
-		{
-			"code-biscuits/nvim-biscuits",
-			opts = { cursor_line_only = true, show_on_start = true },
-		},
+		-- {
+		-- 	"code-biscuits/nvim-biscuits",
+		-- 	opts = { cursor_line_only = true, show_on_start = true },
+		-- },
 
 		{ "jbyuki/nabla.nvim" },
 
@@ -504,17 +505,62 @@ require("lazy").setup({
 		},
 
 		-- LSP SUPPORT --
-
 		{
 			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			"neovim/nvim-lspconfig",
-			init_options = {
-				userLanguages = {
-					rust = "html",
-				},
-			},
+			event = "VeryLazy",
+			config = function()
+				require("mason").setup({
+					ui = {
+						icons = {
+							package_installed = "",
+							package_pending = "",
+							package_uninstalled = "",
+						},
+					},
+				})
+			end,
 		},
+		{
+			"williamboman/mason-lspconfig.nvim",
+			after = "mason.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("mason-lspconfig").setup()
+				require("mason-lspconfig").setup_handlers({
+					function(server_name) -- default handler (optional)
+						require("lspconfig")[server_name].setup({})
+					end,
+					["lua_ls"] = function()
+						local lspconfig = require("lspconfig")
+						lspconfig.lua_ls.setup({
+							settings = {
+								Lua = {
+									diagnostics = {
+										globals = { "vim" },
+									},
+								},
+							},
+						})
+					end,
+					["rust_analyzer"] = function() end,
+				})
+			end,
+		},
+		{
+			"neovim/nvim-lspconfig",
+			event = "VeryLazy",
+		},
+		-- {
+		-- 	"williamboman/mason.nvim",
+		-- 	"williamboman/mason-lspconfig.nvim",
+		-- 	"neovim/nvim-lspconfig",
+		-- 	event = "VeryLazy",
+		-- 	init_options = {
+		-- 		userLanguages = {
+		-- 			rust = "html",
+		-- 		},
+		-- 	},
+		-- },
 
 		{
 			"saecki/crates.nvim",
@@ -534,7 +580,7 @@ require("lazy").setup({
 			version = false, -- last release is way too old and doesn't work on Windows
 			build = ":TSUpdate",
 			event = { "VeryLazy" },
-			lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+			lazy = true, -- load treesitter early when opening a file from the cmdline
 			init = function(plugin)
 				require("lazy.core.loader").add_to_rtp(plugin)
 				require("nvim-treesitter.query_predicates")

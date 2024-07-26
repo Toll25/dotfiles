@@ -5,7 +5,7 @@ require("general.opts")
 require("config.lazy")
 
 -- Plugins --
-require("config.mason")
+-- require("config.mason")
 -- require("config.cmp")
 require("config.neo-tree")
 require("config.harpoon")
