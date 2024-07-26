@@ -32,7 +32,17 @@
         "battery#bat2",
         "clock",
     ],
-    "idle_inhibitor": {
+
+	"hyprland/window": {
+		//"format": "👉 {}",
+		"rewrite": {
+			"(.*) — Mozilla Firefox": "$1",
+		//	"(.*) - fish": "> [$1]"
+		},
+		"icon": true
+	},  
+
+	"idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
             "activated": "",
