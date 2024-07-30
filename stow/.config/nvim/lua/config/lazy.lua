@@ -280,12 +280,13 @@ require("lazy").setup({
 			"numToStr/Comment.nvim",
 			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 			opts = {},
-			{
-				"folke/todo-comments.nvim",
-				event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-				dependencies = { "nvim-lua/plenary.nvim" },
-				opts = {},
-			},
+		},
+
+		{
+			"folke/todo-comments.nvim",
+			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+			dependencies = { "nvim-lua/plenary.nvim" },
+			opts = {},
 		},
 
 		{

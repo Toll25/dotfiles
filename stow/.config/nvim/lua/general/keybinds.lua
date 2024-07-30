@@ -16,6 +16,7 @@ wk.add({
 	{ "<leader>ml", group = "Lazy" },
 })
 local opts = { noremap = true, silent = true }
+
 -- File Manager --
 vim.api.nvim_set_keymap("n", "<F7>", "<CMD>Neotree toggle<CR>", { desc = "Toggle filetree" })
 vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Neotree . reveal<CR>", { desc = "Reveal file in filetree" })
