@@ -95,15 +95,11 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #power-profiles-daemon,
+#window,
+#workspaces,
 #mpd {
     padding: 0 10px;
     color: #cdd6f4;
-}
-
-#window,
-#workspaces {
-    color: #cdd6f4;
-    margin: 0 4px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
