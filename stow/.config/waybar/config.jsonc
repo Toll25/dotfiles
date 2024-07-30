@@ -19,6 +19,7 @@
 		"tray",
         //"mpd",
         //"idle_inhibitor",
+		"hyprland/language",
         "pulseaudio",
         "network",
         "power-profiles-daemon",
@@ -121,11 +122,12 @@
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon}  {format_source}",
-        "format-bluetooth": "{volume}% {icon}   {format_source}",
-        "format-bluetooth-muted": "   {format_source}",
-        "format-muted": "  {format_source}",
-        "format-source": "",
-        "format-source-muted": "",
+        "format-bluetooth": "{volume}% {icon} ",
+        "format-bluetooth-muted": " ",
+        "format-muted": " {format_source}",
+        //"format-source": "",
+        "format-source": "",
+        //"format-source-muted": "",
         "format-icons": {
             //"headphone": "",
             //"hands-free": "",
@@ -138,4 +140,11 @@
 		"on-click-right": "pavucontrol",
         "on-click": "pamixer -t"
     },
+	"hyprland/language": {
+		"format": "{}",
+		"format-en": ":(",
+		"format-de": ":)",
+		"keyboard-name": "at-translated-set-2-keyboard",
+		"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+	}
 }
