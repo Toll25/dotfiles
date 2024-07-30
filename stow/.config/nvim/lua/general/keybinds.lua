@@ -8,6 +8,8 @@ wk.add({
 	{ "<leader>t", group = "Terminal" },
 	{ "<leader>d", group = "Diagnostics" },
 	{ "<leader>h", group = "Harpoon" },
+	{ "<leader>n", group = "Neorg" },
+	{ "<leader>nw", group = "Workspaces" },
 	{ "<leader>m", group = "Managers" },
 	{ "<leader>mm", group = "Mason" },
 	{ "<leader>mt", group = "Treesitter" },
@@ -71,7 +73,7 @@ vim.api.nvim_set_keymap("n", "<leader>mlu", "<CMD>Lazy update<CR>", { desc = "Up
 vim.api.nvim_set_keymap("n", "<leader>mlp", "<CMD>Lazy profile<CR>", { desc = "Profile" })
 
 -- Git --
-vim.api.nvim_set_keymap("n", "<leader>gi", "<CMD>Neogit<CR>", { desc = "Open Git UI" })
+vim.api.nvim_set_keymap("n", "<leader>gg", "<CMD>Neogit<CR>", { desc = "Open Git UI" })
 vim.api.nvim_set_keymap("n", "<leader>gb", "<CMD>GitBlameToggle<CR>", { desc = "Toggle inline Git blame" })
 
 -- Rename --
@@ -129,6 +131,7 @@ vim.keymap.set("n", "<leader>sl", "<CMD>lua require('nabla').popup()<CR>", { des
 -- 	nvim_biscuits.toggle_biscuits()
 -- end, { desc = "Show biscuits" })
 vim.keymap.set("n", "<leader>sc", "<CMD>ColorizerToggle<CR>", { desc = "Show colors" })
+vim.keymap.set("n", "<leader>sw", "<CMD>set wrap!<CR>", { desc = "Toggle wraps" })
 
 -- Diagnostics --
 vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })
@@ -146,3 +149,11 @@ vim.keymap.set("n", "<leader>mtt", "<CMD>TSToggle<CR>", { desc = "Toggle" })
 vim.keymap.set("n", "<leader>mtu", "<CMD>TSUpdate<CR>", { desc = "Update" })
 vim.keymap.set("n", "<leader>mti", ":TSInstall ", { desc = "Install" })
 vim.keymap.set("n", "<leader>mtd", ":TSUninstall ", { desc = "Uninstall" })
+
+-- Neorg --
+vim.api.nvim_set_keymap("n", "<leader>nc", "<CMD>Neorg toggle-conclealer<CR>", { desc = "Toggle concealer" })
+vim.api.nvim_set_keymap("n", "<leader>nt", "<CMD>Neorg toc<CR>", { desc = "Show table of contents" })
+vim.api.nvim_set_keymap("n", "<leader>ni", "<CMD>Neorg index<CR>", { desc = "Go to index" })
+vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspaces default<CR>", { desc = "Open default" })
+vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspaces mitschrift<CR>", { desc = "Open mitschrift" })
+vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspaces notes<CR>", { desc = "Open notes" })

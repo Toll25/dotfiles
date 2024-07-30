@@ -1,17 +1,24 @@
-vim.cmd("let g:airline_theme = 'catppuccin'")
-vim.cmd("set tabstop=4")
-vim.cmd("set shiftwidth=4")
-vim.cmd("set number relativenumber")
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.scrolloff = 999
+vim.opt.linebreak = true
+vim.opt.wrap = false
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ","
+
 vim.opt.termguicolors = true
-vim.cmd("set clipboard=unnamedplus")
-vim.cmd("set nocompatible")
-vim.cmd("filetype plugin on")
--- vim.cmd("syntax on")
-vim.cmd("set conceallevel=3")
-vim.cmd("set foldlevelstart=99")
+vim.opt.clipboard = "unnamedplus"
+
 vim.g.nvim_tree_respect_buf_cwd = 1
+
 vim.diagnostic.config({
 	signs = {
 
