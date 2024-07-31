@@ -58,10 +58,6 @@ vim.keymap.set("n", "<leader>fl", "<CMD>Telescope lazy_plugins<CR>", { desc = "F
 vim.keymap.set("n", "<leader>fp", "<CMD>Telescope pickers<CR>", { desc = "Find Telescope pickers" })
 vim.keymap.set("n", "<leader>ft", "<CMD>Telescope headings<CR>", { desc = "Find headings" })
 
--- Neorg --
-vim.api.nvim_set_keymap("n", "<up>", "<Plug>(neorg.text-objects.item-up)", {})
-vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {})
-
 -- Lazy --
 vim.api.nvim_set_keymap("n", "<leader>ll", "<CMD>Lazy<CR>", { desc = "Open home" })
 vim.api.nvim_set_keymap("n", "<leader>lx", "<CMD>Lazy clean<CR>", { desc = "Clean" })
@@ -152,9 +148,11 @@ vim.keymap.set("n", "<leader>mti", ":TSInstall ", { desc = "Install" })
 vim.keymap.set("n", "<leader>mtd", ":TSUninstall ", { desc = "Uninstall" })
 
 -- Neorg --
-vim.api.nvim_set_keymap("n", "<leader>nc", "<CMD>Neorg toggle-conclealer<CR>", { desc = "Toggle concealer" })
+vim.api.nvim_set_keymap("n", "<leader>nc", "<CMD>Neorg toggle-concealer<CR>", { desc = "Toggle concealer" })
 vim.api.nvim_set_keymap("n", "<leader>nt", "<CMD>Neorg toc<CR>", { desc = "Show table of contents" })
 vim.api.nvim_set_keymap("n", "<leader>ni", "<CMD>Neorg index<CR>", { desc = "Go to index" })
-vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspaces default<CR>", { desc = "Open default" })
-vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspaces mitschrift<CR>", { desc = "Open mitschrift" })
-vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspaces notes<CR>", { desc = "Open notes" })
+vim.api.nvim_set_keymap("n", "<leader>nwd", "<CMD>Neorg workspace default<CR>", { desc = "Open default" })
+vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspace mitschrift<CR>", { desc = "Open mitschrift" })
+vim.api.nvim_set_keymap("n", "<leader>nwn", "<CMD>Neorg workspace notes<CR>", { desc = "Open notes" })
+vim.api.nvim_set_keymap("n", "<up>", "<Plug>(neorg.text-objects.item-up)", {})
+vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {})
