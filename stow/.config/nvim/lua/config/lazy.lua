@@ -242,6 +242,8 @@ require("lazy").setup({
 
 		-- QUALITY OF LIFE --
 
+		{ "aznhe21/actions-preview.nvim", opts = {} },
+
 		{
 			"folke/which-key.nvim",
 			event = "VeryLazy",

@@ -7,6 +7,7 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 999
 vim.opt.linebreak = true
 vim.opt.wrap = false
+vim.opt.foldenable = false
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
