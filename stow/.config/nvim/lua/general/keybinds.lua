@@ -157,3 +157,4 @@ vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspace mitschrift<CR>
 vim.api.nvim_set_keymap("n", "<leader>nwn", "<CMD>Neorg workspace notes<CR>", { desc = "Open notes" })
 vim.api.nvim_set_keymap("n", "<up>", "<Plug>(neorg.text-objects.item-up)", {})
 vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {})
+vim.api.nvim_set_keymap("n", "<C-t>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", {})
