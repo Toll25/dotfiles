@@ -75,7 +75,7 @@ vim.api.nvim_set_keymap("n", "<leader>gb", "<CMD>GitBlameToggle<CR>", { desc = "
 
 -- Rename --
 vim.keymap.set("n", "<leader>rn", function()
-	return "<CMD>IncRename " .. vim.fn.expand("<cword>")
+	return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true, desc = "Rename with IncRename" })
 vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Rename with substitute" })
 
