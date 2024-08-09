@@ -1,0 +1,9 @@
+[user]
+	email = toll25@proton.me
+	name = Toll
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = input
+[pull]
+	rebase = false
