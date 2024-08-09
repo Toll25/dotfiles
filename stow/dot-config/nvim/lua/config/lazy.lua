@@ -36,6 +36,34 @@ local hydra = {
 -- 	" ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
 -- }
 local slow_format_filetypes = {}
+
+local kind_icons = {
+	Text = "",
+	Method = "󰆧",
+	Function = "󰊕",
+	Constructor = "",
+	Field = "󰇽",
+	Variable = "󰂡",
+	Class = "󰠱",
+	Interface = "",
+	Module = "",
+	Property = "󰜢",
+	Unit = "",
+	Value = "󰎠",
+	Enum = "",
+	Keyword = "󰌋",
+	Snippet = "",
+	Color = "󰏘",
+	File = "󰈙",
+	Reference = "",
+	Folder = "󰉋",
+	EnumMember = "",
+	Constant = "󰏿",
+	Struct = "",
+	Event = "",
+	Operator = "󰆕",
+	TypeParameter = "󰅲",
+}
 -- Splitting the header into lines
 require("lazy").setup({
 	spec = {
@@ -159,9 +187,7 @@ require("lazy").setup({
 				end,
 			},
 		},
-
 		-- AUTO COMPLETION --
-
 		{
 			"hrsh7th/nvim-cmp",
 			version = false, -- last release is way too old
@@ -169,15 +195,20 @@ require("lazy").setup({
 			dependencies = {
 				{ "hrsh7th/cmp-nvim-lsp" },
 				{ "hrsh7th/cmp-nvim-lua" },
-				{ "hrsh7th/cmp-nvim-lsp-signature-help" },
+				-- { "hrsh7th/cmp-nvim-lsp-signature-help" },
 				{ "hrsh7th/cmp-vsnip" },
 				{ "hrsh7th/cmp-path" },
+				{ "hrsh7th/cmp-emoji" },
+				{ "hrsh7th/cmp-calc" },
 				-- { "hrsh7th/cmp-buffer" },
 				{ "hrsh7th/vim-vsnip" },
 			},
 			opts = function()
 				local cmp = require("cmp")
 				return {
+					view = {
+						entries = "custom", -- can be "custom", "wildmenu" or "native"
+					},
 					snippet = {
 						-- REQUIRED - you must specify a snippet engine
 						expand = function(args)
@@ -189,8 +220,8 @@ require("lazy").setup({
 						end,
 					},
 					window = {
-						-- completion = cmp.config.window.bordered(),
-						-- documentation = cmp.config.window.bordered(),
+						completion = cmp.config.window.bordered(),
+						documentation = cmp.config.window.bordered(),
 					},
 					mapping = cmp.mapping.preset.insert({
 						["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -203,13 +234,31 @@ require("lazy").setup({
 					}),
 					sources = cmp.config.sources({
 						{ name = "nvim_lsp" },
-						{ name = "vsnip" }, -- For vsnip users.
-						-- { name = 'luasnip' }, -- For luasnip users.
-						-- { name = 'ultisnips' }, -- For ultisnips users.
-						-- { name = 'snippy' }, -- For snippy users.
+						{ name = "vsnip" },
+						{ name = "nvim_lua" },
+						{ name = "path" },
+						{ name = "emoji" },
+						{ name = "calc" },
+						-- { name = "nvim_lsp_signature_help" },
+						{ name = "neorg" },
 					}, {
-						{ name = "buffer" },
+						-- { name = "buffer" },
 					}),
+					formatting = {
+						format = function(entry, vim_item)
+							-- Kind icons
+							vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+							-- Source
+							-- vim_item.menu = ({
+							-- 	buffer = "[Buffer]",
+							-- 	nvim_lsp = "[LSP]",
+							-- 	luasnip = "[LuaSnip]",
+							-- 	nvim_lua = "[Lua]",
+							-- 	latex_symbols = "[LaTeX]",
+							-- })[entry.source.name]
+							return vim_item
+						end,
+					},
 				}
 			end,
 		},
@@ -591,6 +640,8 @@ require("lazy").setup({
 					"xml",
 					"yaml",
 					"rust",
+					"norg",
+					"hyprlang",
 				},
 				incremental_selection = {
 					enable = true,
