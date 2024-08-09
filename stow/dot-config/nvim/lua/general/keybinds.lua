@@ -114,15 +114,16 @@ vim.keymap.set("t", ":q", "<CMD>ToggleTerm<CR>")
 
 -- Show --
 vim.keymap.set("n", "<leader>sl", require("nabla").popup, { desc = "Show latex interpretation" })
--- vim.keymap.set("n", "<leader>sb", function()
--- 	local nvim_biscuits = require("nvim-biscuits")
--- 	nvim_biscuits.BufferAttach()
--- 	nvim_biscuits.toggle_biscuits()
--- end, { desc = "Show biscuits" })
 vim.keymap.set("n", "<leader>sc", "<CMD>ColorizerToggle<CR>", { desc = "Show colors" })
 vim.keymap.set("n", "<leader>sw", "<CMD>set wrap!<CR>", { desc = "Toggle wraps" })
 vim.keymap.set("n", "<leader>sa", require("actions-preview").code_actions, { desc = "Show code actions" })
 vim.keymap.set("n", "<leader>sf", "<CMD>ConformInfo<CR>", { desc = "Show format info" })
+vim.keymap.set(
+	"n",
+	"<leader>si",
+	"<CMD>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
+	{ desc = "Show inlay hints" }
+)
 
 -- Diagnostics --
 vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })

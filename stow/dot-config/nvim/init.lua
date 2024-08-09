@@ -13,6 +13,8 @@ require("general.commands")
 require("general.keybinds")
 
 -- Misc --
+require("general.autocmd.inlay-hints")
 require("general.autocmd.hl-yank")
 require("general.autocmd.open-images")
 vim.cmd([[colorscheme catppuccin-mocha]])
+vim.cmd("hi clear LspInlayHint")

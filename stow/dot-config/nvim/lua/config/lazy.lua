@@ -245,6 +245,7 @@ require("lazy").setup({
 						-- { name = "buffer" },
 					}),
 					formatting = {
+						-- fields = { "abbr", "kind" },
 						format = function(entry, vim_item)
 							-- Kind icons
 							vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
@@ -256,6 +257,7 @@ require("lazy").setup({
 							-- 	nvim_lua = "[Lua]",
 							-- 	latex_symbols = "[LaTeX]",
 							-- })[entry.source.name]
+							vim_item.menu = ""
 							return vim_item
 						end,
 					},
@@ -433,11 +435,7 @@ require("lazy").setup({
 			end,
 		},
 
-		-- {
-		-- 	"code-biscuits/nvim-biscuits",
-		-- 	opts = { cursor_line_only = true, show_on_start = true },
-		-- },
-
+		-- LaTeX Ascii art generator
 		{ "jbyuki/nabla.nvim" },
 
 		{
