@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
 cd $HOME/.dotfiles/stow || { echo "Failed to change directory"; exit 1; }
 
-stow --adopt -t $HOME . "$@"
+echo "Testing"
+if stow --no --dotfiles -R -t "$HOME" . "$@"; then
+    echo "Test successful, now stowing..."
+    stow --dotfiles -R -t "$HOME" . "$@"
+    echo "Finished stow"
+else
+    echo "Dry run failed. Aborting."
+    exit 1
+fi
