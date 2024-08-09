@@ -9,12 +9,12 @@ sudo visudo -c -f /tmp/sudoers.tmp && cat /tmp/sudoers.tmp | EDITOR='tee -a' vis
 
 # Edit pacman.conf
 sudo nvim /etc/pacman.conf \
--c ':%s/^#Color/Color/' \
--c ':%s/^#ParallelDownloads = 5/ParallelDownloads = 16/' \
--c '/# Misc options/+1put =\"ILoveCandy\"' \
--c ':%s/^#\[multilib\]/[multilib]/' \
--c '/\[multilib\]/+1s/^#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/' \
--c ':wq'
+    -c ':%s/^#Color/Color/' \
+    -c ':%s/^#ParallelDownloads = 5/ParallelDownloads = 16/' \
+    -c '/# Misc options/+1put =\"ILoveCandy\"' \
+    -c ':%s/^#\[multilib\]/[multilib]/' \
+    -c '/\[multilib\]/+1s/^#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/' \
+    -c ':wq'
 
 sudo pacman -Syu --noconfirm
 
@@ -47,7 +47,7 @@ read_packages() {
     echo "${packages[@]}"
 }
 
-packages=($(read_packages "$file"))
+packages=("$(read_packages "$file")")
 
 if [ ${#packages[@]} -ne 0 ]; then
     echo "Installing packages: ${packages[@]}"
@@ -56,9 +56,9 @@ else
     echo "No packages to install."
 fi
 
-sudo chsh -s $(which fish) $(whoami)
+sudo chsh -s "$(which fish)" "$(whoami)"
 
-$HOME/.dotfiles/stow/.bin/stow-config
+"$HOME"/.dotfiles/stow/.bin/stow-config
 
 git config --global init.defaultBranch main
 

@@ -1,5 +1,17 @@
 # Install Steps
 
+## Things to do in install 
+- Pacman Config 
+- Sudo Config 
+- GreetD config 
+- Dotfiles Stow 
+- Dotfiles preemptive folders to prevent false symlinks 
+- Nvim install and update
+- Fix braile font
+- Add cargo install 
+- Fix Fish paths
+## Legacy
+
 Clean Slate
 
 pacman -S git neovim
