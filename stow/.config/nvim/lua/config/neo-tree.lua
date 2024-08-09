@@ -37,7 +37,7 @@ local function copy_path(state)
 				results = results,
 			}),
 			sorter = conf.generic_sorter({}),
-			attach_mappings = function(prompt_bufnr, map)
+			attach_mappings = function(prompt_bufnr, _)
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()[1]
@@ -69,6 +69,10 @@ require("neo-tree").setup({
 
 				-- do whatever you want to do here
 				vim.cmd("cd " .. path)
+			end,
+			[","] = function(state)
+				require("neo-tree.sources.filesystem.commands").set_root(state)
+				vim.cmd("cd ..")
 			end,
 			["Y"] = copy_path,
 		},

@@ -35,7 +35,7 @@ local hydra = {
 -- 	" ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║",
 -- 	" ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝",
 -- }
-
+local slow_format_filetypes = {}
 -- Splitting the header into lines
 require("lazy").setup({
 	spec = {
@@ -73,7 +73,7 @@ require("lazy").setup({
 					override = {
 						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 						["vim.lsp.util.stylize_markdown"] = true,
-						["cmp.entry.get_documentation"] = false, -- requires hrsh7th/nvim-cmp
+						["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
 					},
 				},
 				-- you can enable a preset for easier configuration
@@ -98,18 +98,6 @@ require("lazy").setup({
 				"rcarriga/nvim-notify",
 			},
 		},
-
-		-- {
-		-- 	"TobinPalmer/Tip.nvim",
-		-- 	event = "VimEnter",
-		-- 	init = function()
-		-- 		require("tip").setup({
-		-- 			seconds = 2,
-		-- 			title = "Tip!",
-		-- 			url = "https://vtip.43z.one", -- Or https://vimiscool.tech/neotip
-		-- 		})
-		-- 	end,
-		-- },
 
 		{
 			"NvChad/nvim-colorizer.lua",
@@ -142,14 +130,33 @@ require("lazy").setup({
 			cmd = { "ConformInfo" },
 			opts = {
 				formatters_by_ft = {
+					sh = { "shellharden", "beautysh" },
+					bash = { "shellharden", "beautysh" },
+					fish = { "fish_indent" },
+					toml = { "taplo" },
 					lua = { "stylua" },
-					python = { "isort", "autopep8" },
+					python = { "isort", "black" },
 					rust = { "rustfmt", "yew-fmt", lsp_format = "fallback" },
 				},
-				format_on_save = {
-					timeout_ms = 5000,
-					lsp_format = "fallback",
-				},
+				format_on_save = function(bufnr)
+					if slow_format_filetypes[vim.bo[bufnr].filetype] then
+						return
+					end
+					local function on_format(err)
+						if err and err:match("timeout$") then
+							slow_format_filetypes[vim.bo[bufnr].filetype] = true
+						end
+					end
+
+					return { timeout_ms = 200, lsp_format = "fallback" }, on_format
+				end,
+
+				format_after_save = function(bufnr)
+					if not slow_format_filetypes[vim.bo[bufnr].filetype] then
+						return
+					end
+					return { lsp_format = "fallback" }
+				end,
 			},
 		},
 
@@ -158,78 +165,51 @@ require("lazy").setup({
 		{
 			"hrsh7th/nvim-cmp",
 			version = false, -- last release is way too old
-			event = "InsertEnter",
+			event = "VeryLazy",
 			dependencies = {
 				{ "hrsh7th/cmp-nvim-lsp" },
 				{ "hrsh7th/cmp-nvim-lua" },
 				{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 				{ "hrsh7th/cmp-vsnip" },
 				{ "hrsh7th/cmp-path" },
-				{ "hrsh7th/cmp-buffer" },
+				-- { "hrsh7th/cmp-buffer" },
 				{ "hrsh7th/vim-vsnip" },
 			},
 			opts = function()
-				-- vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 				local cmp = require("cmp")
-				local defaults = require("cmp.config.default")()
-				local auto_select = true
 				return {
-					auto_brackets = {}, -- configure any filetype to auto add brackets
-					completion = {
-						completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
-					},
-					preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
-					mapping = cmp.mapping.preset.insert({
-
-						["<S-Tab>"] = cmp.mapping.select_prev_item(),
-						["<Tab>"] = cmp.mapping.select_next_item(),
-						["<C-S-f>"] = cmp.mapping.scroll_docs(-4),
-						["<C-f>"] = cmp.mapping.scroll_docs(4),
-						["<C-Space>"] = cmp.mapping.complete(),
-						["<C-e>"] = cmp.mapping.close(),
-						["<CR>"] = cmp.mapping.confirm({
-							behavior = cmp.ConfirmBehavior.Insert,
-							select = true,
-						}),
-					}),
-					sources = cmp.config.sources({
-						{ name = "path" }, -- file paths
-						{ name = "nvim_lsp", keyword_length = 3 }, -- from language server
-						{ name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
-						{ name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
-						{ name = "buffer", keyword_length = 2 }, -- source current buffer
-						{ name = "vsnip", keyword_length = 2 }, -- nvim-cmp source for vim-vsnip
-						{ name = "calc" }, -- source for math calculation
-						{ name = "neorg" },
-					}),
-					formatting = {
-						format = function(_, item)
-							-- local icons = LazyVim.config.icons.kinds
-							-- if icons[item.kind] then
-							-- 	item.kind = icons[item.kind] .. item.kind
-							-- end
-
-							local widths = {
-								abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
-								menu = vim.g.cmp_widths and vim.g.cmp_widths.menu or 30,
-							}
-
-							for key, width in pairs(widths) do
-								if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
-									item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. "…"
-								end
-							end
-
-							return item
+					snippet = {
+						-- REQUIRED - you must specify a snippet engine
+						expand = function(args)
+							vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+							-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+							-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+							-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+							-- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
 						end,
 					},
-					experimental = {
-						ghost_text = {
-							ghost_text = false,
-							-- hl_group = "CmpGhostText",
-						},
+					window = {
+						-- completion = cmp.config.window.bordered(),
+						-- documentation = cmp.config.window.bordered(),
 					},
-					sorting = defaults.sorting,
+					mapping = cmp.mapping.preset.insert({
+						["<C-b>"] = cmp.mapping.scroll_docs(-4),
+						["<C-f>"] = cmp.mapping.scroll_docs(4),
+						["<S-Tab>"] = cmp.mapping.select_prev_item(),
+						["<Tab>"] = cmp.mapping.select_next_item(),
+						["<C-Space>"] = cmp.mapping.complete(),
+						["<C-e>"] = cmp.mapping.abort(),
+						["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+					}),
+					sources = cmp.config.sources({
+						{ name = "nvim_lsp" },
+						{ name = "vsnip" }, -- For vsnip users.
+						-- { name = 'luasnip' }, -- For luasnip users.
+						-- { name = 'ultisnips' }, -- For ultisnips users.
+						-- { name = 'snippy' }, -- For snippy users.
+					}, {
+						{ name = "buffer" },
+					}),
 				}
 			end,
 		},
@@ -504,62 +484,55 @@ require("lazy").setup({
 		},
 
 		-- LSP SUPPORT --
+
 		{
-			"williamboman/mason.nvim",
+			"neovim/nvim-lspconfig",
 			event = "VeryLazy",
+			opts = {
+				setup = {
+					rust_analyzer = function()
+						return true
+					end,
+				},
+			},
 			config = function()
-				require("mason").setup({
-					ui = {
-						icons = {
-							package_installed = "",
-							package_pending = "",
-							package_uninstalled = "",
-						},
+				require("lspconfig").bashls.setup({})
+				require("lspconfig").taplo.setup({})
+				require("lspconfig").hyprls.setup({})
+				require("lspconfig").pylsp.setup({})
+				require("lspconfig").lua_ls.setup({
+					on_init = function(client)
+						local path = client.workspace_folders[1].name
+						if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+							return
+						end
+
+						client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
+							runtime = {
+								-- Tell the language server which version of Lua you're using
+								-- (most likely LuaJIT in the case of Neovim)
+								version = "LuaJIT",
+							},
+							-- Make the server aware of Neovim runtime files
+							workspace = {
+								checkThirdParty = false,
+								library = {
+									vim.env.VIMRUNTIME,
+									-- Depending on the usage, you might want to add additional paths here.
+									-- "${3rd}/luv/library"
+									-- "${3rd}/busted/library",
+								},
+								-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+								-- library = vim.api.nvim_get_runtime_file("", true)
+							},
+						})
+					end,
+					settings = {
+						Lua = {},
 					},
 				})
 			end,
 		},
-		{
-			"williamboman/mason-lspconfig.nvim",
-			after = "mason.nvim",
-			event = "VeryLazy",
-			config = function()
-				require("mason-lspconfig").setup()
-				require("mason-lspconfig").setup_handlers({
-					function(server_name) -- default handler (optional)
-						require("lspconfig")[server_name].setup({})
-					end,
-					["lua_ls"] = function()
-						local lspconfig = require("lspconfig")
-						lspconfig.lua_ls.setup({
-							settings = {
-								Lua = {
-									diagnostics = {
-										globals = { "vim" },
-									},
-								},
-							},
-						})
-					end,
-					["rust_analyzer"] = function() end,
-				})
-			end,
-		},
-		{
-			"neovim/nvim-lspconfig",
-			event = "VeryLazy",
-		},
-		-- {
-		-- 	"williamboman/mason.nvim",
-		-- 	"williamboman/mason-lspconfig.nvim",
-		-- 	"neovim/nvim-lspconfig",
-		-- 	event = "VeryLazy",
-		-- 	init_options = {
-		-- 		userLanguages = {
-		-- 			rust = "html",
-		-- 		},
-		-- 	},
-		-- },
 
 		{
 			"saecki/crates.nvim",

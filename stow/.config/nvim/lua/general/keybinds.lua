@@ -10,10 +10,7 @@ wk.add({
 	{ "<leader>h", group = "Harpoon" },
 	{ "<leader>n", group = "Neorg" },
 	{ "<leader>nw", group = "Workspaces" },
-	{ "<leader>m", group = "Managers" },
-	{ "<leader>mm", group = "Mason" },
-	{ "<leader>mt", group = "Treesitter" },
-	{ "<leader>ml", group = "Lazy" },
+	{ "<leader>y", group = "Treesitter (sYntax ;)" },
 })
 local opts = { noremap = true, silent = true }
 
@@ -39,7 +36,7 @@ vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCycleNext<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-x>", "<CMD>bd<CR>", opts)
 
 -- Formatting --
-vim.api.nvim_set_keymap("n", "<leader>f", "<CMD>Format<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>F", "<CMD>Format<CR>", { desc = "Format code" })
 
 -- Tagbar --
 vim.api.nvim_set_keymap("n", "<F8>", "<CMD>TagbarToggle<CR>", opts)
@@ -63,11 +60,6 @@ vim.api.nvim_set_keymap("n", "<leader>ll", "<CMD>Lazy<CR>", { desc = "Open home"
 vim.api.nvim_set_keymap("n", "<leader>lx", "<CMD>Lazy clean<CR>", { desc = "Clean" })
 vim.api.nvim_set_keymap("n", "<leader>lu", "<CMD>Lazy update<CR>", { desc = "Update" })
 vim.api.nvim_set_keymap("n", "<leader>lp", "<CMD>Lazy profile<CR>", { desc = "Profile" })
-
-vim.api.nvim_set_keymap("n", "<leader>mll", "<CMD>Lazy<CR>", { desc = "Open home" })
-vim.api.nvim_set_keymap("n", "<leader>mlx", "<CMD>Lazy clean<CR>", { desc = "Clean" })
-vim.api.nvim_set_keymap("n", "<leader>mlu", "<CMD>Lazy update<CR>", { desc = "Update" })
-vim.api.nvim_set_keymap("n", "<leader>mlp", "<CMD>Lazy profile<CR>", { desc = "Profile" })
 
 -- Git --
 vim.api.nvim_set_keymap("n", "<leader>gg", "<CMD>Neogit<CR>", { desc = "Open Git UI" })
@@ -129,7 +121,8 @@ vim.keymap.set("n", "<leader>sl", require("nabla").popup, { desc = "Show latex i
 -- end, { desc = "Show biscuits" })
 vim.keymap.set("n", "<leader>sc", "<CMD>ColorizerToggle<CR>", { desc = "Show colors" })
 vim.keymap.set("n", "<leader>sw", "<CMD>set wrap!<CR>", { desc = "Toggle wraps" })
-vim.keymap.set("n", "<leader>sa", require("actions-preview").code_actions, { desc = "Show Code Actions" })
+vim.keymap.set("n", "<leader>sa", require("actions-preview").code_actions, { desc = "Show code actions" })
+vim.keymap.set("n", "<leader>sf", "<CMD>ConformInfo<CR>", { desc = "Show format info" })
 
 -- Diagnostics --
 vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })
@@ -137,16 +130,11 @@ vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>"
 vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })
 vim.api.nvim_set_keymap("n", "<leader>dq", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List" })
 
--- Managers --
-vim.keymap.set("n", "<leader>mmm", "<CMD>Mason<CR>", { desc = "Open home" })
-vim.keymap.set("n", "<leader>mmu", "<CMD>MasonUpdate<CR>", { desc = "Update" })
-vim.keymap.set("n", "<leader>mmi", ":MasonInstall ", { desc = "Install" })
-vim.keymap.set("n", "<leader>mmd", ":MasonUninstall ", { desc = "Uninstall" })
-
-vim.keymap.set("n", "<leader>mtt", "<CMD>TSToggle<CR>", { desc = "Toggle" })
-vim.keymap.set("n", "<leader>mtu", "<CMD>TSUpdate<CR>", { desc = "Update" })
-vim.keymap.set("n", "<leader>mti", ":TSInstall ", { desc = "Install" })
-vim.keymap.set("n", "<leader>mtd", ":TSUninstall ", { desc = "Uninstall" })
+-- Treesitter --
+vim.keymap.set("n", "<leader>yt", "<CMD>TSToggle<CR>", { desc = "Toggle" })
+vim.keymap.set("n", "<leader>yu", "<CMD>TSUpdate<CR>", { desc = "Update" })
+vim.keymap.set("n", "<leader>yi", ":TSInstall ", { desc = "Install" })
+vim.keymap.set("n", "<leader>yd", ":TSUninstall ", { desc = "Uninstall" })
 
 -- Neorg --
 vim.api.nvim_set_keymap("n", "<leader>nc", "<CMD>Neorg toggle-concealer<CR>", { desc = "Toggle concealer" })

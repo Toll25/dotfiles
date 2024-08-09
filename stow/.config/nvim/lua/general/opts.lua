@@ -1,4 +1,5 @@
 vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
@@ -17,6 +18,12 @@ vim.g.maplocalleader = ","
 
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
+
+vim.opt.cursorline = true
+
+vim.opt.incsearch = true
+vim.opt.ignorecase = true -- ignore case in searches by default
+vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entered
 
 vim.g.nvim_tree_respect_buf_cwd = 1
 vim.cmd("filetype plugin on")
