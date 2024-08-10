@@ -73,6 +73,27 @@ require("lazy").setup({
 		{
 			"catppuccin/nvim",
 			name = "catppuccin",
+			opts = {
+				transparent_background = true,
+				highlight_overrides = {
+					all = function(colors)
+						return {
+							LspInlayHints = { bg = colors.none },
+						}
+					end,
+				},
+				integrations = {
+					diffview = true,
+					fidget = true,
+					harpoon = true,
+					lsp_trouble = true,
+					neotree = true,
+					noice = true,
+					notify = true,
+					nvim_surround = true,
+					which_key = true,
+				},
+			},
 			lazy = true,
 			priority = 1000,
 		},
@@ -195,13 +216,13 @@ require("lazy").setup({
 			dependencies = {
 				{ "hrsh7th/cmp-nvim-lsp" },
 				{ "hrsh7th/cmp-nvim-lua" },
-				-- { "hrsh7th/cmp-nvim-lsp-signature-help" },
 				{ "hrsh7th/cmp-vsnip" },
 				{ "hrsh7th/cmp-path" },
 				{ "hrsh7th/cmp-emoji" },
 				{ "hrsh7th/cmp-calc" },
-				-- { "hrsh7th/cmp-buffer" },
 				{ "hrsh7th/vim-vsnip" },
+				{ "kdheepak/cmp-latex-symbols" },
+				{ "chrisgrieser/cmp-nerdfont" },
 			},
 			opts = function()
 				local cmp = require("cmp")
@@ -239,25 +260,35 @@ require("lazy").setup({
 						{ name = "path" },
 						{ name = "emoji" },
 						{ name = "calc" },
+						{ name = "crates" },
 						-- { name = "nvim_lsp_signature_help" },
 						{ name = "neorg" },
+						{ name = "nerdfont" },
+						{
+							name = "latex_symbols",
+							option = {
+								strategy = 0, -- mixed
+							},
+						},
 					}, {
 						-- { name = "buffer" },
 					}),
 					formatting = {
-						-- fields = { "abbr", "kind" },
+						fields = { "menu", "abbr", "kind" },
 						format = function(entry, vim_item)
 							-- Kind icons
 							vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
 							-- Source
-							-- vim_item.menu = ({
-							-- 	buffer = "[Buffer]",
-							-- 	nvim_lsp = "[LSP]",
-							-- 	luasnip = "[LuaSnip]",
-							-- 	nvim_lua = "[Lua]",
-							-- 	latex_symbols = "[LaTeX]",
-							-- })[entry.source.name]
-							vim_item.menu = ""
+							vim_item.menu = ({
+								-- buffer = "[Buffer]",
+								-- nvim_lsp = "[LSP]",
+								-- luasnip = "[LuaSnip]",
+								-- nvim_lua = "[Lua]",
+								latex_symbols = "[LaTeX]",
+								nerdfont = "[Nerdfont]",
+								emoji = "[Emoji]",
+							})[entry.source.name]
+							-- vim_item.menu = ""
 							return vim_item
 						end,
 					},
@@ -327,6 +358,7 @@ require("lazy").setup({
 			event = "VeryLazy",
 			dependencies = { "nvim-tree/nvim-web-devicons" },
 			opts = {
+				theme = "catppuccin",
 				sections = {
 					lualine_a = { "mode" },
 					lualine_b = { "branch", "diff", "diagnostics" },
@@ -343,7 +375,17 @@ require("lazy").setup({
 			},
 		},
 
-		{ "j-hui/fidget.nvim", opts = {}, event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
+		{
+			"j-hui/fidget.nvim",
+			opts = {
+				notification = {
+					window = {
+						winblend = 0,
+					},
+				},
+			},
+			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		},
 
 		{ "m-demare/hlargs.nvim", opts = {}, event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
 
@@ -385,6 +427,19 @@ require("lazy").setup({
 			},
 		},
 
+		{
+			"gbprod/cutlass.nvim",
+			opts = {
+				cut_key = "x",
+				override_del = nil,
+				exclude = {},
+				registers = {
+					select = "s",
+					delete = "d",
+					change = "c",
+				},
+			},
+		},
 		-- UTILITIES --
 
 		{
@@ -497,9 +552,16 @@ require("lazy").setup({
 			dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
 		},
 
-		{ "tpope/vim-surround", event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
-
-		{ "tpope/vim-fugitive" },
+		{
+			"kylechui/nvim-surround",
+			version = "*", -- Use for stability; omit to use `main` branch for the latest features
+			event = "VeryLazy",
+			config = function()
+				require("nvim-surround").setup({
+					-- Configuration here, or leave empty to use defaults
+				})
+			end,
+		},
 
 		{
 			"nvim-telescope/telescope.nvim",

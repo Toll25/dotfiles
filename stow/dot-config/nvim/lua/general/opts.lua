@@ -27,7 +27,9 @@ vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entere
 
 vim.g.nvim_tree_respect_buf_cwd = 1
 vim.cmd("filetype plugin on")
-
+vim.filetype.add({
+	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
 vim.diagnostic.config({
 	signs = {
 
