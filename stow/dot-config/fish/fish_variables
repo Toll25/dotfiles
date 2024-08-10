@@ -3,8 +3,6 @@
 SETUVAR --export EDITOR:/usr/bin/nvim
 SETUVAR --export --path GOPATH:/home/elena/\x2elocal/share/go
 SETUVAR --export QT_QPA_PLATFORM:wayland
-SETUVAR --export QT_QPA_PLATFORMTHEME:qt5ct
-SETUVAR --export QT_STYLE_OVERRIDE:kvantum
 SETUVAR --export TERMINAL:/usr/bin/alacritty
 SETUVAR __fish_initialized:3400
 SETUVAR fish_color_autosuggestion:brblack
