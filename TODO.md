@@ -1,3 +1,7 @@
+# Things to change/add
+Add okularpartrc
+Add nvim auto updater
+
 # Install Steps
 
 ## Things to do in install 
@@ -10,6 +14,7 @@
 - Fix braile font
 - Add cargo install 
 - Fix Fish paths
+
 ## Legacy
 
 Clean Slate
