@@ -4,7 +4,7 @@
 options="⏻ Shutdown\n Reboot\n Lock\n󰒲 Suspend\n󰍃 Logout"
 
 # Show the options using Fuzzel in dmenu mode and capture the selected option
-selected=$(echo -e "$options" | fuzzel --lines=5 --width=15 --dmenu)
+selected=$(echo -e "$options" | tofi --width 180 --height 200)
 
 # Perform action based on selected option
 case "$selected" in
