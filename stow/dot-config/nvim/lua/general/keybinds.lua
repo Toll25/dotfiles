@@ -24,6 +24,7 @@ vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
 -- vim.api.nvim_set_keymap("n", "<leader><leader>q", "<CMD>qa<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-f>", "/", opts)
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show Hover information" })
+vim.keymap.set("n", "<leader>q", "<CMD>OverseerRun<CR>", { desc = "Run tasks" })
 
 -- Split Navigation --
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
@@ -54,6 +55,7 @@ vim.keymap.set("n", "<leader>fr", "<CMD>Telescope repo list<CR>", { desc = "Find
 vim.keymap.set("n", "<leader>fl", "<CMD>Telescope lazy_plugins<CR>", { desc = "Find Lazy plugins" })
 vim.keymap.set("n", "<leader>fp", "<CMD>Telescope pickers<CR>", { desc = "Find Telescope pickers" })
 vim.keymap.set("n", "<leader>ft", "<CMD>Telescope headings<CR>", { desc = "Find headings" })
+vim.keymap.set("n", "<leader>fy", "<CMD>Telescope yank_history<CR>", { desc = "Yank history" })
 
 -- Lazy --
 vim.api.nvim_set_keymap("n", "<leader>ll", "<CMD>Lazy<CR>", { desc = "Open home" })
@@ -147,3 +149,12 @@ vim.api.nvim_set_keymap("n", "<leader>nwn", "<CMD>Neorg workspace notes<CR>", { 
 vim.api.nvim_set_keymap("n", "<up>", "<Plug>(neorg.text-objects.item-up)", {})
 vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {})
 vim.api.nvim_set_keymap("n", "<C-t>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", {})
+
+-- Yanky --
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")

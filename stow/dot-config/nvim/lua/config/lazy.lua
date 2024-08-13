@@ -86,16 +86,33 @@ require("lazy").setup({
 					diffview = true,
 					fidget = true,
 					harpoon = true,
+					headlines = true,
 					lsp_trouble = true,
 					neotree = true,
 					noice = true,
 					notify = true,
 					nvim_surround = true,
+					overseer = true,
 					which_key = true,
 				},
 			},
 			lazy = true,
 			priority = 1000,
+		},
+		{
+			"stevearc/dressing.nvim",
+			opts = {},
+		},
+		{
+			"rasulomaroff/reactive.nvim",
+			event = "VeryLazy",
+			opts = {
+				load = { "catppuccin-mocha-cursor", "catppuccin-mocha-cursorline" },
+			},
+		},
+		{
+			"HiPhish/rainbow-delimiters.nvim",
+			event = "VeryLazy",
 		},
 		{
 			"nvimdev/dashboard-nvim",
@@ -128,14 +145,14 @@ require("lazy").setup({
 				-- you can enable a preset for easier configuration
 				presets = {
 					bottom_search = true, -- use a classic bottom cmdline for search
-					-- command_palette = true, -- position the cmdline and popupmenu together
+					command_palette = true, -- position the cmdline and popupmenu together
 					long_message_to_split = true, -- long messages will be sent to a split
 					inc_rename = true, -- enables an input dialog for inc-rename.nvim
 					lsp_doc_border = true, -- add a border to hover docs and signature help
 				},
 				cmdline = {
 					enabled = true,
-					view = "cmdline",
+					-- view = "cmdline",
 				},
 			},
 			dependencies = {
@@ -430,7 +447,7 @@ require("lazy").setup({
 		{
 			"gbprod/cutlass.nvim",
 			opts = {
-				cut_key = "x",
+				cut_key = "m",
 				override_del = nil,
 				exclude = {},
 				registers = {
@@ -441,7 +458,22 @@ require("lazy").setup({
 			},
 		},
 		-- UTILITIES --
-
+		{
+			"gbprod/yanky.nvim",
+			opts = {
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			},
+			event = "VeryLazy",
+		},
+		{
+			"stevearc/overseer.nvim",
+			opts = {
+				strategy = "toggleterm",
+			},
+			event = "VeryLazy",
+		},
 		{
 			"akinsho/toggleterm.nvim",
 			version = "*",

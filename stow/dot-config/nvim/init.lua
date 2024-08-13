@@ -14,6 +14,7 @@ require("general.keybinds")
 
 -- Misc --
 require("general.autocmd.inlay-hints")
-require("general.autocmd.hl-yank")
+-- require("general.autocmd.hl-yank")
 require("general.autocmd.open-images")
+require("general.delimiters")
 vim.cmd([[colorscheme catppuccin-mocha]])
