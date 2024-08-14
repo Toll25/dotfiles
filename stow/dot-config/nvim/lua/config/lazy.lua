@@ -74,7 +74,7 @@ require("lazy").setup({
 			"catppuccin/nvim",
 			name = "catppuccin",
 			opts = {
-				transparent_background = true,
+				-- transparent_background = true,
 				highlight_overrides = {
 					all = function(colors)
 						return {
@@ -103,13 +103,13 @@ require("lazy").setup({
 			"stevearc/dressing.nvim",
 			opts = {},
 		},
-		{
-			"rasulomaroff/reactive.nvim",
-			event = "VeryLazy",
-			opts = {
-				load = { "catppuccin-mocha-cursor", "catppuccin-mocha-cursorline" },
-			},
-		},
+		-- {
+		-- 	"rasulomaroff/reactive.nvim",
+		-- 	event = "VeryLazy",
+		-- 	opts = {
+		-- 		load = { "catppuccin-mocha-cursor", "catppuccin-mocha-cursorline" },
+		-- 	},
+		-- },
 		{
 			"HiPhish/rainbow-delimiters.nvim",
 			event = "VeryLazy",
