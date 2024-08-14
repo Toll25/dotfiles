@@ -1,11 +1,9 @@
 # Things to change/add
 Add okularpartrc
 Add nvim auto updater
-Get new Dmenu
 Yay, theming
-tofi transparency
-Fix bufferline keybinds
-Revisit plugin choices (performance)
+Maybe seperate scripts between with and without args 
+Shortcuts for dmenus and opening notes
 
 # REMINDER = FISH SET PERM `set -Ux`
 fzf command
@@ -22,46 +20,21 @@ set -Ux FZF_DEFAULT_OPTS "\
   "
 ```
 
-Rip grep command
-```fish
-fzf --disabled --ansi \
-    --bind "start:reload:rg --column --color=always --smart-case {q} || :" \
-    --bind "change:reload:rg --column --color=always --smart-case {q} || :" \
-    --bind 'enter:become:nvim {1} +{2}' \
-    --bind 'ctrl-o:execute:nvim {1} +{2}' \
-    --delimiter ':' \
-    --preview 'bat --style=full --color=always --highlight-line {2} {1}' \
-    --preview-window '~4,+{2}+4/3,<80(up)'
-```
-
 ## Tofi things
-### SSH
+### SSH need file for options
 cat ~/.ssh/known_hosts | awk '{print $1}' | sed 's/,.*//' | sort -u | dmenu | xargs -r ssh
-### Script Runner
+### Script Runner (maybe, but only desktop related scripts, no args or cmd output)
 ls ~/scripts | dmenu | xargs -I {} sh ~/scripts/{}
-### Project Opener (Needs to be fixed)
-find ~/Documents -type f | dmenu | xargs -r xdg-open
-### Wallpaper selector
 ### Brightness?
 ### Emoji/Nerdfonts
-### Quick Todo?
-### Config quick opener
-### Picker for all of these
-### Frequent folders with filemanager
+### Git clone helper
 
 ## FZF
-### FZF in current directory (Shortcut or alias)
-### Envirment browse
-export $(printenv | fzf)
-### Docker Stuff
+### Docker Stuff (mass stopping, restart or fucking whatever)
 ### SSH
 ### Script Runner
-### Project Opener
 ### Interactive copy / move
 find ~/Documents/ -type f | fzf -m | xargs -I {} cp {} ~/Downloads/
-### Config quick opener
-### Interactive ripgrep
-### Systemctl finder
 
 ### Pfusch
 begin; find /usr/share/applications/ -type f -name "*.desktop"; find ~/.local/share/applications/ -type f -name "*.desktop"; end | fzf  --preview 'bat {}' --bind 'enter:execute(nvim {})+abort'
