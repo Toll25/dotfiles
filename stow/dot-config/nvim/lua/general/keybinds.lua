@@ -34,6 +34,7 @@ vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Buffer Navigation --
 vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCycleNext<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCyclePrev<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-x>", "<CMD>bd<CR>", opts)
 
 -- Formatting --
@@ -156,5 +157,5 @@ vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
 vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 
-vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
-vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
+vim.keymap.set("n", "<c-s-J>", "<Plug>(YankyPreviousEntry)")
+vim.keymap.set("n", "<c-s-K>", "<Plug>(YankyNextEntry)")
