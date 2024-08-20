@@ -19,3 +19,7 @@ bold.family = "JetbrainsMono Nerd Font"
 italic.family = "JetbrainsMono Nerd Font"
 bold_italic.family = "JetbrainsMono Nerd Font"
 size = 11.0
+
+[cursor]
+style.shape = "Beam"
+style.blinking = "On"
