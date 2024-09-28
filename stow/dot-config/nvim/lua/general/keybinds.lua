@@ -8,9 +8,7 @@ wk.add({
 	{ "<leader>t", group = "Terminal" },
 	{ "<leader>d", group = "Diagnostics" },
 	{ "<leader>h", group = "Harpoon" },
-	{ "<leader>n", group = "Neorg" },
-	{ "<leader>nw", group = "Workspaces" },
-	{ "<leader>y", group = "Treesitter (sYntax ;)" },
+	{ "<leader>w", group = "Workspaces" },
 })
 local opts = { noremap = true, silent = true }
 
@@ -119,7 +117,6 @@ vim.keymap.set("t", ":q", "<CMD>ToggleTerm<CR>")
 vim.keymap.set("n", "<leader>sl", require("nabla").popup, { desc = "Show latex interpretation" })
 vim.keymap.set("n", "<leader>sc", "<CMD>ColorizerToggle<CR>", { desc = "Show colors" })
 vim.keymap.set("n", "<leader>sw", "<CMD>set wrap!<CR>", { desc = "Toggle wraps" })
-vim.keymap.set("n", "<leader>sa", require("actions-preview").code_actions, { desc = "Show code actions" })
 vim.keymap.set("n", "<leader>sf", "<CMD>ConformInfo<CR>", { desc = "Show format info" })
 vim.keymap.set(
 	"n",
@@ -128,34 +125,37 @@ vim.keymap.set(
 	{ desc = "Show inlay hints" }
 )
 
+-- Code Actions --
+vim.keymap.set("n", "<leader>y", require("actions-preview").code_actions, { desc = "Show code actions" })
+
 -- Diagnostics --
 vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })
 -- vim.api.nvim_set_keymap('n', '<leader>xX', '<CMD>Trouble diagnostics toggle filter.buf=0<CR>', { desc = 'Buffer Diagnostics (Trouble)' })
 vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })
 vim.api.nvim_set_keymap("n", "<leader>dq", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List" })
 
--- Treesitter --
-vim.keymap.set("n", "<leader>yt", "<CMD>TSToggle<CR>", { desc = "Toggle" })
-vim.keymap.set("n", "<leader>yu", "<CMD>TSUpdate<CR>", { desc = "Update" })
-vim.keymap.set("n", "<leader>yi", ":TSInstall ", { desc = "Install" })
-vim.keymap.set("n", "<leader>yd", ":TSUninstall ", { desc = "Uninstall" })
+-- -- Treesitter --
+-- vim.keymap.set("n", "<leader>yt", "<CMD>TSToggle<CR>", { desc = "Toggle" })
+-- vim.keymap.set("n", "<leader>yu", "<CMD>TSUpdate<CR>", { desc = "Update" })
+-- vim.keymap.set("n", "<leader>yi", ":TSInstall ", { desc = "Install" })
+-- vim.keymap.set("n", "<leader>yd", ":TSUninstall ", { desc = "Uninstall" })
 
 -- Neorg --
-vim.api.nvim_set_keymap("n", "<leader>nc", "<CMD>Neorg toggle-concealer<CR>", { desc = "Toggle concealer" })
-vim.api.nvim_set_keymap("n", "<leader>nt", "<CMD>Neorg toc<CR>", { desc = "Show table of contents" })
-vim.api.nvim_set_keymap("n", "<leader>ni", "<CMD>Neorg index<CR>", { desc = "Go to index" })
-vim.api.nvim_set_keymap("n", "<leader>nwd", "<CMD>Neorg workspace default<CR>", { desc = "Open default" })
-vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspace mitschrift<CR>", { desc = "Open mitschrift" })
-vim.api.nvim_set_keymap("n", "<leader>nwn", "<CMD>Neorg workspace notes<CR>", { desc = "Open notes" })
-vim.api.nvim_set_keymap("n", "<up>", "<Plug>(neorg.text-objects.item-up)", {})
-vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {})
-vim.api.nvim_set_keymap("n", "<C-t>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", {})
+-- vim.api.nvim_set_keymap("n", "<leader>nc", "<CMD>Neorg toggle-concealer<CR>", { desc = "Toggle concealer" })
+-- vim.api.nvim_set_keymap("n", "<leader>nt", "<CMD>Neorg toc<CR>", { desc = "Show table of contents" })
+-- vim.api.nvim_set_keymap("n", "<leader>ni", "<CMD>Neorg index<CR>", { desc = "Go to index" })
+-- vim.api.nvim_set_keymap("n", "<leader>nwd", "<CMD>Neorg workspace default<CR>", { desc = "Open default" })
+-- vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspace mitschrift<CR>", { desc = "Open mitschrift" })
+-- vim.api.nvim_set_keymap("n", "<leader>nwn", "<CMD>Neorg workspace notes<CR>", { desc = "Open notes" })
+-- vim.api.nvim_set_keymap("n", "<up>", "<Plug>(neorg.text-objects.item-up)", {})
+-- vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {})
+-- vim.api.nvim_set_keymap("n", "<C-t>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", {})
 
--- Yanky --
-vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
-vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
-vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
-vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
-
-vim.keymap.set("n", "<c-s-J>", "<Plug>(YankyPreviousEntry)")
-vim.keymap.set("n", "<c-s-K>", "<Plug>(YankyNextEntry)")
+-- -- Yanky --
+-- vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+-- vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+-- vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+-- vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+--
+-- vim.keymap.set("n", "<c-s-J>", "<Plug>(YankyPreviousEntry)")
+-- vim.keymap.set("n", "<c-s-K>", "<Plug>(YankyNextEntry)")

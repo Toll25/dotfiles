@@ -64,6 +64,7 @@ local kind_icons = {
 	Operator = "󰆕",
 	TypeParameter = "󰅲",
 }
+
 -- Splitting the header into lines
 require("lazy").setup({
 	spec = {
@@ -234,15 +235,32 @@ require("lazy").setup({
 				{ "hrsh7th/cmp-nvim-lsp" },
 				{ "hrsh7th/cmp-nvim-lua" },
 				{ "hrsh7th/cmp-vsnip" },
+				{ "hrsh7th/cmp-buffer" },
 				{ "hrsh7th/cmp-path" },
 				{ "hrsh7th/cmp-emoji" },
-				{ "hrsh7th/cmp-calc" },
 				{ "hrsh7th/vim-vsnip" },
 				{ "kdheepak/cmp-latex-symbols" },
 				{ "chrisgrieser/cmp-nerdfont" },
 			},
 			opts = function()
 				local cmp = require("cmp")
+
+				cmp.setup.filetype("markdown", {
+					sources = cmp.config.sources({
+						{ name = "mkdnflow" }, -- Add this
+						{ name = "buffer" },
+						{ name = "path" },
+						{ name = "emoji" },
+						{ name = "nerdfont" },
+						{
+							name = "latex_symbols",
+							option = {
+								strategy = 0, -- mixed
+							},
+						},
+					}),
+				})
+
 				return {
 					view = {
 						entries = "custom", -- can be "custom", "wildmenu" or "native"
@@ -276,10 +294,9 @@ require("lazy").setup({
 						{ name = "nvim_lua" },
 						{ name = "path" },
 						{ name = "emoji" },
-						{ name = "calc" },
 						{ name = "crates" },
 						-- { name = "nvim_lsp_signature_help" },
-						{ name = "neorg" },
+						-- { name = "neorg" },
 						{ name = "nerdfont" },
 						{
 							name = "latex_symbols",
@@ -288,7 +305,7 @@ require("lazy").setup({
 							},
 						},
 					}, {
-						-- { name = "buffer" },
+						{ name = "buffer" },
 					}),
 					formatting = {
 						fields = { "menu", "abbr", "kind" },
@@ -458,15 +475,15 @@ require("lazy").setup({
 			},
 		},
 		-- UTILITIES --
-		{
-			"gbprod/yanky.nvim",
-			opts = {
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			},
-			event = "VeryLazy",
-		},
+		-- {
+		-- 	"gbprod/yanky.nvim",
+		-- 	opts = {
+		-- 		-- your configuration comes here
+		-- 		-- or leave it empty to use the default settings
+		-- 		-- refer to the configuration section below
+		-- 	},
+		-- 	event = "VeryLazy",
+		-- },
 		{
 			"stevearc/overseer.nvim",
 			opts = {
@@ -551,39 +568,56 @@ require("lazy").setup({
 			config = true,
 			cmd = { "Neogit" },
 		},
-
 		{
-			"nvim-neorg/neorg",
-			cmd = "Neorg",
-			ft = "norg",
-			-- lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-			version = "*", -- Pin Neorg to the latest stable release
-			config = true,
-			opts = {
-				load = {
-					["core.defaults"] = {},
-					["core.dirman"] = {
-						config = {
-							workspaces = {
-								notes = "~/Documents/Notes",
-								mitschrift = "~/Documents/Mitschrift-Norg",
-							},
-						},
+			"jakewvincent/mkdnflow.nvim",
+			event = "VeryLazy",
+			config = function()
+				require("mkdnflow").setup({
+					modules = {
+						cmp = true,
 					},
-					["core.concealer"] = {},
-					["core.completion"] = {
-						config = {
-							engine = "nvim-cmp",
-						},
+					mappings = {
+						MkdnEnter = { { "i", "n", "v" }, "<CR>" }, -- This monolithic command has the aforementioned
+						-- insert-mode-specific behavior and also will trigger row jumping in tables. Outside
+						-- of lists and tables, it behaves as <CR> normally does.
+						-- MkdnNewListItem = {'i', '<CR>'} -- Use this command instead if you only want <CR> in
+						-- insert mode to add a new list item (and behave as usual outside of lists).
 					},
-					["core.integrations.nvim-cmp"] = {},
-					["core.text-objects"] = {},
-					["core.integrations.telescope"] = {},
-				},
-			},
-			dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
+				})
+			end,
 		},
-
+		-- {
+		-- 	"nvim-neorg/neorg",
+		-- 	cmd = "Neorg",
+		-- 	ft = "norg",
+		-- 	-- lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+		-- 	version = "*", -- Pin Neorg to the latest stable release
+		-- 	config = true,
+		-- 	opts = {
+		-- 		load = {
+		-- 			["core.defaults"] = {},
+		-- 			["core.dirman"] = {
+		-- 				config = {
+		-- 					workspaces = {
+		-- 						notes = "~/Documents/Notes",
+		-- 						mitschrift = "~/Documents/Mitschrift-Norg",
+		-- 					},
+		-- 				},
+		-- 			},
+		-- 			["core.concealer"] = {},
+		-- 			["core.completion"] = {
+		-- 				config = {
+		-- 					engine = "nvim-cmp",
+		-- 				},
+		-- 			},
+		-- 			["core.integrations.nvim-cmp"] = {},
+		-- 			["core.text-objects"] = {},
+		-- 			["core.integrations.telescope"] = {},
+		-- 		},
+		-- 	},
+		-- 	dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
+		-- },
+		--
 		{
 			"kylechui/nvim-surround",
 			version = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -637,9 +671,11 @@ require("lazy").setup({
 				},
 			},
 			config = function()
+				require("lspconfig").jdtls.setup({})
 				require("lspconfig").bashls.setup({})
 				require("lspconfig").taplo.setup({})
 				require("lspconfig").hyprls.setup({})
+				require("lspconfig").marksman.setup({})
 				require("lspconfig").pylsp.setup({})
 				require("lspconfig").lua_ls.setup({
 					on_init = function(client)
@@ -716,6 +752,7 @@ require("lazy").setup({
 					"json",
 					"jsonc",
 					"lua",
+					"java",
 					"luadoc",
 					"luap",
 					"markdown",
