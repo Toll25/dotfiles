@@ -7,7 +7,7 @@ wk.add({
 	{ "<leader>r", group = "Rename" },
 	{ "<leader>t", group = "Terminal" },
 	{ "<leader>d", group = "Diagnostics" },
-	{ "<leader>h", group = "Harpoon" },
+	-- { "<leader>h", group = "Harpoon" },
 	{ "<leader>w", group = "Workspaces" },
 })
 local opts = { noremap = true, silent = true }
@@ -73,17 +73,17 @@ end, { expr = true, desc = "Rename with IncRename" })
 vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Rename with substitute" })
 
 -- Harpoon --
-local harpoon = require("harpoon")
-
-vim.keymap.set("n", "<leader>ha", function()
-	harpoon:list():add()
-end, { desc = "Add file" })
-vim.keymap.set("n", "<C-e>", function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
-vim.keymap.set("n", "<leader>hl", function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
-end, { desc = "Show list" })
+-- local harpoon = require("harpoon")
+--
+-- vim.keymap.set("n", "<leader>ha", function()
+-- 	harpoon:list():add()
+-- end, { desc = "Add file" })
+-- vim.keymap.set("n", "<C-e>", function()
+-- 	harpoon.ui:toggle_quick_menu(harpoon:list())
+-- end)
+-- vim.keymap.set("n", "<leader>hl", function()
+-- 	harpoon.ui:toggle_quick_menu(harpoon:list())
+-- end, { desc = "Show list" })
 -- vim.keymap.set("n", "<C-h>", function()
 -- 	harpoon:list():select(1)
 -- end)
@@ -159,3 +159,8 @@ vim.api.nvim_set_keymap("n", "<leader>dq", "<CMD>Trouble qflist toggle<CR>", { d
 --
 -- vim.keymap.set("n", "<c-s-J>", "<Plug>(YankyPreviousEntry)")
 -- vim.keymap.set("n", "<c-s-K>", "<Plug>(YankyNextEntry)")
+--
+vim.cmd("imap <expr> ä   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : 'ä'")
+vim.cmd("smap <expr> ä   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : 'ä'")
+vim.cmd("imap <expr> ö vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : 'ö'")
+vim.cmd("smap <expr> ö vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : 'ö'")

@@ -9,3 +9,9 @@ vim.api.nvim_create_user_command("Format", function(args)
 	end
 	require("conform").format({ async = true, lsp_format = "fallback", range = range })
 end, { range = true })
+
+-- local function OpenMarkdownPreview(url)
+-- 	vim.cmd("silent !firefox --new-window " .. url)
+-- end
+--
+-- vim.g.mkdp_browserfunc = "OpenMarkdownPreview"

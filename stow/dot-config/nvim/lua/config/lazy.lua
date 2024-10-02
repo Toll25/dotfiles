@@ -79,7 +79,7 @@ require("lazy").setup({
 				highlight_overrides = {
 					all = function(colors)
 						return {
-							LspInlayHints = { bg = colors.none },
+							LspInlayHint = { bg = colors.none },
 						}
 					end,
 				},
@@ -95,10 +95,19 @@ require("lazy").setup({
 					nvim_surround = true,
 					overseer = true,
 					which_key = true,
+					neotest = true,
 				},
 			},
 			lazy = true,
 			priority = 1000,
+		},
+		{ "nvim-treesitter/nvim-treesitter-context" },
+		{ "NFrid/due.nvim", opts = {} },
+		{ "glts/vim-radical", dependencies = { "glts/vim-magnum" } },
+		{
+			"MeanderingProgrammer/render-markdown.nvim",
+			opts = {},
+			dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 		},
 		{
 			"stevearc/dressing.nvim",
@@ -204,6 +213,16 @@ require("lazy").setup({
 					lua = { "stylua" },
 					python = { "isort", "black" },
 					rust = { "rustfmt", "yew-fmt", lsp_format = "fallback" },
+					javascript = { "prettier" },
+					typescript = { "prettier" },
+					javascriptreact = { "prettier" },
+					typescriptreact = { "prettier" },
+					svelte = { "prettier" },
+					css = { "prettier" },
+					html = { "prettier" },
+					json = { "prettier" },
+					yaml = { "prettier" },
+					markdown = { "prettier" },
 				},
 				format_on_save = function(bufnr)
 					if slow_format_filetypes[vim.bo[bufnr].filetype] then
@@ -329,6 +348,8 @@ require("lazy").setup({
 				}
 			end,
 		},
+
+		{ "rafamadriz/friendly-snippets" },
 
 		{
 			"windwp/nvim-autopairs",
@@ -499,26 +520,43 @@ require("lazy").setup({
 		},
 
 		{
-			"folke/flash.nvim",
-			event = "VeryLazy",
+			"tadmccorkle/markdown.nvim",
+			ft = "markdown", -- or 'event = "VeryLazy"'
 			opts = {
-				modes = { search = { enabled = false } } --[[ things you want to change go here]],
-			},
-			-- stylua: ignore
-			keys = {
-					{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-					{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-					{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-					{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-					{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+				-- configuration here or empty for defaults
 			},
 		},
 
 		{
-			"ThePrimeagen/harpoon",
-			branch = "harpoon2",
-			dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+			"OXY2DEV/helpview.nvim",
+
+			ft = "help",
+
+			dependencies = {
+				"nvim-treesitter/nvim-treesitter",
+			},
 		},
+		-- {
+		-- 	"folke/flash.nvim",
+		-- 	event = "VeryLazy",
+		-- 	opts = {
+		-- 		modes = { search = { enabled = false } } --[[ things you want to change go here]],
+		-- 	},
+		-- 	-- stylua: ignore
+		-- 	keys = {
+		-- 			{ "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+		-- 			{ "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+		-- 			{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+		-- 			{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+		-- 			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+		-- 	},
+		-- },
+
+		-- {
+		-- 	"ThePrimeagen/harpoon",
+		-- 	branch = "harpoon2",
+		-- 	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
+		-- },
 
 		-- {
 		-- 	"tomiis4/Hypersonic.nvim",
@@ -677,6 +715,7 @@ require("lazy").setup({
 				require("lspconfig").hyprls.setup({})
 				require("lspconfig").marksman.setup({})
 				require("lspconfig").pylsp.setup({})
+				require("lspconfig").eslint.setup({})
 				require("lspconfig").lua_ls.setup({
 					on_init = function(client)
 						local path = client.workspace_folders[1].name
@@ -725,6 +764,34 @@ require("lazy").setup({
 			lazy = false, -- This plugin is already lazy
 		},
 		{
+			"nvim-neotest/neotest",
+			dependencies = {
+				"nvim-neotest/nvim-nio",
+				"nvim-lua/plenary.nvim",
+				"antoinemadec/FixCursorHold.nvim",
+				"nvim-treesitter/nvim-treesitter",
+			},
+		},
+		{
+			"HakonHarnes/img-clip.nvim",
+			event = "VeryLazy",
+			opts = {},
+			keys = {
+				{ "<leader>ü", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+			},
+		},
+
+		{
+			"iamcco/markdown-preview.nvim",
+			cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+			build = "cd app && yarn install",
+			init = function()
+				vim.g.mkdp_filetypes = { "markdown" }
+			end,
+			ft = { "markdown" },
+		},
+
+		{
 			"nvim-treesitter/nvim-treesitter",
 			version = false, -- last release is way too old and doesn't work on Windows
 			build = ":TSUpdate",
@@ -747,20 +814,24 @@ require("lazy").setup({
 					"bash",
 					"diff",
 					"html",
+					"hyprlang",
+					"java",
 					"javascript",
 					"jsdoc",
 					"json",
 					"jsonc",
+					"latex",
 					"lua",
-					"java",
 					"luadoc",
 					"luap",
 					"markdown",
 					"markdown_inline",
+					"norg",
 					"printf",
 					"python",
 					"query",
 					"regex",
+					"rust",
 					"toml",
 					"tsx",
 					"typescript",
@@ -768,9 +839,6 @@ require("lazy").setup({
 					"vimdoc",
 					"xml",
 					"yaml",
-					"rust",
-					"norg",
-					"hyprlang",
 				},
 				incremental_selection = {
 					enable = true,

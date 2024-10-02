@@ -1,3 +1,7 @@
+if vim.loader then
+	vim.loader.enable()
+end
+
 -- Options --
 require("general.opts")
 
@@ -6,7 +10,7 @@ require("config.lazy")
 
 -- Plugins --
 require("config.neo-tree")
-require("config.harpoon")
+-- require("config.harpoon")
 
 -- Keybinds and Commands --
 require("general.commands")
