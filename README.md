@@ -1,7 +1,9 @@
 # dotfiles
+
 Starting point: Blank Arch install
 
 ## Things to install
+
 ```
 ## Bluetooth
 blueberry-wayland
@@ -42,7 +44,7 @@ pixelorama-bin
 docker
 docker-compose
 git-filter-repo
-go 
+go
 npm
 pnpm
 qemu-full
@@ -75,9 +77,12 @@ qt5ct
 qt6ct
 
 ```
+
 Dolphin plugins !!!!
 Bluetooth !!!!
+
 ## Setup
+
 - Run Envycontrol `sudo envycontrol -s hybrid --rtd3`
 - Stow Dotfiles `stow -t ~ .`
 - Change Shell `chsh -s /bin/fish`
@@ -85,8 +90,8 @@ Bluetooth !!!!
 - Vesktop Theme `https://catppuccin.github.io/discord/dist/catppuccin-mocha-mauve.theme.css`
 - Import Vesktop Settings `vencord-settings.json`
 - Install VSC Extensions `cat vscodium-extensions.txt | xargs -n 1 codium --install-extension`
-- Pacman Configs `/etc/pacman.conf` 
-  1. Uncomment `COLOR` 
+- Pacman Configs `/etc/pacman.conf`
+  1. Uncomment `COLOR`
   2. Set `ParallelDownloads = 16`
 - Sudo Config `/etc/sudoers`
   - Add `Defaults env_reset,pwfeedback`
