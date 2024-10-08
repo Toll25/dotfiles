@@ -7,6 +7,7 @@ wk.add({
 	{ "<leader>r", group = "Rename" },
 	{ "<leader>t", group = "Terminal" },
 	{ "<leader>d", group = "Diagnostics" },
+	{ "<leader>c", group = "Colors" },
 	-- { "<leader>h", group = "Harpoon" },
 	{ "<leader>w", group = "Workspaces" },
 })
@@ -32,14 +33,14 @@ vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Buffer Navigation --
 vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCycleNext<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCyclePrev<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-x>", "<CMD>bd<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-S-n>", "<CMD>BufferLineCyclePrev<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-x>", "<CMD>:lua require('bufdelete').bufdelete(0, true)<CR>", opts)
 
 -- Formatting --
 vim.api.nvim_set_keymap("n", "<leader>F", "<CMD>Format<CR>", { desc = "Format code" })
 
 -- Tagbar --
-vim.api.nvim_set_keymap("n", "<F8>", "<CMD>TagbarToggle<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "<F8>", "<CMD>TagbarToggle<CR>", opts)
 
 -- Telescope --
 local builtin = require("telescope.builtin")
@@ -54,7 +55,8 @@ vim.keymap.set("n", "<leader>fr", "<CMD>Telescope repo list<CR>", { desc = "Find
 vim.keymap.set("n", "<leader>fl", "<CMD>Telescope lazy_plugins<CR>", { desc = "Find Lazy plugins" })
 vim.keymap.set("n", "<leader>fp", "<CMD>Telescope pickers<CR>", { desc = "Find Telescope pickers" })
 vim.keymap.set("n", "<leader>ft", "<CMD>Telescope headings<CR>", { desc = "Find headings" })
-vim.keymap.set("n", "<leader>fy", "<CMD>Telescope yank_history<CR>", { desc = "Yank history" })
+vim.keymap.set("n", "<leader>fu", "<CMD>Telescope undo<CR>", { desc = "Undo history" })
+vim.keymap.set("n", "<leader>fs", "<CMD>Telescope ToggleLSP<CR>", { desc = "LSP Server List" })
 
 -- Lazy --
 vim.api.nvim_set_keymap("n", "<leader>ll", "<CMD>Lazy<CR>", { desc = "Open home" })
@@ -67,10 +69,8 @@ vim.api.nvim_set_keymap("n", "<leader>gg", "<CMD>Neogit<CR>", { desc = "Open Git
 vim.api.nvim_set_keymap("n", "<leader>gb", "<CMD>GitBlameToggle<CR>", { desc = "Toggle inline Git blame" })
 
 -- Rename --
-vim.keymap.set("n", "<leader>rn", function()
-	return ":IncRename " .. vim.fn.expand("<cword>")
-end, { expr = true, desc = "Rename with IncRename" })
-vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Rename with substitute" })
+vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()", { desc = "LSP Rename" })
+vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Literal Rename" })
 
 -- Harpoon --
 -- local harpoon = require("harpoon")
@@ -98,12 +98,12 @@ vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Rename 
 -- end)
 
 -- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<C-S-P>", function()
-	harpoon:list():prev()
-end)
-vim.keymap.set("n", "<C-S-N>", function()
-	harpoon:list():next()
-end)
+-- vim.keymap.set("n", "<C-S-P>", function()
+-- 	harpoon:list():prev()
+-- end)
+-- vim.keymap.set("n", "<C-S-N>", function()
+-- 	harpoon:list():next()
+-- end)
 
 -- Hypersonic --
 -- vim.keymap.set({ "n", "v" }, "<leader>re", "<CMD>Hypersonic<CR>")
@@ -113,9 +113,13 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-N>")
 vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm<CR>", { desc = "Toggle Terminal" })
 vim.keymap.set("t", ":q", "<CMD>ToggleTerm<CR>")
 
+-- Colors
+vim.keymap.set("n", "<leader>cc", "<CMD>ColorizerToggle<CR>", { desc = "Show colors" })
+vim.keymap.set("n", "<leader>cp", "<CMD>CccPick<CR>", { desc = "Pick color" })
+vim.keymap.set("n", "<leader>cv", "<CMD>CccConvert<CR>", { desc = "Convert color" })
+
 -- Show --
-vim.keymap.set("n", "<leader>sl", require("nabla").popup, { desc = "Show latex interpretation" })
-vim.keymap.set("n", "<leader>sc", "<CMD>ColorizerToggle<CR>", { desc = "Show colors" })
+-- vim.keymap.set("n", "<leader>sl", require("nabla").popup, { desc = "Show latex interpretation" })
 vim.keymap.set("n", "<leader>sw", "<CMD>set wrap!<CR>", { desc = "Toggle wraps" })
 vim.keymap.set("n", "<leader>sf", "<CMD>ConformInfo<CR>", { desc = "Show format info" })
 vim.keymap.set(
@@ -124,6 +128,8 @@ vim.keymap.set(
 	"<CMD>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
 	{ desc = "Show inlay hints" }
 )
+vim.keymap.set("n", "<leader>sr", "<CMD>lua vim.lsp.buf.references()<CR>", { desc = "Show references" })
+vim.keymap.set("n", "<leader>ss", "<CMD>lua vim.lsp.buf.signature_help()<CR>", { desc = "Show signature help" })
 
 -- Code Actions --
 vim.keymap.set("n", "<leader>y", require("actions-preview").code_actions, { desc = "Show code actions" })
@@ -131,8 +137,8 @@ vim.keymap.set("n", "<leader>y", require("actions-preview").code_actions, { desc
 -- Diagnostics --
 vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })
 -- vim.api.nvim_set_keymap('n', '<leader>xX', '<CMD>Trouble diagnostics toggle filter.buf=0<CR>', { desc = 'Buffer Diagnostics (Trouble)' })
-vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })
-vim.api.nvim_set_keymap("n", "<leader>dq", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List" })
+-- vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })
+-- vim.api.nvim_set_keymap("n", "<leader>dq", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List" })
 
 -- -- Treesitter --
 -- vim.keymap.set("n", "<leader>yt", "<CMD>TSToggle<CR>", { desc = "Toggle" })

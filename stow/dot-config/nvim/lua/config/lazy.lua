@@ -14,19 +14,19 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-local hydra = {
-	"⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣭⣿⣶⣿⣦⣼⣆          ",
-	"⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦         ",
-	"      ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷⠄⠄⠄⠄⠻⠿⢿⣿⣧⣄       ",
-	"       ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄      ",
-	"      ⢠⣿⣿⣿⠈  ⠡⠌⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀     ",
-	"⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘⠄ ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄   ",
-	"⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
-	"⣠⣿⠿⠛⠄⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄ ",
-	"⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇⠄⠛⠻⢷⣄",
-	"    ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
-	"     ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
-}
+-- local hydra = {
+-- 	"⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣭⣿⣶⣿⣦⣼⣆          ",
+-- 	"⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦         ",
+-- 	"      ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷⠄⠄⠄⠄⠻⠿⢿⣿⣧⣄       ",
+-- 	"       ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄      ",
+-- 	"      ⢠⣿⣿⣿⠈  ⠡⠌⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀     ",
+-- 	"⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘⠄ ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄   ",
+-- 	"⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   ",
+-- 	"⣠⣿⠿⠛⠄⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄ ",
+-- 	"⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇⠄⠛⠻⢷⣄",
+-- 	"    ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     ",
+-- 	"     ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     ",
+-- }
 -- local header = {
 -- 	" ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗",
 -- 	" ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║",
@@ -37,33 +37,33 @@ local hydra = {
 -- }
 local slow_format_filetypes = {}
 
-local kind_icons = {
-	Text = "",
-	Method = "󰆧",
-	Function = "󰊕",
-	Constructor = "",
-	Field = "󰇽",
-	Variable = "󰂡",
-	Class = "󰠱",
-	Interface = "",
-	Module = "",
-	Property = "󰜢",
-	Unit = "",
-	Value = "󰎠",
-	Enum = "",
-	Keyword = "󰌋",
-	Snippet = "",
-	Color = "󰏘",
-	File = "󰈙",
-	Reference = "",
-	Folder = "󰉋",
-	EnumMember = "",
-	Constant = "󰏿",
-	Struct = "",
-	Event = "",
-	Operator = "󰆕",
-	TypeParameter = "󰅲",
-}
+-- local kind_icons = {
+-- 	Text = "",
+-- 	Method = "󰆧",
+-- 	Function = "󰊕",
+-- 	Constructor = "",
+-- 	Field = "󰇽",
+-- 	Variable = "󰂡",
+-- 	Class = "󰠱",
+-- 	Interface = "",
+-- 	Module = "",
+-- 	Property = "󰜢",
+-- 	Unit = "",
+-- 	Value = "󰎠",
+-- 	Enum = "",
+-- 	Keyword = "󰌋",
+-- 	Snippet = "",
+-- 	Color = "󰏘",
+-- 	File = "󰈙",
+-- 	Reference = "",
+-- 	Folder = "󰉋",
+-- 	EnumMember = "",
+-- 	Constant = "󰏿",
+-- 	Struct = "",
+-- 	Event = "",
+-- 	Operator = "󰆕",
+-- 	TypeParameter = "󰅲",
+-- }
 
 -- Splitting the header into lines
 require("lazy").setup({
@@ -102,13 +102,14 @@ require("lazy").setup({
 			priority = 1000,
 		},
 		{ "nvim-treesitter/nvim-treesitter-context" },
-		{ "NFrid/due.nvim", opts = {} },
-		{ "glts/vim-radical", dependencies = { "glts/vim-magnum" } },
+		-- { "NFrid/due.nvim", opts = {} },
+		-- { "glts/vim-radical", dependencies = { "glts/vim-magnum" } },
 		{
 			"MeanderingProgrammer/render-markdown.nvim",
 			opts = {},
 			dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 		},
+		-- { "andweeb/presence.nvim", opts = {}, event = "VeryLazy" },
 		{
 			"stevearc/dressing.nvim",
 			opts = {},
@@ -124,28 +125,28 @@ require("lazy").setup({
 			"HiPhish/rainbow-delimiters.nvim",
 			event = "VeryLazy",
 		},
-		{
-			"nvimdev/dashboard-nvim",
-			event = "VimEnter",
-			config = function()
-				require("dashboard").setup({
-					config = {
-						header = hydra,
-						shortcut = {},
-					},
-				})
-			end,
-			dependencies = { { "nvim-tree/nvim-web-devicons" } },
-		},
+		-- {
+		-- 	"nvimdev/dashboard-nvim",
+		-- 	event = "VimEnter",
+		-- 	config = function()
+		-- 		require("dashboard").setup({
+		-- 			config = {
+		-- 				header = hydra,
+		-- 				shortcut = {},
+		-- 			},
+		-- 		})
+		-- 	end,
+		-- 	dependencies = { { "nvim-tree/nvim-web-devicons" } },
+		-- },
 
 		{
 			"folke/noice.nvim",
 			event = { "VeryLazy" },
 			opts = {
 				lsp = {
-					progress = {
-						enabled = false,
-					},
+					-- progress = {
+					-- 	enabled = false,
+					-- },
 					override = {
 						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 						["vim.lsp.util.stylize_markdown"] = true,
@@ -256,10 +257,10 @@ require("lazy").setup({
 				{ "hrsh7th/cmp-vsnip" },
 				{ "hrsh7th/cmp-buffer" },
 				{ "hrsh7th/cmp-path" },
-				{ "hrsh7th/cmp-emoji" },
+				-- { "hrsh7th/cmp-emoji" },
 				{ "hrsh7th/vim-vsnip" },
-				{ "kdheepak/cmp-latex-symbols" },
-				{ "chrisgrieser/cmp-nerdfont" },
+				-- { "kdheepak/cmp-latex-symbols" },
+				-- { "chrisgrieser/cmp-nerdfont" },
 			},
 			opts = function()
 				local cmp = require("cmp")
@@ -269,14 +270,14 @@ require("lazy").setup({
 						{ name = "mkdnflow" }, -- Add this
 						{ name = "buffer" },
 						{ name = "path" },
-						{ name = "emoji" },
-						{ name = "nerdfont" },
-						{
-							name = "latex_symbols",
-							option = {
-								strategy = 0, -- mixed
-							},
-						},
+						-- { name = "emoji" },
+						-- { name = "nerdfont" },
+						-- {
+						-- 	name = "latex_symbols",
+						-- 	option = {
+						-- 		strategy = 0, -- mixed
+						-- 	},
+						-- },
 					}),
 				})
 
@@ -312,39 +313,39 @@ require("lazy").setup({
 						{ name = "vsnip" },
 						{ name = "nvim_lua" },
 						{ name = "path" },
-						{ name = "emoji" },
+						-- { name = "emoji" },
 						{ name = "crates" },
 						-- { name = "nvim_lsp_signature_help" },
 						-- { name = "neorg" },
-						{ name = "nerdfont" },
-						{
-							name = "latex_symbols",
-							option = {
-								strategy = 0, -- mixed
-							},
-						},
+						-- { name = "nerdfont" },
+						-- {
+						-- 	name = "latex_symbols",
+						-- 	option = {
+						-- 		strategy = 0, -- mixed
+						-- 	},
+						-- },
 					}, {
 						{ name = "buffer" },
 					}),
-					formatting = {
-						fields = { "menu", "abbr", "kind" },
-						format = function(entry, vim_item)
-							-- Kind icons
-							vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
-							-- Source
-							vim_item.menu = ({
-								-- buffer = "[Buffer]",
-								-- nvim_lsp = "[LSP]",
-								-- luasnip = "[LuaSnip]",
-								-- nvim_lua = "[Lua]",
-								latex_symbols = "[LaTeX]",
-								nerdfont = "[Nerdfont]",
-								emoji = "[Emoji]",
-							})[entry.source.name]
-							-- vim_item.menu = ""
-							return vim_item
-						end,
-					},
+					-- formatting = {
+					-- 	fields = { "menu", "abbr", "kind" },
+					-- 	format = function(entry, vim_item)
+					-- 		-- Kind icons
+					-- 		vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatenates the icons with the name of the item kind
+					-- 		-- Source
+					-- 		vim_item.menu = ({
+					-- 			-- buffer = "[Buffer]",
+					-- 			-- nvim_lsp = "[LSP]",
+					-- 			-- luasnip = "[LuaSnip]",
+					-- 			-- nvim_lua = "[Lua]",
+					-- 			latex_symbols = "[LaTeX]",
+					-- 			nerdfont = "[Nerdfont]",
+					-- 			emoji = "[Emoji]",
+					-- 		})[entry.source.name]
+					-- 		-- vim_item.menu = ""
+					-- 		return vim_item
+					-- 	end,
+					-- },
 				}
 			end,
 		},
@@ -395,11 +396,11 @@ require("lazy").setup({
 			},
 		},
 
-		{
-			"numToStr/Comment.nvim",
-			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-			opts = {},
-		},
+		-- {
+		-- 	"numToStr/Comment.nvim",
+		-- 	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		-- 	opts = {},
+		-- },
 
 		{
 			"folke/todo-comments.nvim",
@@ -430,23 +431,23 @@ require("lazy").setup({
 			},
 		},
 
-		{
-			"j-hui/fidget.nvim",
-			opts = {
-				notification = {
-					window = {
-						winblend = 0,
-					},
-				},
-			},
-			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-		},
+		-- {
+		-- 	"j-hui/fidget.nvim",
+		-- 	opts = {
+		-- 		notification = {
+		-- 			window = {
+		-- 				winblend = 0,
+		-- 			},
+		-- 		},
+		-- 	},
+		-- 	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		-- },
 
-		{ "m-demare/hlargs.nvim", opts = {}, event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
+		-- { "m-demare/hlargs.nvim", opts = {}, event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
 
 		{ "RRethy/vim-illuminate", event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
 
-		{ "preservim/tagbar", cmd = "TagbarToggle" },
+		-- { "preservim/tagbar", cmd = "TagbarToggle" },
 
 		{ "danilamihailov/beacon.nvim", event = { "VeryLazy" } },
 
@@ -520,14 +521,6 @@ require("lazy").setup({
 		},
 
 		{
-			"tadmccorkle/markdown.nvim",
-			ft = "markdown", -- or 'event = "VeryLazy"'
-			opts = {
-				-- configuration here or empty for defaults
-			},
-		},
-
-		{
 			"OXY2DEV/helpview.nvim",
 
 			ft = "help",
@@ -569,16 +562,16 @@ require("lazy").setup({
 		-- 	end,
 		-- },
 
-		{
-			"smjonas/inc-rename.nvim",
-			event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-			config = function()
-				require("inc_rename").setup()
-			end,
-		},
+		-- {
+		-- 	"smjonas/inc-rename.nvim",
+		-- 	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+		-- 	config = function()
+		-- 		require("inc_rename").setup()
+		-- 	end,
+		-- },
 
 		-- LaTeX Ascii art generator
-		{ "jbyuki/nabla.nvim" },
+		-- { "jbyuki/nabla.nvim" },
 
 		{
 			"linux-cultist/venv-selector.nvim",
@@ -656,17 +649,33 @@ require("lazy").setup({
 		-- 	dependencies = { { "nvim-lua/plenary.nvim" }, { "nvim-neorg/neorg-telescope" } },
 		-- },
 		--
-		{
-			"kylechui/nvim-surround",
-			version = "*", -- Use for stability; omit to use `main` branch for the latest features
-			event = "VeryLazy",
-			config = function()
-				require("nvim-surround").setup({
-					-- Configuration here, or leave empty to use defaults
-				})
-			end,
-		},
+		-- {
+		-- 	"kylechui/nvim-surround",
+		-- 	version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		-- 	event = "VeryLazy",
+		-- 	config = function()
+		-- 		require("nvim-surround").setup({
+		-- 			-- Configuration here, or leave empty to use defaults
+		-- 		})
+		-- 	end,
+		-- },
+		-- {
+		-- 	"m4xshen/hardtime.nvim",
+		-- 	dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		-- 	opts = {},
+		-- },
 
+		{ "uga-rosa/ccc.nvim", opts = {} },
+
+		-- {
+		-- 	"Bekaboo/dropbar.nvim",
+		-- 	-- optional, but required for fuzzy finder support
+		-- 	dependencies = {
+		-- 		"nvim-telescope/telescope-fzf-native.nvim",
+		-- 	},
+		-- },
+		{ "nacro90/numb.nvim", opts = {} },
+		{ "famiu/bufdelete.nvim" },
 		{
 			"nvim-telescope/telescope.nvim",
 			tag = "0.1.8",
@@ -674,10 +683,10 @@ require("lazy").setup({
 				"nvim-lua/plenary.nvim",
 				"nvim-telescope/telescope-symbols.nvim",
 				"adoyle-h/lsp-toggle.nvim",
-				"cljoly/telescope-repo.nvim",
-				{ "polirritmico/telescope-lazy-plugins.nvim" },
+				"polirritmico/telescope-lazy-plugins.nvim",
 				"keyvchan/telescope-find-pickers.nvim",
 				"crispgm/telescope-heading.nvim",
+				"debugloop/telescope-undo.nvim",
 			},
 		},
 		{
@@ -702,6 +711,9 @@ require("lazy").setup({
 			"neovim/nvim-lspconfig",
 			event = "VeryLazy",
 			opts = {
+				inlay_hints = {
+					enabled = true,
+				},
 				setup = {
 					rust_analyzer = function()
 						return true
@@ -709,13 +721,14 @@ require("lazy").setup({
 				},
 			},
 			config = function()
-				require("lspconfig").jdtls.setup({})
 				require("lspconfig").bashls.setup({})
-				require("lspconfig").taplo.setup({})
+				require("lspconfig").eslint.setup({})
 				require("lspconfig").hyprls.setup({})
+				require("lspconfig").jdtls.setup({})
 				require("lspconfig").marksman.setup({})
 				require("lspconfig").pylsp.setup({})
-				require("lspconfig").eslint.setup({})
+				require("lspconfig").taplo.setup({})
+				require("lspconfig").ts_ls.setup({})
 				require("lspconfig").lua_ls.setup({
 					on_init = function(client)
 						local path = client.workspace_folders[1].name
