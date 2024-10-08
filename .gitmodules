@@ -1,0 +1,3 @@
+[submodule "stow/dot-config/nvim"]
+	path = stow/dot-config/nvim
+	url = git@github.com:Toll25/Neovim-Config.git
