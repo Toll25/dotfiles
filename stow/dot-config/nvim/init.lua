@@ -7,10 +7,8 @@ require("general.opts")
 
 -- Lazy --
 require("config.lazy")
-
--- Plugins --
 require("config.neo-tree")
--- require("config.harpoon")
+require("config.neotest")
 
 -- Keybinds and Commands --
 require("general.commands")
