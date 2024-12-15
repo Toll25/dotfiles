@@ -26,6 +26,7 @@ return {
 			"javascript",
 			"jsdoc",
 			"json",
+			"svelte",
 			"jsonc",
 			"latex",
 			"lua",

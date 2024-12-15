@@ -69,7 +69,7 @@ vim.api.nvim_set_keymap("n", "<leader>gg", "<CMD>Neogit<CR>", { desc = "Open Git
 vim.api.nvim_set_keymap("n", "<leader>gb", "<CMD>GitBlameToggle<CR>", { desc = "Toggle inline Git blame" })
 
 -- Rename --
-vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()", { desc = "LSP Rename" })
+vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()<CR>", { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Literal Rename" })
 
 -- Harpoon --

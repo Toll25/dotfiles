@@ -79,6 +79,9 @@ return {
 				}, {
 					{ name = "buffer" },
 				}),
+				formatting = {
+					format = require("tailwindcss-colorizer-cmp").formatter,
+				},
 				-- formatting = {
 				-- 	fields = { "menu", "abbr", "kind" },
 				-- 	format = function(entry, vim_item)

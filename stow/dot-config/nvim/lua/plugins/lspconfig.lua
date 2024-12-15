@@ -18,7 +18,9 @@ return {
 		require("lspconfig").jdtls.setup({})
 		require("lspconfig").marksman.setup({})
 		require("lspconfig").pylsp.setup({})
+		-- require("lspconfig").tailwindcss.setup({})
 		require("lspconfig").taplo.setup({})
+		require("lspconfig").svelte.setup({})
 		require("lspconfig").ts_ls.setup({})
 		require("lspconfig").lua_ls.setup({
 			on_init = function(client)
