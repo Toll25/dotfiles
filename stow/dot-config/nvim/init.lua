@@ -19,6 +19,7 @@ require("general.autocmd.autoupdate")
 require("general.autocmd.inlay-hints")
 require("general.autocmd.hl-yank")
 require("general.autocmd.open-images")
+require("general.autocmd.auto-notes")
 require("general.delimiters")
 vim.cmd([[colorscheme catppuccin-mocha]])
 for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do
