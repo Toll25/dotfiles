@@ -22,7 +22,7 @@ vim.api.nvim_set_keymap("n", "<C-s>", "<CMD>w<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
 -- vim.api.nvim_set_keymap("n", "<leader><leader>q", "<CMD>qa<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-f>", "/", opts)
-vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show Hover information" })
+-- vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show Hover information" })
 vim.keymap.set("n", "<leader>q", "<CMD>OverseerRun<CR>", { desc = "Run tasks" })
 
 -- Split Navigation --
@@ -71,6 +71,7 @@ vim.api.nvim_set_keymap("n", "<leader>gb", "<CMD>GitBlameToggle<CR>", { desc = "
 -- Rename --
 vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()<CR>", { desc = "LSP Rename" })
 vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Literal Rename" })
+vim.keymap.set("v", "<leader>rs", ":s///g<Left><Left><Left>", { desc = "Literal Rename" })
 
 -- Harpoon --
 -- local harpoon = require("harpoon")

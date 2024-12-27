@@ -337,9 +337,6 @@
         "PreviewMessage": {
             "enabled": true
         },
-        "PronounDB": {
-            "enabled": false
-        },
         "QuickMention": {
             "enabled": false
         },
@@ -660,6 +657,15 @@
         },
         "AccountPanelServerProfile": {
             "enabled": false
+        },
+        "UserMessagesPronouns": {
+            "enabled": false
+        },
+        "DynamicImageModalAPI": {
+            "enabled": false
+        },
+        "FixImagesQuality": {
+            "enabled": false
         }
     },
     "notifications": {
@@ -672,6 +678,6 @@
         "authenticated": false,
         "url": "https://api.vencord.dev/",
         "settingsSync": false,
-        "settingsSyncVersion": 1728368678868
+        "settingsSyncVersion": 1734452305627
     }
 }

@@ -6,7 +6,7 @@ rustflags = [
     # "-Wclippy::expect_used",
     "-Wclippy::cargo",
     "-Aclippy::must-use-candidate",
-    "-Aclippy::cast-precision-loss",
+    "-Wclippy::cast-precision-loss",
     "-Aclippy::cargo-common-metadata",
-    "-Aclippy::multiple-crate-versions"
+    "-Wclippy::multiple-crate-versions"
 ]
