@@ -19,6 +19,7 @@ return {
 		indent = { enable = true },
 		ensure_installed = {
 			"bash",
+			"css",
 			"diff",
 			"html",
 			"hyprlang",
