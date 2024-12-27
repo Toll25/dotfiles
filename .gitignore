@@ -1,22 +1,6 @@
-.syncedlyrics
 lazy-lock.json
-stow/dot-cargo/.crates.toml
-stow/dot-cargo/.crates2.json
-stow/dot-cargo/.global-cache
-stow/dot-cargo/.package-cache
-stow/dot-cargo/.package-cache-mutate
-stow/dot-cargo/bin/
-stow/dot-cargo/registry/
 
 stow/dot-config/btop/btop.log
-stow/dot-config/vesktop/Crashpad/
-stow/dot-config/vesktop/SingletonCookie
-stow/dot-config/vesktop/SingletonLock
-stow/dot-config/vesktop/SingletonSocket
-stow/dot-config/vesktop/sessionData/
-stow/dot-config/vesktop/state.json
 stow/dot-local/share/icons/Catppuccin-Mocha-Dark-Cursors/
 stow/dot-local/share/icons/Catppuccin-Mocha-Mauve-Cursors/
 stow/dot-local/share/icons/hicolor/
-stow/dot-local/share/krita/
-stow/dot-config/vesktop/settings.json
