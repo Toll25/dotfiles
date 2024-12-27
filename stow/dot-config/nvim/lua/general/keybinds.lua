@@ -135,8 +135,15 @@ vim.keymap.set("n", "<leader>ss", "<CMD>lua vim.lsp.buf.signature_help()<CR>", {
 -- Code Actions --
 vim.keymap.set("n", "<leader>y", require("actions-preview").code_actions, { desc = "Show code actions" })
 
--- Diagnostics --
+-- Diagnostics/Debugging --
 vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })
+vim.keymap.set("n", "<leader>du", require("dapui").toggle, { desc = "Open debugging interface" })
+vim.keymap.set("n", "<leader>dt", require("dap").toggle_breakpoint, { desc = "Toggle breakpoint" })
+vim.keymap.set("n", "<leader>dc", require("dap").continue, { desc = "Continue" })
+vim.keymap.set("n", "<leader>di", require("dap").step_into, { desc = "Step into" })
+vim.keymap.set("n", "<leader>do", require("dap").step_over, { desc = "Step over" })
+vim.keymap.set("n", "<leader>dr", require("dap").repl.open, { desc = "Open REPL" })
+
 -- vim.api.nvim_set_keymap('n', '<leader>xX', '<CMD>Trouble diagnostics toggle filter.buf=0<CR>', { desc = 'Buffer Diagnostics (Trouble)' })
 -- vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })
 -- vim.api.nvim_set_keymap("n", "<leader>dq", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List" })

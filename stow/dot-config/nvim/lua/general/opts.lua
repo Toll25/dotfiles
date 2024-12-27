@@ -51,3 +51,9 @@ vim.diagnostic.config({
 })
 vim.cmd("let g:loaded_ruby_provider = 0")
 vim.cmd("let g:loaded_perl_provider = 0")
+
+local sign = vim.fn.sign_define
+
+sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
