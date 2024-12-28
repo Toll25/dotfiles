@@ -1,6 +1,5 @@
 local wk = require("which-key")
 wk.add({
-	{ "<leader>l", group = "Lazy" },
 	{ "<leader>g", group = "Git" },
 	{ "<leader>f", group = "Telescope" },
 	{ "<leader>s", group = "Show" },
@@ -21,7 +20,6 @@ vim.api.nvim_set_keymap("n", "<C-s>", "<CMD>w<CR>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
 -- vim.api.nvim_set_keymap("n", "<leader><leader>q", "<CMD>qa<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-f>", "/", opts)
--- vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show Hover information" })
 vim.keymap.set("n", "<leader>q", "<CMD>OverseerRun<CR>", { desc = "Run tasks" })
 
 -- Split Navigation --
@@ -38,7 +36,7 @@ vim.keymap.set("n", "<C-x>", function()
 end, opts)
 
 -- Formatting --
-vim.api.nvim_set_keymap("n", "<leader>F", "<CMD>Format<CR>", { desc = "Format code" })
+vim.api.nvim_set_keymap("n", "<leader>F", "<CMD>Format<CR>", { desc = "Format file" })
 
 -- Tagbar --
 -- vim.api.nvim_set_keymap("n", "<F8>", "<CMD>TagbarToggle<CR>", opts)
@@ -53,17 +51,13 @@ vim.keymap.set("n", "<leader>fv", "<CMD>VenvSelect<CR>", { desc = "Select venv" 
 vim.keymap.set("n", "<leader>fs", "<CMD>Telescope symbols<CR>", { desc = "Find symbols" })
 vim.keymap.set("n", "<leader>fl", "<CMD>Telescope ToggleLSP<CR>", { desc = "Toggle LSPs" })
 vim.keymap.set("n", "<leader>fr", "<CMD>Telescope repo list<CR>", { desc = "Find repos" })
-vim.keymap.set("n", "<leader>fl", "<CMD>Telescope lazy_plugins<CR>", { desc = "Find Lazy plugins" })
 vim.keymap.set("n", "<leader>fp", "<CMD>Telescope pickers<CR>", { desc = "Find Telescope pickers" })
 vim.keymap.set("n", "<leader>ft", "<CMD>Telescope headings<CR>", { desc = "Find headings" })
 vim.keymap.set("n", "<leader>fu", "<CMD>Telescope undo<CR>", { desc = "Undo history" })
 vim.keymap.set("n", "<leader>fs", "<CMD>Telescope ToggleLSP<CR>", { desc = "LSP Server List" })
 
 -- Lazy --
-vim.api.nvim_set_keymap("n", "<leader>ll", "<CMD>Lazy<CR>", { desc = "Open home" })
-vim.api.nvim_set_keymap("n", "<leader>lx", "<CMD>Lazy clean<CR>", { desc = "Clean" })
-vim.api.nvim_set_keymap("n", "<leader>lu", "<CMD>Lazy update<CR>", { desc = "Update" })
-vim.api.nvim_set_keymap("n", "<leader>lp", "<CMD>Lazy profile<CR>", { desc = "Profile" })
+vim.api.nvim_set_keymap("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Open Lazy UI" })
 
 -- Git --
 vim.api.nvim_set_keymap("n", "<leader>gg", "<CMD>Neogit<CR>", { desc = "Open Git UI" })
@@ -101,13 +95,12 @@ vim.api.nvim_create_autocmd("TermEnter", {
 vim.api.nvim_set_keymap("n", "<C-t>", '<Cmd>exe v:count1 .. "ToggleTerm"<CR>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap("i", "<C-t>", '<Esc><Cmd>exe v:count1 .. "ToggleTerm"<CR>', { silent = true, noremap = true })
 
--- Colors
+-- Colors --
 vim.keymap.set("n", "<leader>cc", "<CMD>HighlightColors Toggle<CR>", { desc = "Show colors" })
 vim.keymap.set("n", "<leader>cp", "<CMD>CccPick<CR>", { desc = "Pick color" })
 vim.keymap.set("n", "<leader>cv", "<CMD>CccConvert<CR>", { desc = "Convert color" })
 
 -- Show --
--- vim.keymap.set("n", "<leader>sl", require("nabla").popup, { desc = "Show latex interpretation" })
 vim.keymap.set("n", "<leader>sw", "<CMD>set wrap!<CR>", { desc = "Toggle wraps" })
 vim.keymap.set("n", "<leader>sf", "<CMD>ConformInfo<CR>", { desc = "Show format info" })
 vim.keymap.set(
@@ -133,13 +126,6 @@ vim.keymap.set("n", "<leader>dr", require("dap").repl.open, { desc = "Open REPL"
 
 -- vim.api.nvim_set_keymap('n', '<leader>xX', '<CMD>Trouble diagnostics toggle filter.buf=0<CR>', { desc = 'Buffer Diagnostics (Trouble)' })
 -- vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })
--- vim.api.nvim_set_keymap("n", "<leader>dq", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List" })
-
--- -- Treesitter --
--- vim.keymap.set("n", "<leader>yt", "<CMD>TSToggle<CR>", { desc = "Toggle" })
--- vim.keymap.set("n", "<leader>yu", "<CMD>TSUpdate<CR>", { desc = "Update" })
--- vim.keymap.set("n", "<leader>yi", ":TSInstall ", { desc = "Install" })
--- vim.keymap.set("n", "<leader>yd", ":TSUninstall ", { desc = "Uninstall" })
 
 vim.cmd("imap <expr> ä   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : 'ä'")
 vim.cmd("smap <expr> ä   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : 'ä'")
@@ -149,12 +135,12 @@ vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
-vim.keymap.set({ "i", "n", "v" }, "<CR>", "<CMD>MkdnEnter<CR>")
-
 vim.keymap.set("n", "<leader>ü", "<CMD>PasteImage<CR>", { desc = "Paste image from system clipboard" })
 
--- { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
--- { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
--- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
--- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
--- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+-- stylua: ignore start
+vim.keymap.set({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
+vim.keymap.set({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
+vim.keymap.set("o", "r", function() require("flash").remote() end, { desc = "Remote Flash" })
+vim.keymap.set({ "x", "o" }, "R", function() require("flash").treesitter_search() end, { desc = "Flash Treesitter Search" })
+vim.keymap.set("c", "<c-i>", function() require("flash").toggle() end, { desc = "Toggle Flash"})
+-- stylua: ignore end

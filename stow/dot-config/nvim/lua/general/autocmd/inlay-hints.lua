@@ -5,6 +5,5 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if client.server_capabilities.inlayHintProvider then
 			vim.lsp.inlay_hint.enable(true)
 		end
-		-- whatever other lsp config you want
 	end,
 })

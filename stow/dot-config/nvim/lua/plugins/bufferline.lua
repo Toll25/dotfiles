@@ -7,6 +7,7 @@ return {
 			highlights = require("catppuccin.groups.integrations.bufferline").get(),
 
 			options = {
+				right_mouse_command = "lua Snacks.bufdelete(%d)",
 				indicator = {
 					style = "icon",
 				},
@@ -21,8 +22,8 @@ return {
 				},
 				color_icons = true,
 				show_buffer_icons = true,
-				show_buffer_close_icons = true,
-				show_close_icon = true,
+				show_buffer_close_icons = false,
+				show_close_icon = false,
 				show_tab_indicators = true,
 				show_duplicate_prefix = true,
 				duplicates_across_groups = true,

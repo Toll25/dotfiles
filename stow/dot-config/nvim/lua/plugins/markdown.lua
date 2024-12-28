@@ -12,6 +12,9 @@ return {
 		"jakewvincent/mkdnflow.nvim",
 		event = "VeryLazy",
 		opts = {
+			links = {
+				create_on_follow_failure = false,
+			},
 			modules = {
 				cmp = true,
 			},
