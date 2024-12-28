@@ -19,7 +19,7 @@ return {
 			neotree = true,
 			noice = true,
 			notify = true,
-			-- nvim_surround = true,
+			nvim_surround = true,
 			overseer = true,
 			which_key = true,
 			neotest = true,

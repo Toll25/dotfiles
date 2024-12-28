@@ -5,11 +5,11 @@ return {
 		main = "ibl",
 		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
 		opts = {
-			exclude = {
-				filetypes = {
-					"dashboard",
-				},
-			},
+			-- exclude = {
+			-- 	filetypes = {
+			-- 		"dashboard",
+			-- 	},
+			-- },
 		},
 	},
 	{
@@ -36,7 +36,7 @@ return {
 			extensions = { "neo-tree", "trouble", "toggleterm" },
 		},
 	},
-	{ "RRethy/vim-illuminate", event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
+	-- { "RRethy/vim-illuminate", event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
 	{
 		"HiPhish/rainbow-delimiters.nvim",
 		event = "VeryLazy",
@@ -91,33 +91,8 @@ return {
 		},
 	},
 	{
-		"NvChad/nvim-colorizer.lua",
-		opts = {
-			filetypes = { "*" },
-			user_default_options = {
-				RGB = true,
-				RRGGBB = true,
-				names = false,
-				RRGGBBAA = true,
-				AARRGGBB = true,
-				rgb_fn = true,
-				hsl_fn = true,
-				css = true,
-				css_fn = true,
-				mode = "background",
-				tailwind = true,
-				sass = { enable = false, parsers = { "css" } },
-				virtualtext = "■",
-				always_update = false,
-			},
-			buftypes = {},
-		},
-		event = { "VeryLazy" },
-	},
-	{
-		"folke/todo-comments.nvim",
-		event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-		dependencies = { "nvim-lua/plenary.nvim" },
+		"brenoprata10/nvim-highlight-colors",
 		opts = {},
+		event = { "VeryLazy" },
 	},
 }

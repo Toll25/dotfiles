@@ -34,7 +34,9 @@ vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
 -- Buffer Navigation --
 vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCycleNext<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-S-n>", "<CMD>BufferLineCyclePrev<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-x>", "<CMD>:lua require('bufdelete').bufdelete(0, true)<CR>", opts)
+vim.keymap.set("n", "<C-x>", function()
+	Snacks.bufdelete()
+end, opts)
 
 -- Formatting --
 vim.api.nvim_set_keymap("n", "<leader>F", "<CMD>Format<CR>", { desc = "Format code" })
@@ -114,8 +116,22 @@ vim.keymap.set("t", "<ESC>", "<C-\\><C-N>")
 vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm<CR>", { desc = "Toggle Terminal" })
 vim.keymap.set("t", ":q", "<CMD>ToggleTerm<CR>")
 
+vim.api.nvim_create_autocmd("TermEnter", {
+	pattern = "term://*toggleterm#*",
+	callback = function()
+		vim.api.nvim_set_keymap(
+			"t",
+			"<C-t>",
+			'<Cmd>exe v:count1 .. "ToggleTerm"<CR>',
+			{ silent = true, noremap = true }
+		)
+	end,
+})
+vim.api.nvim_set_keymap("n", "<C-t>", '<Cmd>exe v:count1 .. "ToggleTerm"<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap("i", "<C-t>", '<Esc><Cmd>exe v:count1 .. "ToggleTerm"<CR>', { silent = true, noremap = true })
+
 -- Colors
-vim.keymap.set("n", "<leader>cc", "<CMD>ColorizerToggle<CR>", { desc = "Show colors" })
+vim.keymap.set("n", "<leader>cc", "<CMD>HighlightColors Toggle<CR>", { desc = "Show colors" })
 vim.keymap.set("n", "<leader>cp", "<CMD>CccPick<CR>", { desc = "Pick color" })
 vim.keymap.set("n", "<leader>cv", "<CMD>CccConvert<CR>", { desc = "Convert color" })
 

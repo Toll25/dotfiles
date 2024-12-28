@@ -55,8 +55,17 @@ local function copy_path(state)
 		})
 		:find()
 end
+local function on_move(data)
+	Snacks.rename.on_rename_file(data.source, data.destination)
+end
+local events = require("neo-tree.events")
 
 require("neo-tree").setup({
+	event_handlers = {
+
+		{ event = events.FILE_MOVED, handler = on_move },
+		{ event = events.FILE_RENAMED, handler = on_move },
+	},
 	commands = {
 		system_open = function(state)
 			local node = state.tree:get_node()
@@ -128,5 +137,9 @@ require("neo-tree").setup({
 		-- "open_current",  -- netrw disabled, opening a directory opens within the
 		-- window like netrw would, regardless of window.position
 		-- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
+		follow_current_file = {
+			enabled = true, -- This will find and focus the file in the active buffer every time
+			leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+		},
 	},
 })

@@ -57,3 +57,10 @@ local sign = vim.fn.sign_define
 sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
 sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
 sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
+
+local get_option = vim.filetype.get_option
+---@diagnostic disable-next-line: duplicate-set-field
+vim.filetype.get_option = function(filetype, option)
+	return option == "commentstring" and require("ts_context_commentstring.internal").calculate_commentstring()
+		or get_option(filetype, option)
+end
