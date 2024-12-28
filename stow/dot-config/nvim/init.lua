@@ -21,7 +21,11 @@ require("general.autocmd.hl-yank")
 require("general.autocmd.open-images")
 require("general.autocmd.auto-notes")
 require("general.delimiters")
+
+-- Set ColorScheme --
 vim.cmd([[colorscheme catppuccin-mocha]])
+
+-- Filter out wrong error --
 for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do
 	local default_diagnostic_handler = vim.lsp.handlers[method]
 	vim.lsp.handlers[method] = function(err, result, context, config)

@@ -13,35 +13,6 @@ return {
 		},
 	},
 	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			options = {
-				theme = "catppuccin",
-				globalstatus = true,
-			},
-			sections = {
-				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
-				lualine_c = { "filename" },
-				-- lualine_x = {
-				-- 	"encoding",
-				-- 	"fileformat",
-				-- 	"filetype",
-				-- },
-				lualine_y = { "progress" },
-				lualine_z = { "location" },
-			},
-			extensions = { "neo-tree", "trouble", "toggleterm" },
-		},
-	},
-	-- { "RRethy/vim-illuminate", event = { "BufReadPost", "BufWritePost", "BufNewFile" } },
-	{
-		"HiPhish/rainbow-delimiters.nvim",
-		event = "VeryLazy",
-	},
-	{
 		"stevearc/dressing.nvim",
 		opts = {},
 	},
@@ -56,16 +27,15 @@ return {
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+					["cmp.entry.get_documentation"] = true,
 				},
 			},
-			-- you can enable a preset for easier configuration
 			presets = {
-				bottom_search = true, -- use a classic bottom cmdline for search
-				command_palette = true, -- position the cmdline and popupmenu together
-				long_message_to_split = true, -- long messages will be sent to a split
-				inc_rename = true, -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = true, -- add a border to hover docs and signature help
+				bottom_search = true,
+				command_palette = true,
+				long_message_to_split = true,
+				inc_rename = true,
+				lsp_doc_border = true,
 			},
 			cmdline = {
 				enabled = true,
@@ -73,19 +43,13 @@ return {
 			},
 		},
 		dependencies = {
-			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
 			"MunifTanjim/nui.nvim",
-			-- OPTIONAL:
-			--   `nvim-notify` is only needed, if you want to use the notification view.
-			--   If not available, we use `mini` as the fallback
 			"rcarriga/nvim-notify",
 		},
 	},
 	{
 		"OXY2DEV/helpview.nvim",
-
 		ft = "help",
-
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},

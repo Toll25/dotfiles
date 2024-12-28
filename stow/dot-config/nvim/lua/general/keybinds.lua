@@ -8,7 +8,6 @@ wk.add({
 	{ "<leader>t", group = "Terminal" },
 	{ "<leader>d", group = "Diagnostics" },
 	{ "<leader>c", group = "Colors" },
-	-- { "<leader>h", group = "Harpoon" },
 	{ "<leader>w", group = "Workspaces" },
 })
 local opts = { noremap = true, silent = true }
@@ -80,39 +79,6 @@ vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()<CR>", { desc = 
 vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Literal Rename" })
 vim.keymap.set("v", "<leader>rs", ":s///g<Left><Left><Left>", { desc = "Literal Rename" })
 
--- Harpoon --
--- local harpoon = require("harpoon")
---
--- vim.keymap.set("n", "<leader>ha", function()
--- 	harpoon:list():add()
--- end, { desc = "Add file" })
--- vim.keymap.set("n", "<C-e>", function()
--- 	harpoon.ui:toggle_quick_menu(harpoon:list())
--- end)
--- vim.keymap.set("n", "<leader>hl", function()
--- 	harpoon.ui:toggle_quick_menu(harpoon:list())
--- end, { desc = "Show list" })
--- vim.keymap.set("n", "<C-h>", function()
--- 	harpoon:list():select(1)
--- end)
--- vim.keymap.set("n", "<C-t>", function()
--- 	harpoon:list():select(2)
--- end)
--- vim.keymap.set("n", "<C-n>", function()
--- 	harpoon:list():select(3)
--- end)
--- vim.keymap.set("n", "<C-s>", function()
--- 	harpoon:list():select(4)
--- end)
-
--- Toggle previous & next buffers stored within Harpoon list
--- vim.keymap.set("n", "<C-S-P>", function()
--- 	harpoon:list():prev()
--- end)
--- vim.keymap.set("n", "<C-S-N>", function()
--- 	harpoon:list():next()
--- end)
-
 -- Hypersonic --
 -- vim.keymap.set({ "n", "v" }, "<leader>re", "<CMD>Hypersonic<CR>")
 
@@ -175,27 +141,20 @@ vim.keymap.set("n", "<leader>dr", require("dap").repl.open, { desc = "Open REPL"
 -- vim.keymap.set("n", "<leader>yi", ":TSInstall ", { desc = "Install" })
 -- vim.keymap.set("n", "<leader>yd", ":TSUninstall ", { desc = "Uninstall" })
 
--- Neorg --
--- vim.api.nvim_set_keymap("n", "<leader>nc", "<CMD>Neorg toggle-concealer<CR>", { desc = "Toggle concealer" })
--- vim.api.nvim_set_keymap("n", "<leader>nt", "<CMD>Neorg toc<CR>", { desc = "Show table of contents" })
--- vim.api.nvim_set_keymap("n", "<leader>ni", "<CMD>Neorg index<CR>", { desc = "Go to index" })
--- vim.api.nvim_set_keymap("n", "<leader>nwd", "<CMD>Neorg workspace default<CR>", { desc = "Open default" })
--- vim.api.nvim_set_keymap("n", "<leader>nwm", "<CMD>Neorg workspace mitschrift<CR>", { desc = "Open mitschrift" })
--- vim.api.nvim_set_keymap("n", "<leader>nwn", "<CMD>Neorg workspace notes<CR>", { desc = "Open notes" })
--- vim.api.nvim_set_keymap("n", "<up>", "<Plug>(neorg.text-objects.item-up)", {})
--- vim.api.nvim_set_keymap("n", "<down>", "<Plug>(neorg.text-objects.item-down)", {})
--- vim.api.nvim_set_keymap("n", "<C-t>", "<Plug>(neorg.qol.todo-items.todo.task-cycle)", {})
-
--- -- Yanky --
--- vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
--- vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
--- vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
--- vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
---
--- vim.keymap.set("n", "<c-s-J>", "<Plug>(YankyPreviousEntry)")
--- vim.keymap.set("n", "<c-s-K>", "<Plug>(YankyNextEntry)")
---
 vim.cmd("imap <expr> ä   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : 'ä'")
 vim.cmd("smap <expr> ä   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : 'ä'")
 vim.cmd("imap <expr> ö vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : 'ö'")
 vim.cmd("smap <expr> ö vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : 'ö'")
+vim.keymap.set("n", "<leader>?", function()
+	require("which-key").show({ global = false })
+end, { desc = "Buffer Local Keymaps (which-key)" })
+
+vim.keymap.set({ "i", "n", "v" }, "<CR>", "<CMD>MkdnEnter<CR>")
+
+vim.keymap.set("n", "<leader>ü", "<CMD>PasteImage<CR>", { desc = "Paste image from system clipboard" })
+
+-- { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+-- { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+-- { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+-- { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+-- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
