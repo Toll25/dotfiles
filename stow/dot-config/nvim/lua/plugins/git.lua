@@ -1,6 +1,5 @@
 return {
 	{ "lewis6991/gitsigns.nvim", opts = {} },
-	{ "f-person/git-blame.nvim", opts = { enabled = false }, cmd = { "GitBlameToggle" } },
 	{
 		"NeogitOrg/neogit",
 		dependencies = {

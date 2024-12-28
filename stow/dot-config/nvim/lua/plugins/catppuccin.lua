@@ -15,6 +15,7 @@ return {
 			-- fidget = true,
 			-- harpoon = true,
 			-- headlines = true,
+			gitsigns = true,
 			lsp_trouble = true,
 			neotree = true,
 			noice = true,

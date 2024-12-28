@@ -68,7 +68,12 @@ vim.api.nvim_set_keymap("n", "<leader>lp", "<CMD>Lazy profile<CR>", { desc = "Pr
 
 -- Git --
 vim.api.nvim_set_keymap("n", "<leader>gg", "<CMD>Neogit<CR>", { desc = "Open Git UI" })
-vim.api.nvim_set_keymap("n", "<leader>gb", "<CMD>GitBlameToggle<CR>", { desc = "Toggle inline Git blame" })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>gb",
+	"<CMD>Gitsigns toggle_current_line_blame<CR>",
+	{ desc = "Toggle inline Git blame" }
+)
 
 -- Rename --
 vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()<CR>", { desc = "LSP Rename" })
