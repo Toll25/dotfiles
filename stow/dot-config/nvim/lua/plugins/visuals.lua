@@ -59,4 +59,8 @@ return {
 		opts = {},
 		event = { "VeryLazy" },
 	},
+	{
+		"3rd/image.nvim",
+		opts = {},
+	},
 }

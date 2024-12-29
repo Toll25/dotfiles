@@ -20,6 +20,7 @@ return {
 			cmp.setup.filetype("markdown", {
 				sources = cmp.config.sources({
 					{ name = "mkdnflow" },
+					{ name = "vsnip" },
 					{ name = "buffer" },
 					{ name = "path" },
 					-- { name = "emoji" },
