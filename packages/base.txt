@@ -1,4 +1,3 @@
-alacritty
 bat
 breeze
 breeze-gtk
@@ -16,6 +15,7 @@ hyprpaper
 hyprpicker
 hyprshot
 jump
+kitty
 less
 man-db
 neovim
