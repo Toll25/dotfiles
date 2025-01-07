@@ -126,10 +126,6 @@ vim.keymap.set("n", "<leader>dr", require("dap").repl.open, { desc = "Open REPL"
 -- vim.api.nvim_set_keymap('n', '<leader>xX', '<CMD>Trouble diagnostics toggle filter.buf=0<CR>', { desc = 'Buffer Diagnostics (Trouble)' })
 -- vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })
 
-vim.cmd("imap <expr> ä   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : 'ä'")
-vim.cmd("smap <expr> ä   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : 'ä'")
-vim.cmd("imap <expr> ö vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : 'ö'")
-vim.cmd("smap <expr> ö vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : 'ö'")
 vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })

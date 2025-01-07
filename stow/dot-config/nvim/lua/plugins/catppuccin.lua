@@ -24,6 +24,7 @@ return {
 			overseer = true,
 			which_key = true,
 			neotest = true,
+			blink_cmp = true,
 		},
 	},
 	priority = 1000,

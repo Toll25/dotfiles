@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	dependencies = { "saghen/blink.cmp" },
 	event = "VeryLazy",
 	opts = {
 		inlay_hints = {
@@ -12,16 +13,20 @@ return {
 		},
 	},
 	config = function()
-		require("lspconfig").bashls.setup({})
-		require("lspconfig").eslint.setup({})
-		require("lspconfig").hyprls.setup({})
-		require("lspconfig").jdtls.setup({})
-		require("lspconfig").marksman.setup({})
-		require("lspconfig").pylsp.setup({})
-		require("lspconfig").tailwindcss.setup({})
-		require("lspconfig").taplo.setup({})
-		require("lspconfig").svelte.setup({})
-		require("lspconfig").ts_ls.setup({})
-		require("lspconfig").lua_ls.setup({})
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		require("lspconfig").bashls.setup({ capabilities = capabilities })
+		-- require("lspconfig").eslint.setup({ capabilities = capabilities })
+		require("lspconfig").hyprls.setup({ capabilities = capabilities })
+		require("lspconfig").jdtls.setup({ capabilities = capabilities })
+		require("lspconfig").marksman.setup({ capabilities = capabilities })
+		require("lspconfig").pylsp.setup({ capabilities = capabilities })
+		require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
+		require("lspconfig").taplo.setup({ capabilities = capabilities })
+		require("lspconfig").svelte.setup({ capabilities = capabilities })
+		require("lspconfig").ts_ls.setup({ capabilities = capabilities })
+		require("lspconfig").lua_ls.setup({ capabilities = capabilities })
+		require("lspconfig").jsonls.setup({ capabilities = capabilities })
+		require("lspconfig").html.setup({ capabilities = capabilities })
+		require("lspconfig").cssls.setup({ capabilities = capabilities })
 	end,
 }
