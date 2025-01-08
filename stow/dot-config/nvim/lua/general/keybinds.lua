@@ -16,7 +16,7 @@ vim.api.nvim_set_keymap("n", "<F7>", "<CMD>Neotree toggle<CR>", { desc = "Toggle
 vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Neotree . reveal<CR>", { desc = "Reveal file in filetree" })
 
 -- General Purpose --
-vim.api.nvim_set_keymap("n", "<C-s>", "<CMD>w<CR>", opts)
+vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<CMD>w<CR><ESC>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
 -- vim.api.nvim_set_keymap("n", "<leader><leader>q", "<CMD>qa<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-f>", "/", opts)
@@ -41,20 +41,12 @@ vim.api.nvim_set_keymap("n", "<leader>F", "<CMD>Format<CR>", { desc = "Format fi
 -- Tagbar --
 -- vim.api.nvim_set_keymap("n", "<F8>", "<CMD>TagbarToggle<CR>", opts)
 
--- Telescope --
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live grep" })
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffer" })
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tags" })
-vim.keymap.set("n", "<leader>fv", "<CMD>VenvSelect<CR>", { desc = "Select venv" })
-vim.keymap.set("n", "<leader>fs", "<CMD>Telescope symbols<CR>", { desc = "Find symbols" })
-vim.keymap.set("n", "<leader>fl", "<CMD>Telescope ToggleLSP<CR>", { desc = "Toggle LSPs" })
-vim.keymap.set("n", "<leader>fr", "<CMD>Telescope repo list<CR>", { desc = "Find repos" })
-vim.keymap.set("n", "<leader>fp", "<CMD>Telescope pickers<CR>", { desc = "Find Telescope pickers" })
-vim.keymap.set("n", "<leader>ft", "<CMD>Telescope headings<CR>", { desc = "Find headings" })
-vim.keymap.set("n", "<leader>fu", "<CMD>Telescope undo<CR>", { desc = "Undo history" })
-vim.keymap.set("n", "<leader>fs", "<CMD>Telescope ToggleLSP<CR>", { desc = "LSP Server List" })
+-- fzf --
+vim.keymap.set("n", "<leader>ff", "<CMD>FzfLua files<CR>", { desc = "Find files" })
+vim.keymap.set("n", "<leader>fg", "<CMD>FzfLua live_grep<CR>", { desc = "Live grep" })
+vim.keymap.set("n", "<leader>fb", "<CMD>FzfLua buffers<CR>", { desc = "Find buffer" })
+vim.keymap.set("n", "<leader>fi", "<CMD>FzfLua lsp_incoming_calls<CR>", { desc = "Find incoming calls" })
+vim.keymap.set("n", "<leader>fd", vim.lsp.buf.definition, { desc = "Goto definition" })
 
 -- Lazy --
 vim.api.nvim_set_keymap("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Open Lazy UI" })
@@ -112,16 +104,16 @@ vim.keymap.set("n", "<leader>sr", "<CMD>lua vim.lsp.buf.references()<CR>", { des
 vim.keymap.set("n", "<leader>ss", "<CMD>lua vim.lsp.buf.signature_help()<CR>", { desc = "Show signature help" })
 
 -- Code Actions --
-vim.keymap.set("n", "<leader>y", require("actions-preview").code_actions, { desc = "Show code actions" })
+vim.keymap.set("n", "<leader>y", "<CMD>FzfLua lsp_code_actions<CR>", { desc = "Show code actions" })
 
 -- Diagnostics/Debugging --
 vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })
-vim.keymap.set("n", "<leader>du", require("dapui").toggle, { desc = "Open debugging interface" })
-vim.keymap.set("n", "<leader>dt", require("dap").toggle_breakpoint, { desc = "Toggle breakpoint" })
-vim.keymap.set("n", "<leader>dc", require("dap").continue, { desc = "Continue" })
-vim.keymap.set("n", "<leader>di", require("dap").step_into, { desc = "Step into" })
-vim.keymap.set("n", "<leader>do", require("dap").step_over, { desc = "Step over" })
-vim.keymap.set("n", "<leader>dr", require("dap").repl.open, { desc = "Open REPL" })
+vim.keymap.set("n", "<leader>du", "<CMD>lua require('dapui').toggle()<CR>", { desc = "Open debugging interface" })
+vim.keymap.set("n", "<leader>dt", "<CMD>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle breakpoint" })
+vim.keymap.set("n", "<leader>dc", "<CMD>lua require('dap').continue()<CR>", { desc = "Continue" })
+vim.keymap.set("n", "<leader>di", "<CMD>lua require('dap').step_into()<CR>", { desc = "Step into" })
+vim.keymap.set("n", "<leader>do", "<CMD>lua require('dap').step_over()<CR>", { desc = "Step over" })
+vim.keymap.set("n", "<leader>dr", "<CMD>lua require('dap').repl.open()<CR>", { desc = "Open REPL" })
 
 -- vim.api.nvim_set_keymap('n', '<leader>xX', '<CMD>Trouble diagnostics toggle filter.buf=0<CR>', { desc = 'Buffer Diagnostics (Trouble)' })
 -- vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })

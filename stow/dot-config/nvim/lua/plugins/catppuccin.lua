@@ -25,6 +25,7 @@ return {
 			which_key = true,
 			neotest = true,
 			blink_cmp = true,
+			fzf = true,
 		},
 	},
 	priority = 1000,

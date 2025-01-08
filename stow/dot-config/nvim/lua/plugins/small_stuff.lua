@@ -1,7 +1,6 @@
 return {
 	{ "uga-rosa/ccc.nvim", opts = {} },
 	{ "nacro90/numb.nvim", opts = {} },
-	{ "aznhe21/actions-preview.nvim", opts = {} },
 	{
 		"gbprod/cutlass.nvim",
 		opts = {
@@ -20,15 +19,11 @@ return {
 		opts = {
 			strategy = "toggleterm",
 		},
-		event = "VeryLazy",
+		cmd = { "OverseerRun" },
 	},
 	{
 		"danymat/neogen",
 		config = true,
 	},
-	{
-		"Wansmer/treesj",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		opts = { use_default_keymaps = false },
-	},
+	{ "echasnovski/mini.splitjoin", opts = {}, version = false },
 }

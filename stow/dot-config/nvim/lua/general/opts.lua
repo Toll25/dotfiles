@@ -16,6 +16,11 @@ vim.opt.splitright = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
+vim.opt.breakindent = true
+vim.opt.undofile = true
+vim.opt.signcolumn = "yes"
+vim.opt.virtualedit = "block"
+
 vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 
