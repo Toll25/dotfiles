@@ -182,7 +182,7 @@
 	border-width = 2
 
 	# Border color
-	border-color = #89dceb
+	border-color = #cba6f7
 
 	# Radius of window corners in pixels.
 	corner-radius = 5
