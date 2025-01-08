@@ -31,9 +31,9 @@ vim.opt.ignorecase = true -- ignore case in searches by default
 vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entered
 
 -- vim.cmd("filetype plugin on")
--- vim.filetype.add({
--- 	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
--- })
+vim.filetype.add({
+	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+})
 vim.diagnostic.config({
 	signs = {
 		text = {
