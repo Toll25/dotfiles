@@ -45,7 +45,7 @@ window#waybar {
 }
 
 #custom-left-seperator-color {
-  color: @blue;
+  color: @mauve;
 }
 #custom-right-arrow,
 #custom-left-arrow,
@@ -64,11 +64,14 @@ window#waybar {
 
 #memory,
 #cpu,
+#power-profiles-daemon,
 #battery {
   background: @surface0;
+  color: @mauve;
 }
 
 #clock.2,
+#user,
 #custom-text {
   background: @mauve;
   color: @mantle;

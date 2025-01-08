@@ -29,9 +29,11 @@
         //"custom/left-seperator-color",
         //"cpu",
         //"custom/left-seperator-color",
+        "power-profiles-daemon",
+        "custom/left-seperator-color",
         "battery",
         "custom/left-arrow-color",
-        "clock#2"
+        "user"
     ],
     "custom/left-arrow-color": {
         "format": "",
@@ -77,10 +79,29 @@
     "clock#2": {
         "interval": 1,
         "format": "{:%H:%M:%S}",
-        "tooltip": false
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#f5e0dc'><b>{}</b></span>",
+                "days": "<span color='#eba0ac'><b>{}</b></span>",
+                "weeks": "<span color='#94e2d5'><b>W{}</b></span>",
+                "weekdays": "<span color='#f9e2af'><b>{}</b></span>",
+                "today": "<span color='#cba6f7'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode",
+            "on-click": "shift_reset",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
     "clock#3": {
-        "format": "{:%m-%d}",
+        "format": "{:%d. %b}",
         "tooltip": false
     },
     "pulseaudio": {
@@ -145,5 +166,23 @@
     "hyprland/window": {
         "format": " {}",
         "separate-outputs": true
+    },
+    "power-profiles-daemon": {
+        "format": " {icon}  ",
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+        "tooltip": true,
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+    "user": {
+        "format": " {user} ",
+        "interval": 60,
+        "height": 30,
+        "width": 30,
+        "icon": true
     }
 }
