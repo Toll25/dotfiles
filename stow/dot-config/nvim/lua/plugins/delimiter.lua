@@ -1,9 +1,5 @@
 return {
-	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = true,
-	},
+	{ "echasnovski/mini.pairs", version = false, opts = {} },
 	{
 		"kylechui/nvim-surround",
 		event = "VeryLazy",
@@ -12,6 +8,7 @@ return {
 	{
 		"windwp/nvim-ts-autotag",
 		opts = {},
+		ft = { "html", "svelte" },
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",

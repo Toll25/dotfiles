@@ -1,5 +1,5 @@
 return {
-	{ "uga-rosa/ccc.nvim", opts = {} },
+	{ "uga-rosa/ccc.nvim", opts = {}, cmd = { "CccConvert", "CccPick" } },
 	{ "nacro90/numb.nvim", opts = {} },
 	{
 		"gbprod/cutlass.nvim",

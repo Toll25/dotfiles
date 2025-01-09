@@ -7,8 +7,8 @@ require("general.opts")
 
 -- Lazy --
 require("config.lazy")
-require("config.neo-tree")
 require("config.neotest")
+require("config.yazi")
 
 -- Keybinds and Commands --
 require("general.commands")
