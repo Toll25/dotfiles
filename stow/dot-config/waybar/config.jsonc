@@ -6,8 +6,8 @@
         "custom/text",
         "custom/right-arrow-color",
         "hyprland/workspaces",
-        "custom/right-arrow",
-        "hyprland/window"
+        "custom/right-arrow"
+        //"hyprland/window"
     ],
     "modules-center": [
         "custom/left-arrow",
@@ -73,7 +73,7 @@
         "max-length": 25
     },
     "clock#1": {
-        "format": "{:%a}",
+        "format": "  {:%a}  ",
         "tooltip": false
     },
     "clock#2": {

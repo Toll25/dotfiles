@@ -7,13 +7,13 @@ return {
 		rename = { enabled = true },
 		-- statuscolumn = { enabled = true },
 		toggle = { enabled = true },
-		words = { enabled = true }, -- illuminate replacement
+		words = { enabled = true, debounce = 100 }, -- illuminate replacement
 		bigfile = { enabled = true },
 		bufdelete = { enabled = true },
 		dashboard = { enabled = true },
 		-- git = { enabled = true },
 		gitbrowse = { enabled = true },
-		-- indent = { enabled = true },
+		indent = { enabled = true },
 
 		-- input = { enabled = true },
 		-- notifier = { enabled = true },

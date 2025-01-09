@@ -20,7 +20,6 @@ require("general.autocmd.inlay-hints")
 require("general.autocmd.hl-yank")
 require("general.autocmd.open-images")
 require("general.autocmd.auto-notes")
-require("general.delimiters")
 
 -- Set ColorScheme --
 vim.cmd([[colorscheme catppuccin-mocha]])

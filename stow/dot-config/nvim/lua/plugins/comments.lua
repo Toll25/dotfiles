@@ -6,9 +6,8 @@ return {
 		opts = {},
 	},
 	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		opts = {
-			enable_autocmd = false,
-		},
+		"folke/ts-comments.nvim",
+		opts = {},
+		event = "VeryLazy",
 	},
 }

@@ -26,6 +26,7 @@ return {
 			neotest = true,
 			blink_cmp = true,
 			fzf = true,
+			snacks = true,
 		},
 	},
 	priority = 1000,
