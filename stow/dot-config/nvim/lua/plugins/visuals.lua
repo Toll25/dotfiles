@@ -1,17 +1,5 @@
 return {
 	{ "danilamihailov/beacon.nvim", event = { "VeryLazy" } },
-	-- {
-	-- 	"lukas-reineke/indent-blankline.nvim",
-	-- 	main = "ibl",
-	-- 	event = { "BufReadPost", "BufWritePost", "BufNewFile" },
-	-- 	opts = {
-	-- 		-- exclude = {
-	-- 		-- 	filetypes = {
-	-- 		-- 		"dashboard",
-	-- 		-- 	},
-	-- 		-- },
-	-- 	},
-	-- },
 	{
 		"stevearc/dressing.nvim",
 		opts = {},
@@ -66,18 +54,12 @@ return {
 	},
 	{
 		"lewis6991/satellite.nvim",
-		opts = {},
+		opts = {
+			handlers = {
+				marks = {
+					enabled = false,
+				},
+			},
+		},
 	},
-	-- {
-	-- 	"tris203/precognition.nvim",
-	-- 	opts = {},
-	-- },
-	-- {
-	-- 	"rachartier/tiny-inline-diagnostic.nvim",
-	-- 	event = "VeryLazy", -- Or `LspAttach`
-	-- 	priority = 1000, -- needs to be loaded in first
-	-- 	opts = {
-	-- 		preset = "classic",
-	-- 	},
-	-- },
 }
