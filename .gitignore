@@ -4,3 +4,9 @@ stow/dot-config/btop/btop.log
 stow/dot-local/share/icons/Catppuccin-Mocha-Dark-Cursors/
 stow/dot-local/share/icons/Catppuccin-Mocha-Mauve-Cursors/
 stow/dot-local/share/icons/hicolor/
+stow/dot-config/vesktop
+!stow/dot-config/vesktop/settings/quickCss.css
+!stow/dot-config/vesktop/settings/settings.json
+stow/dot-cargo
+!stow/dot-cargo/config.toml
+

@@ -18,7 +18,6 @@ vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Yazi<CR>", { desc = "Reveal file
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<CMD>w<CR><ESC>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
 -- vim.api.nvim_set_keymap("n", "<leader><leader>q", "<CMD>qa<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-f>", "/", opts)
 vim.keymap.set("n", "<leader>q", "<CMD>OverseerRun<CR>", { desc = "Run tasks" })
 
 -- Split Navigation --
@@ -44,11 +43,20 @@ vim.api.nvim_set_keymap("n", "<leader>F", "<CMD>Format<CR>", { desc = "Format fi
 vim.keymap.set("n", "<leader>ff", "<CMD>FzfLua files<CR>", { desc = "Find files" })
 vim.keymap.set("n", "<leader>fg", "<CMD>FzfLua live_grep<CR>", { desc = "Live grep" })
 vim.keymap.set("n", "<leader>fb", "<CMD>FzfLua buffers<CR>", { desc = "Find buffer" })
-vim.keymap.set("n", "<leader>fi", "<CMD>FzfLua lsp_incoming_calls<CR>", { desc = "Find incoming calls" })
-vim.keymap.set("n", "<leader>fd", vim.lsp.buf.definition, { desc = "Goto definition" })
 
--- Lazy --
-vim.api.nvim_set_keymap("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Open Lazy UI" })
+-- Log --
+vim.api.nvim_set_keymap("n", "<leader>lv", "<CMD>Chainsaw variableLog<CR>", { desc = "Variable" })
+vim.api.nvim_set_keymap("n", "<leader>lo", "<CMD>Chainsaw objectLog<CR>", { desc = "Object" })
+vim.api.nvim_set_keymap("n", "<leader>lT", "<CMD>Chainsaw typeLog<CR>", { desc = "Type" })
+vim.api.nvim_set_keymap("n", "<leader>la", "<CMD>Chainsaw assertLog<CR>", { desc = "Assert" })
+vim.api.nvim_set_keymap("n", "<leader>le", "<CMD>Chainsaw emojiLog<CR>", { desc = "Emoji" })
+vim.api.nvim_set_keymap("n", "<leader>lm", "<CMD>Chainsaw messageLog<CR>", { desc = "Message" })
+vim.api.nvim_set_keymap("n", "<leader>lt", "<CMD>Chainsaw timeLog<CR>", { desc = "Time" })
+vim.api.nvim_set_keymap("n", "<leader>ld", "<CMD>Chainsaw debugLog<CR>", { desc = "Debug" })
+vim.api.nvim_set_keymap("n", "<leader>ls", "<CMD>Chainsaw stacktraceLog<CR>", { desc = "Stacktrace" })
+vim.api.nvim_set_keymap("n", "<leader>lr", "<CMD>Chainsaw removeLogs<CR>", { desc = "Remove" })
+
+vim.api.nvim_set_keymap("n", "<leader>ll", "<CMD>Lazy<CR>", { desc = "Open Lazy UI" })
 
 -- Git --
 vim.api.nvim_set_keymap("n", "<leader>gg", "<CMD>Neogit<CR>", { desc = "Open Git UI" })
@@ -61,8 +69,10 @@ vim.api.nvim_set_keymap(
 
 -- Rename --
 vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()<CR>", { desc = "LSP Rename" })
-vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Literal Rename" })
-vim.keymap.set("v", "<leader>rs", ":s///g<Left><Left><Left>", { desc = "Literal Rename" })
+vim.keymap.set({ "n", "v" }, "<leader>rs", "<CMD>RipSubstitute<CR>", { desc = "Literal Rename" })
+vim.keymap.set("n", "<leader>rg", "<CMD>GrugFar<CR>", { desc = "Grug Rename" })
+-- vim.keymap.set("n", "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Literal Rename" })
+-- vim.keymap.set("v", "<leader>rs", ":s///g<Left><Left><Left>", { desc = "Literal Rename" })
 
 -- Hypersonic --
 -- vim.keymap.set({ "n", "v" }, "<leader>re", "<CMD>Hypersonic<CR>")
@@ -99,14 +109,45 @@ vim.keymap.set(
 	"<CMD>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
 	{ desc = "Show inlay hints" }
 )
-vim.keymap.set("n", "<leader>sr", "<CMD>lua vim.lsp.buf.references()<CR>", { desc = "Show references" })
-vim.keymap.set("n", "<leader>ss", "<CMD>lua vim.lsp.buf.signature_help()<CR>", { desc = "Show signature help" })
+vim.keymap.set(
+	"n",
+	"<leader>sl",
+	"<CMD>Trouble lsp toggle focus=false win.position=right<CR>",
+	{ desc = "Show LSP info" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>sr",
+	"<CMD>Trouble references toggle focus=false win.position=right<CR>",
+	{ desc = "Show references" }
+)
+vim.keymap.set("n", "<leader>sd", "<CMD>Trouble lsp_definitions<CR>", { desc = "Show definition" })
+vim.keymap.set(
+	"n",
+	"<leader>si",
+	"<CMD>Trouble lsp_incoming_calls toggle focus=false win.position=right<CR>",
+	{ desc = "Show incomming calls" }
+)
+vim.keymap.set("n", "<leader>ss", "<CMD>Trouble symbols toggle focus=false<CR>", { desc = "Show symbols" })
+vim.keymap.set(
+	"n",
+	"<leader>st",
+	"<CMD>Trouble lsp_type_definitions toggle focus=false<CR>",
+	{ desc = "Show type definition" }
+)
+vim.keymap.set("n", "<leader>sD", "<CMD>Trouble lsp_declarations<CR>", { desc = "Show declaration" })
 
 -- Code Actions --
 vim.keymap.set("n", "<leader>y", "<CMD>FzfLua lsp_code_actions<CR>", { desc = "Show code actions" })
 
 -- Diagnostics/Debugging --
 vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })
+vim.api.nvim_set_keymap(
+	"n",
+	"<leader>dD",
+	"<CMD>Trouble diagnostics toggle filter.buf=0<CR>",
+	{ desc = "Open Diagnostics for current Buffer" }
+)
 vim.keymap.set("n", "<leader>du", "<CMD>lua require('dapui').toggle()<CR>", { desc = "Open debugging interface" })
 vim.keymap.set("n", "<leader>dt", "<CMD>lua require('dap').toggle_breakpoint()<CR>", { desc = "Toggle breakpoint" })
 vim.keymap.set("n", "<leader>dc", "<CMD>lua require('dap').continue()<CR>", { desc = "Continue" })
@@ -121,8 +162,8 @@ vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
+vim.keymap.set("n", "<leader>p", "<CMD>VenvSelect<CR>", { desc = "Choose python venv" })
 vim.keymap.set("n", "<leader>ü", "<CMD>PasteImage<CR>", { desc = "Paste image from system clipboard" })
-vim.keymap.set("n", "<leader>j", "<CMD>TSJToggle<CR>", { desc = "Join or Split lines" })
 
 -- stylua: ignore start
 -- vim.keymap.set({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash" })

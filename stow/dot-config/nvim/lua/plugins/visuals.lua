@@ -64,6 +64,14 @@ return {
 		ft = { "markdown" },
 		opts = {},
 	},
+	{
+		"lewis6991/satellite.nvim",
+		opts = {},
+	},
+	-- {
+	-- 	"tris203/precognition.nvim",
+	-- 	opts = {},
+	-- },
 	-- {
 	-- 	"rachartier/tiny-inline-diagnostic.nvim",
 	-- 	event = "VeryLazy", -- Or `LspAttach`

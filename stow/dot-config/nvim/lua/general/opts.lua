@@ -5,10 +5,13 @@ vim.opt.expandtab = true
 
 vim.opt.number = true
 vim.opt.relativenumber = true
--- vim.opt.scrolloff = 999
+vim.opt.scrolloff = 3
 vim.opt.linebreak = true
 vim.opt.wrap = false
-vim.opt.foldenable = false
+vim.opt.foldcolumn = "1" -- '0' is not bad
+vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -33,6 +36,9 @@ vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entere
 -- vim.cmd("filetype plugin on")
 vim.filetype.add({
 	pattern = { [".*/hypr/.*%.conf"] = "hyprlang" },
+	extension = {
+		["http"] = "http",
+	},
 })
 vim.diagnostic.config({
 	signs = {

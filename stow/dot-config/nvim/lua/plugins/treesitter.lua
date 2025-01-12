@@ -11,6 +11,7 @@ return {
 			"css",
 			"diff",
 			"html",
+			"http",
 			"hyprlang",
 			"java",
 			"javascript",

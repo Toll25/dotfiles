@@ -26,6 +26,7 @@ return {
 				"html",
 				"cssls",
 				"rust-analyzer",
+				"marksman",
 			},
 		},
 	},

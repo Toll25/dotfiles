@@ -14,6 +14,10 @@ return {
 	},
 	config = function()
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
+		capabilities.textDocument.foldingRange = {
+			dynamicRegistration = false,
+			lineFoldingOnly = true,
+		}
 		require("lspconfig").bashls.setup({ capabilities = capabilities })
 		-- require("lspconfig").eslint.setup({ capabilities = capabilities })
 		require("lspconfig").hyprls.setup({ capabilities = capabilities })
