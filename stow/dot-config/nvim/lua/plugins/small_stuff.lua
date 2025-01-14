@@ -66,4 +66,8 @@ return {
 		"MagicDuck/grug-far.nvim",
 		opts = {},
 	},
+	{
+		"karb94/neoscroll.nvim",
+		opts = {},
+	},
 }

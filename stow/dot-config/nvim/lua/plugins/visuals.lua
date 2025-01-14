@@ -57,7 +57,7 @@ return {
 		opts = {
 			handlers = {
 				marks = {
-					enabled = false,
+					enable = false,
 				},
 			},
 		},
