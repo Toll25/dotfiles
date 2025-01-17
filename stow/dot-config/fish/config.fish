@@ -5,6 +5,7 @@ if status is-interactive
     starship init fish | source
     set -U fish_greeting
     zoxide init fish | source
+    eval (zellij setup --generate-auto-start fish | string collect)
 end
 #if status is-login
 #    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1

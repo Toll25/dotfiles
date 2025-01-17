@@ -19,12 +19,13 @@
         "custom/right-arrow"
     ],
     "modules-right": [
+        "custom/dummy-left-arrow",
         "tray",
         "custom/left-seperator",
         "backlight",
         "custom/left-seperator",
         "pulseaudio",
-        "custom/left-arrow",
+        "custom/contained-left-arrow",
         //"memory",
         //"custom/left-seperator-color",
         //"cpu",
@@ -40,6 +41,14 @@
         "tooltip": false
     },
     "custom/left-arrow": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/contained-left-arrow": {
+        "format": "",
+        "tooltip": false
+    },
+    "custom/dummy-left-arrow": {
         "format": "",
         "tooltip": false
     },

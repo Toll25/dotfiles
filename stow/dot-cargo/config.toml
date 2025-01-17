@@ -1,12 +1,12 @@
 [target.'cfg(all())']
 rustflags = [
-    "-Wclippy::pedantic",
-    "-Wclippy::nursery",
-    # "-Wclippy::unwrap_used",
-    # "-Wclippy::expect_used",
-    "-Wclippy::cargo",
-    "-Aclippy::must-use-candidate",
-    "-Wclippy::cast-precision-loss",
-    "-Aclippy::cargo-common-metadata",
-    "-Wclippy::multiple-crate-versions"
+  "-Wclippy::pedantic",
+  "-Wclippy::nursery",
+  # "-Wclippy::unwrap_used",
+  # "-Wclippy::expect_used",
+  "-Wclippy::cargo",
+  "-Aclippy::must-use-candidate",
+  "-Wclippy::cast-precision-loss",
+  "-Aclippy::cargo-common-metadata",
+  "-Aclippy::multiple-crate-versions",
 ]
