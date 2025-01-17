@@ -7,6 +7,7 @@ return {
 			all = function(colors)
 				return {
 					LspInlayHint = { bg = colors.none },
+					UfoFoldedEllipsis = { bg = colors.none, fg = colors.surface2 },
 				}
 			end,
 		},

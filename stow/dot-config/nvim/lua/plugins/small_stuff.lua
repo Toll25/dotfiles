@@ -70,4 +70,9 @@ return {
 		"karb94/neoscroll.nvim",
 		opts = {},
 	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
+		opts = {},
+	},
 }
