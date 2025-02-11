@@ -19,10 +19,8 @@ require("general.autocmd.auto-update")
 require("general.autocmd.inlay-hints")
 require("general.autocmd.hl-yank")
 require("general.autocmd.open-images")
-require("general.autocmd.auto-notes")
 
--- Set ColorScheme --
-vim.cmd([[colorscheme catppuccin-mocha]])
+vim.cmd.colorscheme("catppuccin")
 
 -- Filter out wrong error --
 for _, method in ipairs({ "textDocument/diagnostic", "workspace/diagnostic" }) do

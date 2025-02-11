@@ -22,6 +22,8 @@
         "custom/dummy-left-arrow",
         "tray",
         "custom/left-seperator",
+        "hyprland/language",
+        "custom/left-seperator",
         "backlight",
         "custom/left-seperator",
         "pulseaudio",
@@ -193,5 +195,11 @@
         "height": 30,
         "width": 30,
         "icon": true
+    },
+    "hyprland/language": {
+        "format": " {} ",
+        "format-en": "EN",
+        "format-de": "DE",
+        "keyboard-name": "at-translated-set-2-keyboard"
     }
 }

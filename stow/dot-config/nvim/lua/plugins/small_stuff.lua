@@ -75,4 +75,14 @@ return {
 		dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
 		opts = {},
 	},
+	{
+		"vyfor/cord.nvim",
+		build = ":Cord update",
+		opts = {},
+	},
+	{
+		"Yu-Leo/blame-column.nvim",
+		opts = {},
+		cmd = "BlameColumnToggle",
+	},
 }

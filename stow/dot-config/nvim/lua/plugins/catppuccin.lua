@@ -1,6 +1,7 @@
 return {
 	"catppuccin/nvim",
 	name = "catppuccin",
+	lazy = false,
 	opts = {
 		-- transparent_background = true,
 		highlight_overrides = {
@@ -30,5 +31,5 @@ return {
 			snacks = true,
 		},
 	},
-	priority = 1000,
+	-- priority = 1000,
 }

@@ -1,5 +1,12 @@
 return {
-	{ "echasnovski/mini.pairs", version = false, opts = {} },
+	-- { "echasnovski/mini.pairs", version = false, opts = {} },
+	{
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {
+			enable_check_bracket_line = true,
+		},
+	},
 	{
 		"kylechui/nvim-surround",
 		event = "VeryLazy",
