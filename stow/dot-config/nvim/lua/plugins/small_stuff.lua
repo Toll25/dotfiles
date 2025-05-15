@@ -70,11 +70,11 @@ return {
 		"karb94/neoscroll.nvim",
 		opts = {},
 	},
-	{
-		"kevinhwang91/nvim-ufo",
-		dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
-		opts = {},
-	},
+	-- {
+	-- 	"kevinhwang91/nvim-ufo",
+	-- 	dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
+	-- 	opts = {},
+	-- },
 	{
 		"vyfor/cord.nvim",
 		build = ":Cord update",
@@ -84,5 +84,14 @@ return {
 		"Yu-Leo/blame-column.nvim",
 		opts = {},
 		cmd = "BlameColumnToggle",
+	},
+	{
+		"lervag/vimtex",
+		lazy = false,
+		init = function()
+			-- vim.g.vimtex_view_method = "zathura"
+			vim.g.vimtex_view_general_viewer = "okular"
+			vim.g.vimtex_view_general_options = "--unique file:@pdf\\#src:@line@tex"
+		end,
 	},
 }
