@@ -1,0 +1,6 @@
+vim.api.nvim_create_user_command("DuckDuckGo", function(o)
+	-- local escaped = require('socket.url').escape(o.args)
+	local escaped = vim.uri_encode(o.args)
+	local url = ("https://duckduckgo.com/?q=%s"):format(escaped)
+	vim.ui.open(url)
+end, { nargs = 1, desc = "just google i mean duckduckgo it" })

@@ -17,6 +17,7 @@ require("general.keybinds")
 -- Misc --
 require("general.autocmd.auto-update")
 require("general.autocmd.inlay-hints")
+require("general.autocmd.duckduckgo")
 require("general.autocmd.hl-yank")
 require("general.autocmd.open-images")
 
