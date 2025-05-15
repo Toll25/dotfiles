@@ -19,6 +19,7 @@ vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<CMD>w<CR><ESC>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
 -- vim.api.nvim_set_keymap("n", "<leader><leader>q", "<CMD>qa<CR>", opts)
 vim.keymap.set("n", "<leader>q", "<CMD>OverseerRun<CR>", { desc = "Run tasks" })
+vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 
 -- Split Navigation --
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
@@ -29,6 +30,8 @@ vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
 -- Buffer Navigation --
 vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCycleNext<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-S-n>", "<CMD>BufferLineCyclePrev<CR>", opts)
+vim.api.nvim_set_keymap("n", "<Tab>", "<CMD>BufferLineCycleNext<CR>", opts)
+vim.api.nvim_set_keymap("n", "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>", opts)
 vim.keymap.set("n", "<C-x>", function()
 	Snacks.bufdelete()
 end, opts)
@@ -75,6 +78,7 @@ vim.keymap.set("n", "<leader>rg", "<CMD>GrugFar<CR>", { desc = "Grug Rename" })
 -- Terminal --
 vim.keymap.set("t", "<ESC>", "<C-\\><C-N>")
 vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm<CR>", { desc = "Toggle Terminal" })
+vim.keymap.set("n", "<leader>tT", "<CMD>terminal<CR>", { desc = "Toggle Terminal" })
 vim.keymap.set("t", ":q", "<CMD>ToggleTerm<CR>")
 
 vim.api.nvim_create_autocmd("TermEnter", {
@@ -98,12 +102,9 @@ vim.keymap.set("n", "<leader>cv", "<CMD>CccConvert<CR>", { desc = "Convert color
 
 -- Show --
 vim.keymap.set("n", "<leader>sw", "<CMD>set wrap!<CR>", { desc = "Toggle wraps" })
-vim.keymap.set(
-	"n",
-	"<leader>si",
-	"<CMD>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>",
-	{ desc = "Show inlay hints" }
-)
+vim.keymap.set("n", "<leader>sI", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Show inlay hints" })
 vim.keymap.set(
 	"n",
 	"<leader>sl",
@@ -113,7 +114,7 @@ vim.keymap.set(
 vim.keymap.set(
 	"n",
 	"<leader>sr",
-	"<CMD>Trouble references toggle focus=false win.position=right<CR>",
+	"<CMD>Trouble lsp_references toggle focus=false win.position=right<CR>",
 	{ desc = "Show references" }
 )
 vim.keymap.set("n", "<leader>sd", "<CMD>Trouble lsp_definitions<CR>", { desc = "Show definition" })
