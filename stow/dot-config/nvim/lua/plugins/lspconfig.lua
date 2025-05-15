@@ -6,32 +6,48 @@ return {
 		inlay_hints = {
 			enabled = true,
 		},
-		setup = {
-			rust_analyzer = function()
-				return true
-			end,
-		},
+		-- setup = {
+		-- 	rust_analyzer = function()
+		-- 		return true
+		-- 	end,
+		-- },
 	},
 	config = function()
-		local capabilities = require("blink.cmp").get_lsp_capabilities()
-		capabilities.textDocument.foldingRange = {
-			dynamicRegistration = false,
-			lineFoldingOnly = true,
-		}
-		require("lspconfig").bashls.setup({ capabilities = capabilities })
-		-- require("lspconfig").eslint.setup({ capabilities = capabilities })
-		require("lspconfig").hyprls.setup({ capabilities = capabilities })
-		require("lspconfig").jdtls.setup({ capabilities = capabilities })
-		require("lspconfig").marksman.setup({ capabilities = capabilities })
-		require("lspconfig").pylsp.setup({ capabilities = capabilities })
-		require("lspconfig").tailwindcss.setup({ capabilities = capabilities })
-		require("lspconfig").taplo.setup({ capabilities = capabilities })
-		require("lspconfig").svelte.setup({ capabilities = capabilities })
-		require("lspconfig").ts_ls.setup({ capabilities = capabilities })
-		require("lspconfig").lua_ls.setup({ capabilities = capabilities })
-		require("lspconfig").jsonls.setup({ capabilities = capabilities })
-		require("lspconfig").html.setup({ capabilities = capabilities })
-		require("lspconfig").nushell.setup({ capabilities = capabilities })
+		-- local capabilities = require("blink.cmp").get_lsp_capabilities()
+		-- capabilities.textDocument.foldingRange = {
+		-- 	dynamicRegistration = false,
+		-- 	lineFoldingOnly = true,
+		-- }
+		vim.lsp.enable({
+			"bashls",
+			"hyprls",
+			"jdtls",
+			"marksman",
+			"pylsp",
+			"tailwindcss",
+			"taplo",
+			"svelte",
+			"ts_ls",
+			"lua_ls",
+			"jsonls",
+			"html",
+			"nushell",
+		})
+		-- vim.lsp.config("bashls", { capabilities = capabilities })
+		-- -- require("lspconfig").eslint.setup({ capabilities = capabilities })
+		-- vim.lsp.config("hyprls", { capabilities = capabilities })
+		-- vim.lsp.config("jdtls", { capabilities = capabilities })
+		-- vim.lsp.config("marksman", { capabilities = capabilities })
+		-- vim.lsp.config("pylsp", { capabilities = capabilities })
+		-- vim.lsp.config("tailwindcss", { capabilities = capabilities })
+		-- vim.lsp.config("taplo", { capabilities = capabilities })
+		-- vim.lsp.config("svelte", { capabilities = capabilities })
+		-- vim.lsp.config("ts_ls", { capabilities = capabilities })
+		-- vim.lsp.config("lua_ls", { capabilities = capabilities })
+		-- vim.lsp.config("jsonls", { capabilities = capabilities })
+		-- vim.lsp.config("html", { capabilities = capabilities })
+		-- vim.lsp.config("nushell", { capabilities = capabilities })
+		-- require("lspconfig").harper_ls.setup({ capabilities = capabilities })
 		-- require("lspconfig").cssls.setup({ capabilities = capabilities })
 	end,
 }
