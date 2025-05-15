@@ -8,10 +8,14 @@ vim.opt.relativenumber = true
 vim.opt.scrolloff = 3
 vim.opt.linebreak = true
 vim.opt.wrap = false
-vim.opt.foldcolumn = "0" -- '0' is not bad
-vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
+
+vim.o.foldenable = true
+vim.o.foldlevel = 99
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
+vim.o.foldtext = ""
+vim.opt.foldcolumn = "0"
+vim.opt.fillchars:append({ fold = " " })
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -32,6 +36,8 @@ vim.opt.cursorline = true
 vim.opt.incsearch = true
 vim.opt.ignorecase = true -- ignore case in searches by default
 vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entered
+
+vim.diagnostic.config({ virtual_lines = { current_line = true }, virtual_text = true })
 
 -- vim.cmd("filetype plugin on")
 vim.filetype.add({
