@@ -15,16 +15,13 @@ return {
 		},
 	},
 	{
-		"OXY2DEV/markview.nvim",
+		"MeanderingProgrammer/render-markdown.nvim",
 		ft = { "markdown" },
-		after = "catppuccin",
+		opts = {
+			completions = { lsp = { enabled = true } },
+		},
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 	},
-	-- {
-	-- 	"MeanderingProgrammer/render-markdown.nvim",
-	-- 	ft = { "markdown" },
-	-- 	opts = {},
-	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-	-- },
 	{
 		"HakonHarnes/img-clip.nvim",
 		ft = { "markdown" },
