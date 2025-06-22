@@ -29,6 +29,16 @@ return {
 				enabled = true,
 				-- view = "cmdline",
 			},
+			routes = {
+				{
+					filter = {
+						event = "notify",
+						error = true,
+						find = "Invalid offset LineCol",
+					},
+					opts = { skip = true },
+				},
+			},
 		},
 		dependencies = {
 			"MunifTanjim/nui.nvim",

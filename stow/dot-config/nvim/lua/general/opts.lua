@@ -37,7 +37,7 @@ vim.opt.incsearch = true
 vim.opt.ignorecase = true -- ignore case in searches by default
 vim.opt.smartcase = true -- but make it case sensitive if an uppercase is entered
 
-vim.diagnostic.config({ virtual_lines = { current_line = true }, virtual_text = true })
+vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
 
 -- vim.cmd("filetype plugin on")
 vim.filetype.add({

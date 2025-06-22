@@ -102,9 +102,9 @@ vim.keymap.set("n", "<leader>cv", "<CMD>CccConvert<CR>", { desc = "Convert color
 
 -- Show --
 vim.keymap.set("n", "<leader>sw", "<CMD>set wrap!<CR>", { desc = "Toggle wraps" })
-vim.keymap.set("n", "<leader>sI", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-end, { desc = "Show inlay hints" })
+-- vim.keymap.set("n", "<leader>sI", function()
+-- 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+-- end, { desc = "Show inlay hints" })
 vim.keymap.set(
 	"n",
 	"<leader>sl",
@@ -132,6 +132,15 @@ vim.keymap.set(
 	{ desc = "Show type definition" }
 )
 vim.keymap.set("n", "<leader>sD", "<CMD>Trouble lsp_declarations<CR>", { desc = "Show declaration" })
+vim.keymap.set("n", "<leader>sI", function()
+	local state = vim.diagnostic.config().virtual_lines
+	if state == false then
+		state = { current_line = true }
+	else
+		state = false
+	end
+	vim.diagnostic.config({ virtual_lines = state })
+end, { desc = "Show virtual line diagnostics" })
 
 -- Code Actions --
 vim.keymap.set("n", "<leader>y", "<CMD>FzfLua lsp_code_actions<CR>", { desc = "Show code actions" })

@@ -23,9 +23,9 @@ return {
 
 				menu = {
 					border = "rounded",
-					auto_show = function(ctx)
-						return ctx.mode ~= "cmdline"
-					end,
+					-- auto_show = function(ctx)
+					-- 	return ctx.mode ~= "cmdline"
+					-- end,
 					winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpMenuSelection,Search:None",
 					draw = {
 						columns = { { "label" }, { "kind_icon", "kind" } },
