@@ -10,6 +10,7 @@ return {
 			"bash",
 			"css",
 			"diff",
+			"gdscript",
 			"html",
 			"http",
 			"hyprlang",

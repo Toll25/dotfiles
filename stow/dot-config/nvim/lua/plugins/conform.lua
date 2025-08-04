@@ -10,6 +10,7 @@ return {
 			toml = { "taplo" },
 			lua = { "stylua" },
 			python = { "isort", "black" },
+			gdscript = { "gdformat" },
 			rust = { "rustfmt", "yew-fmt", lsp_format = "fallback" },
 			javascript = { "prettierd", "prettier" },
 			typescript = { "prettierd", "prettier" },

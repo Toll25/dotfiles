@@ -14,19 +14,20 @@ return {
 	},
 	config = function()
 		vim.lsp.enable({
+			"gdscript",
+			"lua_ls",
+			"pylsp",
 			-- "bashls",
+			-- "html",
 			-- "hyprls",
 			-- "jdtls",
+			-- "jsonls",
 			-- "marksman",
-			"pylsp",
+			-- "nushell",
+			-- "svelte",
 			-- "tailwindcss",
 			-- "taplo",
-			-- "svelte",
 			-- "ts_ls",
-			"lua_ls",
-			-- "jsonls",
-			-- "html",
-			-- "nushell",
 		})
 	end,
 }
