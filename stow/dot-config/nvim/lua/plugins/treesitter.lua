@@ -4,8 +4,8 @@ return {
 	event = { "VeryLazy" },
 	opts_extend = { "ensure_installed" },
 	opts = {
-		highlight = { enable = true },
-		indent = { enable = true },
+		highlight = { enable = true, disable = { "latex" } },
+		indent = { enable = true, disable = { "latex" } },
 		ensure_installed = {
 			"bash",
 			"css",

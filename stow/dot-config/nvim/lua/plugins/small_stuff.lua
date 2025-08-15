@@ -83,7 +83,7 @@ return {
 	{ "mistweaverco/kulala.nvim", opts = {}, ft = "http" },
 	{
 		"stefanboca/venv-selector.nvim",
-		branch = "sb/push-rlpxsqmllxtz",
+		branch = "regexp",
 		opts = {},
 		cmd = "VenvSelect",
 	},
@@ -105,11 +105,11 @@ return {
 	-- 	dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
 	-- 	opts = {},
 	-- },
-	{
-		"vyfor/cord.nvim",
-		build = ":Cord update",
-		opts = {},
-	},
+	-- {
+	-- 	"vyfor/cord.nvim",
+	-- 	build = ":Cord update",
+	-- 	opts = {},
+	-- },
 	{
 		"Yu-Leo/blame-column.nvim",
 		opts = {},

@@ -9,16 +9,16 @@ vim.api.nvim_buf_set_keymap(
 	0,
 	"n",
 	"<Tab>",
-	"<cmd>lua require('kulala').jump_prev()<cr>",
-	{ noremap = true, silent = true, desc = "Jump to the previous request" }
+	"<cmd>lua require('kulala').jump_next()<cr>",
+	{ noremap = true, silent = true, desc = "Jump to the next request" }
 )
 
 vim.api.nvim_buf_set_keymap(
 	0,
 	"n",
 	"<S-Tab>",
-	"<cmd>lua require('kulala').jump_next()<cr>",
-	{ noremap = true, silent = true, desc = "Jump to the next request" }
+	"<cmd>lua require('kulala').jump_prev()<cr>",
+	{ noremap = true, silent = true, desc = "Jump to the previews request" }
 )
 vim.api.nvim_buf_set_keymap(
 	0,

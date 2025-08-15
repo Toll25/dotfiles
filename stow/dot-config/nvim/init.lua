@@ -13,6 +13,7 @@ require("config.yazi")
 -- Keybinds and Commands --
 require("general.commands")
 require("general.keybinds")
+-- require("general.colemak")
 
 -- Misc --
 require("general.autocmd.auto-update")
