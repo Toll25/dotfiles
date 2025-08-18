@@ -4,7 +4,10 @@ return {
 		ft = { "markdown" },
 		opts = {
 			links = {
-				create_on_follow_failure = false,
+				-- create_on_follow_failure = false,
+				transform_explicit = function(input)
+					return string.gsub(input, " ", "_")
+				end,
 			},
 			modules = {
 				cmp = true,
