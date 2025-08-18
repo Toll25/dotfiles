@@ -21,11 +21,13 @@ vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
 vim.keymap.set("n", "<leader>q", "<CMD>OverseerRun<CR>", { desc = "Run tasks" })
 vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 
--- Split Navigation --
+-- Split Stuff --
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", opts)
 vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", opts)
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", opts)
+vim.api.nvim_set_keymap("n", "<leader>wv", "<CMD>vsplit<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>wh", "<CMD>split<CR>", opts)
 
 -- Buffer Navigation --
 vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCycleNext<CR>", opts)
