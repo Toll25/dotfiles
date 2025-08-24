@@ -1,11 +1,11 @@
 return {
 	{ "danilamihailov/beacon.nvim", event = { "VeryLazy" } },
 	{
-		"stevearc/dressing.nvim",
-		opts = {},
-	},
-	{
 		"folke/noice.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			{ "rcarriga/nvim-notify", opts = { top_down = false } },
+		},
 		event = { "VeryLazy" },
 		opts = {
 			lsp = {
@@ -40,22 +40,18 @@ return {
 				},
 			},
 		},
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			{ "rcarriga/nvim-notify", opts = { top_down = false } },
-		},
 	},
 	{
 		"OXY2DEV/helpview.nvim",
-		ft = "help",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
+		ft = "help",
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
-		opts = {},
 		event = { "VeryLazy" },
+		opts = {},
 	},
 	{
 		"3rd/image.nvim",
@@ -67,7 +63,7 @@ return {
 		opts = {
 			handlers = {
 				marks = {
-					enable = false,
+					enable = true,
 				},
 			},
 		},

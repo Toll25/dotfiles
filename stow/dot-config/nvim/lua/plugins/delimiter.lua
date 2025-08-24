@@ -1,5 +1,4 @@
 return {
-	-- { "echasnovski/mini.pairs", version = false, opts = {} },
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -14,8 +13,8 @@ return {
 	},
 	{
 		"windwp/nvim-ts-autotag",
-		opts = {},
 		ft = { "html", "svelte" },
+		opts = {},
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",

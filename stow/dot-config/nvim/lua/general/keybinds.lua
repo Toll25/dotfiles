@@ -17,9 +17,8 @@ vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Yazi<CR>", { desc = "Reveal file
 -- General Purpose --
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<CMD>w<CR><ESC>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
--- vim.api.nvim_set_keymap("n", "<leader><leader>q", "<CMD>qa<CR>", opts)
 vim.keymap.set("n", "<leader>q", "<CMD>OverseerRun<CR>", { desc = "Run tasks" })
-vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
+vim.keymap.set("n", "<leader>Q", "<CMD>OverseerToggle<CR>", { desc = "Look at tasks" })
 
 -- Split Stuff --
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", opts)
@@ -32,17 +31,22 @@ vim.api.nvim_set_keymap("n", "<leader>wh", "<CMD>split<CR>", opts)
 -- Buffer Navigation --
 vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCycleNext<CR>", opts)
 vim.api.nvim_set_keymap("n", "<C-S-n>", "<CMD>BufferLineCyclePrev<CR>", opts)
-vim.api.nvim_set_keymap("n", "<Tab>", "<CMD>BufferLineCycleNext<CR>", opts)
-vim.api.nvim_set_keymap("n", "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>", opts)
-vim.keymap.set("n", "<C-x>", function()
+-- vim.api.nvim_set_keymap("n", "<Tab>", "<CMD>BufferLineCycleNext<CR>", opts)
+-- vim.api.nvim_set_keymap("n", "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>", opts)
+vim.keymap.set("n", "<C-c>", function()
 	Snacks.bufdelete()
+end, opts)
+vim.api.nvim_set_keymap("n", "<C-m>", "<CMD>FzfLua marks<CR>", opts)
+vim.api.nvim_set_keymap("n", "ä", "`", opts)
+vim.keymap.set("n", "<leader>pp", function()
+	Snacks.scratch()
+end, opts)
+vim.keymap.set("n", "<leader>pl", function()
+	Snacks.scratch.select()
 end, opts)
 
 -- Formatting --
 vim.api.nvim_set_keymap("n", "<leader>F", "<CMD>Format<CR>", { desc = "Format file" })
-
--- Tagbar --
--- vim.api.nvim_set_keymap("n", "<F8>", "<CMD>TagbarToggle<CR>", opts)
 
 -- fzf --
 vim.keymap.set("n", "<leader>ff", "<CMD>FzfLua files<CR>", { desc = "Find files" })
@@ -66,6 +70,7 @@ vim.api.nvim_set_keymap("n", "<leader>ll", "<CMD>Lazy<CR>", { desc = "Open Lazy 
 -- Git --
 vim.api.nvim_set_keymap("n", "<leader>gg", "<CMD>Neogit<CR>", { desc = "Open Git UI" })
 vim.api.nvim_set_keymap("n", "<leader>gb", "<CMD>BlameColumnToggle<CR>", { desc = "Toggle inline Git blame" })
+vim.api.nvim_set_keymap("n", "<leader>gw", "<CMD>Snacks.gitbrowse()<CR>", { desc = "Open Git repo in browser" })
 
 -- Rename --
 vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()<CR>", { desc = "LSP Rename" })
@@ -80,22 +85,13 @@ vim.keymap.set("n", "<leader>rg", "<CMD>GrugFar<CR>", { desc = "Grug Rename" })
 -- Terminal --
 vim.keymap.set("t", "<ESC>", "<C-\\><C-N>")
 vim.keymap.set("n", "<leader>tt", "<CMD>ToggleTerm<CR>", { desc = "Toggle Terminal" })
+vim.keymap.set("n", "<leader>t1", "<CMD>ToggleTerm 1<CR>", { desc = "Toggle Terminal 1" })
+vim.keymap.set("n", "<leader>t2", "<CMD>ToggleTerm 2<CR>", { desc = "Toggle Terminal 2" })
+vim.keymap.set("n", "<leader>t3", "<CMD>ToggleTerm 3<CR>", { desc = "Toggle Terminal 3" })
+vim.keymap.set("n", "<leader>t4", "<CMD>ToggleTerm 4<CR>", { desc = "Toggle Terminal 4" })
 vim.keymap.set("n", "<leader>tT", "<CMD>terminal<CR>", { desc = "Toggle Terminal" })
 vim.keymap.set("t", ":q", "<CMD>ToggleTerm<CR>")
-
-vim.api.nvim_create_autocmd("TermEnter", {
-	pattern = "term://*toggleterm#*",
-	callback = function()
-		vim.api.nvim_set_keymap(
-			"t",
-			"<C-t>",
-			'<Cmd>exe v:count1 .. "ToggleTerm"<CR>',
-			{ silent = true, noremap = true }
-		)
-	end,
-})
-vim.api.nvim_set_keymap("n", "<C-t>", '<Cmd>exe v:count1 .. "ToggleTerm"<CR>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap("i", "<C-t>", '<Esc><Cmd>exe v:count1 .. "ToggleTerm"<CR>', { silent = true, noremap = true })
+vim.api.nvim_set_keymap("n", "<C-t>", "<Cmd>ToggleTerm<CR>", { silent = true, noremap = true })
 
 -- Colors --
 vim.keymap.set("n", "<leader>cc", "<CMD>HighlightColors Toggle<CR>", { desc = "Show colors" })
@@ -148,6 +144,12 @@ end, { desc = "Show virtual line diagnostics" })
 vim.keymap.set("n", "<leader>y", "<CMD>FzfLua lsp_code_actions<CR>", { desc = "Show code actions" })
 
 -- Diagnostics/Debugging --
+-- vim.api.nvim_set_keymap(
+-- 	"n",
+-- 	"<leader>dd",
+-- 	"<CMD>lua vim.diagnostic.open_float()<CR>",
+-- 	{ desc = "Open Diagnostics of line" }
+-- )
 vim.api.nvim_set_keymap("n", "<leader>dd", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Open Diagnostics" })
 vim.api.nvim_set_keymap(
 	"n",
@@ -162,20 +164,33 @@ vim.keymap.set("n", "<leader>di", "<CMD>lua require('dap').step_into()<CR>", { d
 vim.keymap.set("n", "<leader>do", "<CMD>lua require('dap').step_over()<CR>", { desc = "Step over" })
 vim.keymap.set("n", "<leader>dr", "<CMD>lua require('dap').repl.open()<CR>", { desc = "Open REPL" })
 
--- vim.api.nvim_set_keymap('n', '<leader>xX', '<CMD>Trouble diagnostics toggle filter.buf=0<CR>', { desc = 'Buffer Diagnostics (Trouble)' })
--- vim.api.nvim_set_keymap("n", "<leader>dl", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List" })
-
 vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
-vim.keymap.set("n", "<leader>p", "<CMD>VenvSelect<CR>", { desc = "Choose python venv" })
+vim.keymap.set("n", "<leader>P", "<CMD>lua require('swenv.api').pick_venv()<CR>", { desc = "Choose python venv" })
 vim.keymap.set("n", "<leader>ü", "<CMD>PasteImage<CR>", { desc = "Paste image from system clipboard" })
 
--- stylua: ignore start
--- vim.keymap.set({ "n", "x", "o" }, "s", function() require("flash").jump() end, { desc = "Flash" })
--- vim.keymap.set({ "n", "x", "o" }, "S", function() require("flash").treesitter() end, { desc = "Flash Treesitter" })
--- vim.keymap.set("o", "r", function() require("flash").remote() end, { desc = "Remote Flash" })
--- vim.keymap.set({ "x", "o" }, "R", function() require("flash").treesitter_search() end, { desc = "Flash Treesitter Search" })
--- vim.keymap.set("c", "<c-i>", function() require("flash").toggle() end, { desc = "Toggle Flash"})
--- stylua: ignore end
+-- OLD KEYBINDS
+
+-- vim.api.nvim_set_keymap("n", "<M-k>", "<C-w>k", opts)
+-- vim.api.nvim_set_keymap("n", "<M-j>", "<C-w>j", opts)
+-- vim.api.nvim_set_keymap("n", "<M-h>", "<C-w>h", opts)
+-- vim.api.nvim_set_keymap("n", "<M-l>", "<C-w>l", opts)
+-- vim.api.nvim_set_keymap("n", "<M-H>", "<C-w>H", opts)
+-- vim.api.nvim_set_keymap("n", "<M-J>", "<C-w>J", opts)
+-- vim.api.nvim_set_keymap("n", "<M-K>", "<C-w>K", opts)
+-- vim.api.nvim_set_keymap("n", "<M-L>", "<C-w>L", opts)
+-- vim.api.nvim_set_keymap("n", "<M-o>", "<C-w>o", opts)
+-- vim.api.nvim_set_keymap("n", "<M-q>", "<C-w>q", opts)
+-- vim.api.nvim_set_keymap("n", "<M-s>", "<C-w>s", opts)
+-- vim.api.nvim_set_keymap("n", "<M-v>", "<C-w>v", opts)
+-- vim.api.nvim_set_keymap("n", "<M-w>", "<C-w>w", opts)
+-- vim.api.nvim_set_keymap("n", "<M-x>", "<C-w>x", opts)
+-- vim.api.nvim_set_keymap("n", "<M-+>", "<C-w>+", opts)
+-- vim.api.nvim_set_keymap("n", "<M-->", "<C-w>-", opts)
+-- vim.api.nvim_set_keymap("n", "<M-<>", "<C-w><", opts)
+-- vim.api.nvim_set_keymap("n", "<M-=>", "<C-w>=", opts)
+-- vim.api.nvim_set_keymap("n", "<M->>", "<C-w>>", opts)
+-- vim.api.nvim_set_keymap("n", "<M-_>", "<C-w>_", opts)
+-- vim.api.nvim_set_keymap("n", "<M-|>", "<C-w>|", opts)

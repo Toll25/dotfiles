@@ -4,7 +4,7 @@ return {
 	{
 		"gbprod/cutlass.nvim",
 		opts = {
-			cut_key = "x",
+			cut_key = "ö",
 			override_del = nil,
 			exclude = {},
 			registers = {
@@ -19,13 +19,10 @@ return {
 		opts = {
 			strategy = "toggleterm",
 		},
-		cmd = { "OverseerRun" },
-	},
-	{
-		"danymat/neogen",
-		config = true,
+		cmd = { "OverseerRun", "OverseerToggle" },
 	},
 	{ "echasnovski/mini.splitjoin", opts = {}, version = false },
+	{ "echasnovski/mini.move", opts = {}, version = false },
 	{
 		"chrisgrieser/nvim-chainsaw",
 		cmd = "Chainsaw",
@@ -82,10 +79,9 @@ return {
 	},
 	{ "mistweaverco/kulala.nvim", opts = {}, ft = "http" },
 	{
-		"stefanboca/venv-selector.nvim",
-		branch = "regexp",
+		"AckslD/swenv.nvim",
+		ft = "python",
 		opts = {},
-		cmd = "VenvSelect",
 	},
 	{
 		"chrisgrieser/nvim-rip-substitute",
@@ -100,20 +96,15 @@ return {
 		"karb94/neoscroll.nvim",
 		opts = {},
 	},
-	-- {
-	-- 	"kevinhwang91/nvim-ufo",
-	-- 	dependencies = { "kevinhwang91/promise-async", "neovim/nvim-lspconfig" },
-	-- 	opts = {},
-	-- },
-	-- {
-	-- 	"vyfor/cord.nvim",
-	-- 	build = ":Cord update",
-	-- 	opts = {},
-	-- },
+	{
+		"chrisgrieser/nvim-origami",
+		event = "VeryLazy",
+		opts = {},
+	},
 	{
 		"Yu-Leo/blame-column.nvim",
-		opts = {},
 		cmd = "BlameColumnToggle",
+		opts = {},
 	},
 	{
 		"lervag/vimtex",

@@ -5,7 +5,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
-			"ibhagwan/fzf-lua", -- optional
+			"ibhagwan/fzf-lua",
 		},
 		opts = {},
 		cmd = { "Neogit" },

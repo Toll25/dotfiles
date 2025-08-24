@@ -11,11 +11,8 @@ vim.opt.wrap = false
 
 vim.o.foldenable = true
 vim.o.foldlevel = 99
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
-vim.o.foldtext = ""
-vim.opt.foldcolumn = "0"
-vim.opt.fillchars:append({ fold = " " })
+vim.o.foldlevelstart = 99
+-- vim.o.foldmethod = "indent"
 
 vim.opt.splitbelow = true
 vim.opt.splitright = true
@@ -63,6 +60,10 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
 		},
 	},
+})
+
+vim.diagnostic.config({
+	float = { border = "rounded" },
 })
 
 vim.cmd("let g:loaded_ruby_provider = 0")

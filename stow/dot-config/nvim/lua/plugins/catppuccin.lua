@@ -4,32 +4,29 @@ return {
 	lazy = false,
 	opts = {
 		-- transparent_background = true,
+		dim_inactive = { enabled = true },
 		highlight_overrides = {
 			all = function(colors)
 				return {
 					LspInlayHint = { bg = colors.none },
-					UfoFoldedEllipsis = { bg = colors.none, fg = colors.surface2 },
 				}
 			end,
 		},
 		integrations = {
+			beacon = true,
 			diffview = true,
-			-- fidget = true,
-			-- harpoon = true,
-			-- headlines = true,
-			gitsigns = true,
-			lsp_trouble = true,
-			neotree = true,
+			dropbar = {
+				enabled = true,
+				color_mode = true,
+			},
+			grug_far = true,
+			neotest = true,
 			noice = true,
 			notify = true,
 			nvim_surround = true,
 			overseer = true,
+			lsp_trouble = true,
 			which_key = true,
-			neotest = true,
-			blink_cmp = true,
-			fzf = true,
-			snacks = true,
 		},
 	},
-	-- priority = 1000,
 }

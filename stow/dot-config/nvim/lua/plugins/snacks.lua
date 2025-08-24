@@ -5,7 +5,7 @@ return {
 	opts = {
 		quickfile = { enabled = true },
 		rename = { enabled = true },
-		-- statuscolumn = { enabled = true },
+		statuscolumn = { enabled = true },
 		toggle = { enabled = true },
 		words = { enabled = true, debounce = 100 }, -- illuminate replacement
 		bigfile = { enabled = true },
@@ -20,11 +20,11 @@ return {
 				{ section = "startup" },
 			},
 		},
-		-- git = { enabled = true },
 		gitbrowse = { enabled = true },
 		indent = { enabled = true },
+		input = { enabled = true },
 
-		-- input = { enabled = true },
+		-- git = { enabled = true },
 		-- notifier = { enabled = true },
 		-- scroll = { enabled = true },
 	},
