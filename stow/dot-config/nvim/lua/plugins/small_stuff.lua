@@ -4,7 +4,7 @@ return {
 	{
 		"gbprod/cutlass.nvim",
 		opts = {
-			cut_key = "ö",
+			cut_key = "x",
 			override_del = nil,
 			exclude = {},
 			registers = {
@@ -24,8 +24,13 @@ return {
 	{ "echasnovski/mini.splitjoin", opts = {}, version = false },
 	{ "echasnovski/mini.move", opts = {}, version = false },
 	{
-		"chrisgrieser/nvim-chainsaw",
-		cmd = "Chainsaw",
+		"andrewferrier/debugprint.nvim",
+		version = "*",
+		dependencies = {
+			"echasnovski/mini.hipatterns",
+			"ibhagwan/fzf-lua",
+		},
+		lazy = false,
 		opts = {},
 	},
 	{
@@ -33,6 +38,7 @@ return {
 		event = "BufReadPre",
 		opts = {},
 	},
+	{ "gbprod/substitute.nvim", opts = {} },
 	{
 		"kawre/leetcode.nvim",
 		dependencies = {
@@ -102,11 +108,6 @@ return {
 		opts = {},
 	},
 	{
-		"Yu-Leo/blame-column.nvim",
-		cmd = "BlameColumnToggle",
-		opts = {},
-	},
-	{
 		"lervag/vimtex",
 		lazy = false,
 		init = function()
@@ -114,5 +115,13 @@ return {
 			vim.g.vimtex_view_general_viewer = "okular"
 			vim.g.vimtex_view_general_options = "--unique file:@pdf\\#src:@line@tex"
 		end,
+	},
+	{
+		"jbyuki/nabla.nvim",
+	},
+	{
+		"danymat/neogen",
+		opts = {},
+		cmd = "Neogen",
 	},
 }

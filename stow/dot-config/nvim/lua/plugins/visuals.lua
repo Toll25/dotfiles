@@ -1,5 +1,17 @@
 return {
-	{ "danilamihailov/beacon.nvim", event = { "VeryLazy" } },
+	{
+		"rachartier/tiny-glimmer.nvim",
+		event = "VeryLazy",
+		priority = 10,
+		opts = {
+			overwrite = {
+				-- search = { enabled = true },
+				undo = { enabled = true },
+				redo = { enabled = true },
+			},
+		},
+	},
+	{ "danilamihailov/beacon.nvim" },
 	{
 		"folke/noice.nvim",
 		dependencies = {
@@ -57,15 +69,5 @@ return {
 		"3rd/image.nvim",
 		ft = { "markdown" },
 		opts = {},
-	},
-	{
-		"lewis6991/satellite.nvim",
-		opts = {
-			handlers = {
-				marks = {
-					enable = true,
-				},
-			},
-		},
 	},
 }
