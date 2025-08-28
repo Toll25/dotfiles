@@ -10,6 +10,7 @@ return {
 		words = { enabled = true, debounce = 100 }, -- illuminate replacement
 		bigfile = { enabled = true },
 		bufdelete = { enabled = true },
+		image = { enabled = true },
 		dashboard = {
 			enabled = true,
 			sections = {
@@ -23,6 +24,7 @@ return {
 		gitbrowse = { enabled = true },
 		indent = { enabled = true },
 		input = { enabled = true },
+		picker = { enabled = true },
 
 		-- git = { enabled = true },
 		-- notifier = { enabled = true },

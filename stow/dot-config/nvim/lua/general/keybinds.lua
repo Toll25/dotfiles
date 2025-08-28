@@ -18,7 +18,7 @@ local opts = { noremap = true, silent = true }
 vim.api.nvim_set_keymap("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Open Lazy UI" })
 
 -- File Manager --
-vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Yazi<CR>", { desc = "Reveal file in filetree" })
+vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Yazi<CR>", { desc = "Open Yazi" })
 
 -- General Purpose --
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<CMD>w<CR><ESC>", opts)
@@ -83,6 +83,10 @@ vim.api.nvim_set_keymap("n", "<leader>gw", "<CMD>lua Snacks.gitbrowse()<CR>", { 
 vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()<CR>", { desc = "LSP" })
 vim.keymap.set({ "n", "v" }, "<leader>rs", "<CMD>RipSubstitute<CR>", { desc = "Literal" })
 vim.keymap.set("n", "<leader>rg", "<CMD>GrugFar<CR>", { desc = "Grug" })
+vim.keymap.set("n", "<leader>rf", function()
+	local file_name = vim.api.nvim_buf_get_name(0)
+	Snacks.rename.rename_file({ from = file_name })
+end, { desc = "File" })
 -- vim.keymap.set({ "n", "v" }, "<leader>rs", ":%s///g<Left><Left><Left>", { desc = "Literal Rename" })
 
 -- Terminal --

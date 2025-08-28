@@ -22,4 +22,4 @@ require("general.misc.open-images")
 require("general.misc.godot")
 -- require("general.misc.colemak")
 
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("catppuccin-mocha")

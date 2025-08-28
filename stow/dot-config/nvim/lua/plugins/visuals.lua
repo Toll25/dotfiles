@@ -61,13 +61,12 @@ return {
 		ft = "help",
 	},
 	{
-		"brenoprata10/nvim-highlight-colors",
-		event = { "VeryLazy" },
+		"karb94/neoscroll.nvim",
 		opts = {},
 	},
+	{ "nacro90/numb.nvim", opts = {}, event = "VeryLazy" },
 	{
-		"3rd/image.nvim",
-		ft = { "markdown" },
+		"Bekaboo/dropbar.nvim",
 		opts = {},
 	},
 }

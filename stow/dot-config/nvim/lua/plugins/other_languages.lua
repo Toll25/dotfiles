@@ -9,4 +9,10 @@ return {
 			},
 		},
 	},
+	{
+		"AckslD/swenv.nvim",
+		ft = "python",
+		opts = {},
+	},
+	{ "mistweaverco/kulala.nvim", opts = {}, ft = "http" },
 }
