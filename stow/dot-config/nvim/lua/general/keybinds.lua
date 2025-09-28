@@ -19,6 +19,7 @@ vim.api.nvim_set_keymap("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Open Lazy U
 
 -- File Manager --
 vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Yazi<CR>", { desc = "Open Yazi" })
+vim.api.nvim_set_keymap("n", "<leader>E", "<CMD>Oil --float<CR>", { desc = "Open Oil" })
 
 -- General Purpose --
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<CMD>w<CR><ESC>", opts)

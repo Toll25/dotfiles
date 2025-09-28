@@ -4,8 +4,6 @@ return {
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			"mikavilpas/blink-ripgrep.nvim",
-			"moyiz/blink-emoji.nvim",
-			"MahanRahmati/blink-nerdfont.nvim",
 		},
 		version = "1.*",
 		opts = {
@@ -66,32 +64,6 @@ return {
 						name = "Ripgrep",
 						opts = {},
 					},
-					emoji = {
-						module = "blink-emoji",
-						name = "Emoji",
-						score_offset = 15, -- Tune by preference
-						opts = {
-							insert = true, -- Insert emoji (default) or complete its name
-							---@type string|table|fun():table
-							trigger = function()
-								return { ":" }
-							end,
-						},
-						-- should_show_items = function()
-						-- 	return vim.tbl_contains(
-						-- 		-- Enable emoji completion only for git commits and markdown.
-						-- 		-- By default, enabled for all file-types.
-						-- 		{ "gitcommit", "markdown" },
-						-- 		vim.o.filetype
-						-- 	)
-						-- end,
-					},
-					nerdfont = {
-						module = "blink-nerdfont",
-						name = "Nerd Fonts",
-						score_offset = 15, -- Tune by preference
-						opts = { insert = true }, -- Insert nerdfont icon (default) or complete its name
-					},
 				},
 				default = function()
 					local defaults = {
@@ -100,8 +72,6 @@ return {
 						"snippets",
 						"buffer",
 						"ripgrep",
-						"emoji",
-						"nerdfont",
 					}
 					if vim.bo.filetype == "markdown" then
 						table.insert(defaults, 1, "mkdnflow")

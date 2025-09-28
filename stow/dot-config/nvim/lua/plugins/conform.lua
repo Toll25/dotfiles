@@ -31,7 +31,7 @@ return {
 			markdown = function(bufnr)
 				return { first(bufnr, "prettierd", "prettier"), "injected" }
 			end,
-			python = { "isort", "black" },
+			python = { "ruff_organize_imports", "ruff_fix", "ruff_format" },
 			rust = { "rustfmt", "yew-fmt", lsp_format = "fallback" },
 			sh = { "shellcheck" },
 			svelte = { "prettierd", "prettier", stop_after_first = true },

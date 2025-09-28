@@ -12,7 +12,7 @@ return {
 			"html",
 			"texlab",
 			-- "hyprls",
-			-- "jdtls",
+			"jdtls",
 			"jsonls",
 			"cssls",
 			-- "marksman",
