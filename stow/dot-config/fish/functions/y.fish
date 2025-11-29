@@ -1,4 +1,3 @@
 function y --wraps=z --description 'alias y=z'
-  z $argv
-        
+    z $argv
 end
