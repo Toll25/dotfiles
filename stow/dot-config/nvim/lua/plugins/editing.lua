@@ -3,7 +3,7 @@ return {
 		"gbprod/cutlass.nvim",
 		opts = {
 			cut_key = "x",
-			override_del = nil,
+			override_del = true,
 			exclude = {},
 			registers = {
 				select = "s",

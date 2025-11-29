@@ -19,7 +19,6 @@ vim.api.nvim_set_keymap("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Open Lazy U
 
 -- File Manager --
 vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Yazi<CR>", { desc = "Open Yazi" })
-vim.api.nvim_set_keymap("n", "<leader>E", "<CMD>Oil --float<CR>", { desc = "Open Oil" })
 
 -- General Purpose --
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<CMD>w<CR><ESC>", opts)
@@ -51,7 +50,7 @@ end, opts)
 
 -- Marks --
 vim.api.nvim_set_keymap("n", "<leader>m", "<CMD>FzfLua marks<CR>", { desc = "Show Marks" })
-vim.api.nvim_set_keymap("n", "ä", "`", opts)
+vim.api.nvim_set_keymap("n", "ö", "`", opts)
 
 -- Scratch --
 vim.keymap.set("n", "<leader>pp", function()
@@ -82,7 +81,9 @@ vim.api.nvim_set_keymap("n", "<leader>gw", "<CMD>lua Snacks.gitbrowse()<CR>", { 
 
 -- Rename --
 vim.keymap.set("n", "<leader>rn", "<CMD>lua vim.lsp.buf.rename()<CR>", { desc = "LSP" })
-vim.keymap.set({ "n", "v" }, "<leader>rs", "<CMD>RipSubstitute<CR>", { desc = "Literal" })
+vim.keymap.set("n", "<leader>rs", "<CMD>RipSubstitute<CR>", { desc = "Literal" })
+vim.keymap.set("n", "<leader>R", "<CMD>RipSubstitute<CR>", { desc = "Literal" })
+vim.keymap.set("v", "<leader>r", "<CMD>RipSubstitute<CR>", { desc = "Range rename" })
 vim.keymap.set("n", "<leader>rg", "<CMD>GrugFar<CR>", { desc = "Grug" })
 vim.keymap.set("n", "<leader>rf", function()
 	local file_name = vim.api.nvim_buf_get_name(0)
@@ -201,30 +202,32 @@ vim.keymap.set("n", "Xc", require("substitute.exchange").cancel, { noremap = tru
 vim.keymap.set("n", "<leader>a", "<CMD>Neogen<CR>", { desc = "Generate Annotation" })
 
 -- Increment/Decrement --
-vim.keymap.set("n", "<C-a>", function()
+vim.keymap.set("n", "ü", function()
 	require("dial.map").manipulate("increment", "normal")
 end)
-vim.keymap.set("n", "<C-x>", function()
+vim.keymap.set("n", "ä", function()
 	require("dial.map").manipulate("decrement", "normal")
 end)
-vim.keymap.set("n", "g<C-a>", function()
+vim.keymap.set("n", "gü", function()
 	require("dial.map").manipulate("increment", "gnormal")
 end)
-vim.keymap.set("n", "g<C-x>", function()
+vim.keymap.set("n", "gä", function()
 	require("dial.map").manipulate("decrement", "gnormal")
 end)
-vim.keymap.set("v", "<C-a>", function()
+vim.keymap.set("v", "ü", function()
 	require("dial.map").manipulate("increment", "visual")
 end)
-vim.keymap.set("v", "<C-x>", function()
+vim.keymap.set("v", "ä", function()
 	require("dial.map").manipulate("decrement", "visual")
 end)
-vim.keymap.set("v", "g<C-a>", function()
+vim.keymap.set("v", "gü", function()
 	require("dial.map").manipulate("increment", "gvisual")
 end)
-vim.keymap.set("v", "g<C-x>", function()
+vim.keymap.set("v", "gä", function()
 	require("dial.map").manipulate("decrement", "gvisual")
 end)
+
+vim.keymap.set("n", "<C-x>", '"Dx')
 
 -- OLD KEYBINDS
 

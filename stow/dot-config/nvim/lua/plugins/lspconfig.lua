@@ -12,6 +12,7 @@ return {
 			"html",
 			"texlab",
 			-- "hyprls",
+            -- "harper_ls",
 			"jdtls",
 			"jsonls",
 			"cssls",

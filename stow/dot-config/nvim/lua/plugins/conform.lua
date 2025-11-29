@@ -35,7 +35,7 @@ return {
 			rust = { "rustfmt", "yew-fmt", lsp_format = "fallback" },
 			sh = { "shellcheck" },
 			svelte = { "prettierd", "prettier", stop_after_first = true },
-			tex = { "latexindent" },
+			tex = { "tex-fmt" },
 			toml = { "taplo" },
 			typescript = { "prettierd", "prettier", stop_after_first = true },
 			typescriptreact = { "prettierd", "prettier", stop_after_first = true },

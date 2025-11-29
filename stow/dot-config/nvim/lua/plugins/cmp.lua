@@ -3,7 +3,7 @@ return {
 		"saghen/blink.cmp",
 		dependencies = {
 			"rafamadriz/friendly-snippets",
-			"mikavilpas/blink-ripgrep.nvim",
+			-- "mikavilpas/blink-ripgrep.nvim",
 		},
 		version = "1.*",
 		opts = {
@@ -59,11 +59,11 @@ return {
 						name = "mkdnflow",
 						module = "blink.compat.source",
 					},
-					ripgrep = {
-						module = "blink-ripgrep",
-						name = "Ripgrep",
-						opts = {},
-					},
+					-- ripgrep = {
+					-- 	module = "blink-ripgrep",
+					-- 	name = "Ripgrep",
+					-- 	opts = {},
+					-- },
 				},
 				default = function()
 					local defaults = {
@@ -71,7 +71,7 @@ return {
 						"path",
 						"snippets",
 						"buffer",
-						"ripgrep",
+						-- "ripgrep",
 					}
 					if vim.bo.filetype == "markdown" then
 						table.insert(defaults, 1, "mkdnflow")
