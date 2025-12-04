@@ -5,7 +5,7 @@ if status is-interactive
     set -U fish_greeting
     zoxide init fish | source
     bind -M insert ctrl-n down-or-search
-    set ZELLIJ_AUTO_ATTACH true
+    set ZELLIJ_AUTO_ATTACH false
     set ZELLIJ_AUTO_EXIT true
     set ZELLIJ_SESSION_NAME Default
     if not set -q ZELLIJ
