@@ -20,6 +20,7 @@ require("general.keybinds")
 require("general.misc.inlay-hints")
 require("general.misc.open-images")
 require("general.misc.godot")
+require("general.misc.treesitter")
 -- require("general.misc.colemak")
 
 vim.cmd.colorscheme("catppuccin-mocha")
