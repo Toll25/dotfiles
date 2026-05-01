@@ -1,5 +1,14 @@
 # TODO
 
+Hipatterns
+Comments
+Delimeters
+Color picker
+Substitute-Flash conflict
+Markdown formatter
+
+Redo Keybinds (documentation!!)
+
 # Future :tm:
 
 [Due Dates](https://github.com/nfrid/due.nvim)

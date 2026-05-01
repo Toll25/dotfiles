@@ -10,8 +10,4 @@ return {
 		opts = {},
 		cmd = { "Neogit" },
 	},
-	{
-		"tpope/vim-fugitive",
-		cmd = { "G" },
-	},
 }

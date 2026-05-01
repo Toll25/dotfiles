@@ -10,14 +10,4 @@ return {
 		lazy = true,
 		opts = {},
 	},
-	{
-		"andrewferrier/debugprint.nvim",
-		version = "*",
-		dependencies = {
-			"echasnovski/mini.hipatterns",
-			"ibhagwan/fzf-lua",
-		},
-		lazy = false,
-		opts = {},
-	},
 }

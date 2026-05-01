@@ -1,18 +1,5 @@
 return {
 	{
-		"rachartier/tiny-glimmer.nvim",
-		event = "VeryLazy",
-		priority = 10,
-		opts = {
-			overwrite = {
-				-- search = { enabled = true },
-				undo = { enabled = true },
-				redo = { enabled = true },
-			},
-		},
-	},
-	{ "danilamihailov/beacon.nvim" },
-	{
 		"folke/noice.nvim",
 		dependencies = {
 			"MunifTanjim/nui.nvim",
@@ -54,17 +41,9 @@ return {
 		},
 	},
 	{
-		"OXY2DEV/helpview.nvim",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
-		ft = "help",
-	},
-	{
 		"karb94/neoscroll.nvim",
 		opts = {},
 	},
-	{ "nacro90/numb.nvim", opts = {}, event = "VeryLazy" },
 	{
 		"Bekaboo/dropbar.nvim",
 		opts = {},

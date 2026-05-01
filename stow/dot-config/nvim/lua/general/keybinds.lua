@@ -40,10 +40,8 @@ vim.api.nvim_set_keymap("n", "<leader>wv", "<CMD>vsplit<CR>", { desc = "Vertical
 vim.api.nvim_set_keymap("n", "<leader>wh", "<CMD>split<CR>", { desc = "Horizontal Split" })
 
 -- Buffer Navigation --
-vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>BufferLineCycleNext<CR>", opts)
-vim.api.nvim_set_keymap("n", "<C-S-n>", "<CMD>BufferLineCyclePrev<CR>", opts)
--- vim.api.nvim_set_keymap("n", "<Tab>", "<CMD>BufferLineCycleNext<CR>", opts)
--- vim.api.nvim_set_keymap("n", "<S-Tab>", "<CMD>BufferLineCyclePrev<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-n>", "<CMD>bn<CR>", opts)
+vim.api.nvim_set_keymap("n", "<C-S-n>", "<CMD>bp<CR>", opts)
 vim.keymap.set("n", "<C-c>", function()
 	Snacks.bufdelete()
 end, opts)
@@ -102,10 +100,6 @@ vim.keymap.set("n", "<leader>tT", "<CMD>terminal<CR>", { desc = "Terminal Buffer
 vim.keymap.set("t", ":q", "<CMD>ToggleTerm<CR>")
 vim.api.nvim_set_keymap("n", "<C-t>", "<Cmd>ToggleTerm<CR>", { silent = true, noremap = true })
 
--- Colors --
-vim.keymap.set("n", "<leader>cp", "<CMD>CccPick<CR>", { desc = "Pick color" })
-vim.keymap.set("n", "<leader>cv", "<CMD>CccConvert<CR>", { desc = "Convert color" })
-
 -- Show --
 vim.keymap.set("n", "<leader>sl", "<CMD>Trouble lsp toggle focus=false win.position=right<CR>", { desc = "LSP info" })
 vim.keymap.set(
@@ -156,9 +150,6 @@ vim.keymap.set("n", "<leader>?", function()
 	require("which-key").show({ global = false })
 end, { desc = "Buffer Local Keymaps (which-key)" })
 
--- Python --
-vim.keymap.set("n", "<leader>P", "<CMD>lua require('swenv.api').pick_venv()<CR>", { desc = "Choose python venv" })
-
 -- Paste
 vim.keymap.set("n", "<C-p>", "<CMD>PasteImage<CR>", { desc = "Paste image from system clipboard" })
 
@@ -185,12 +176,6 @@ vim.keymap.set("n", "<leader>ol", function()
 	end
 	vim.diagnostic.config({ virtual_lines = state })
 end, { desc = "Toggle virtual line diagnostics" })
-vim.keymap.set(
-	"n",
-	"<leader>on",
-	"<CMD>lua require('nabla').toggle_virt()<CR>",
-	{ desc = "Toggle latex formula rendering" }
-)
 
 -- Substitute --
 vim.keymap.set("n", "X", require("substitute.exchange").operator, { noremap = true })
@@ -200,32 +185,6 @@ vim.keymap.set("n", "Xc", require("substitute.exchange").cancel, { noremap = tru
 
 -- Annotations --
 vim.keymap.set("n", "<leader>a", "<CMD>Neogen<CR>", { desc = "Generate Annotation" })
-
--- Increment/Decrement --
-vim.keymap.set("n", "ü", function()
-	require("dial.map").manipulate("increment", "normal")
-end)
-vim.keymap.set("n", "ä", function()
-	require("dial.map").manipulate("decrement", "normal")
-end)
-vim.keymap.set("n", "gü", function()
-	require("dial.map").manipulate("increment", "gnormal")
-end)
-vim.keymap.set("n", "gä", function()
-	require("dial.map").manipulate("decrement", "gnormal")
-end)
-vim.keymap.set("v", "ü", function()
-	require("dial.map").manipulate("increment", "visual")
-end)
-vim.keymap.set("v", "ä", function()
-	require("dial.map").manipulate("decrement", "visual")
-end)
-vim.keymap.set("v", "gü", function()
-	require("dial.map").manipulate("increment", "gvisual")
-end)
-vim.keymap.set("v", "gä", function()
-	require("dial.map").manipulate("decrement", "gvisual")
-end)
 
 vim.keymap.set("n", "<C-x>", '"Dx')
 
@@ -245,27 +204,3 @@ vim.keymap.set({ "n", "x", "o" }, "<A-i>", function()
 		vim.lsp.buf.selection_range(-vim.v.count1)
 	end
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
-
--- OLD KEYBINDS
-
--- vim.api.nvim_set_keymap("n", "<M-k>", "<C-w>k", opts)
--- vim.api.nvim_set_keymap("n", "<M-j>", "<C-w>j", opts)
--- vim.api.nvim_set_keymap("n", "<M-h>", "<C-w>h", opts)
--- vim.api.nvim_set_keymap("n", "<M-l>", "<C-w>l", opts)
--- vim.api.nvim_set_keymap("n", "<M-H>", "<C-w>H", opts)
--- vim.api.nvim_set_keymap("n", "<M-J>", "<C-w>J", opts)
--- vim.api.nvim_set_keymap("n", "<M-K>", "<C-w>K", opts)
--- vim.api.nvim_set_keymap("n", "<M-L>", "<C-w>L", opts)
--- vim.api.nvim_set_keymap("n", "<M-o>", "<C-w>o", opts)
--- vim.api.nvim_set_keymap("n", "<M-q>", "<C-w>q", opts)
--- vim.api.nvim_set_keymap("n", "<M-s>", "<C-w>s", opts)
--- vim.api.nvim_set_keymap("n", "<M-v>", "<C-w>v", opts)
--- vim.api.nvim_set_keymap("n", "<M-w>", "<C-w>w", opts)
--- vim.api.nvim_set_keymap("n", "<M-x>", "<C-w>x", opts)
--- vim.api.nvim_set_keymap("n", "<M-+>", "<C-w>+", opts)
--- vim.api.nvim_set_keymap("n", "<M-->", "<C-w>-", opts)
--- vim.api.nvim_set_keymap("n", "<M-<>", "<C-w><", opts)
--- vim.api.nvim_set_keymap("n", "<M-=>", "<C-w>=", opts)
--- vim.api.nvim_set_keymap("n", "<M->>", "<C-w>>", opts)
--- vim.api.nvim_set_keymap("n", "<M-_>", "<C-w>_", opts)
--- vim.api.nvim_set_keymap("n", "<M-|>", "<C-w>|", opts)
