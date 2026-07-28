@@ -28,4 +28,8 @@ return {
 			preset = "modern",
 		},
 	},
+    {
+      "SunnyTamang/select-undo.nvim",
+      opts = {},
+    }
 }
