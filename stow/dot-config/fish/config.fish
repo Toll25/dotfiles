@@ -1,4 +1,5 @@
 if status is-interactive
+    fish_config theme choose catppuccin-mocha --color-theme=dark
     atuin init fish --disable-up-arrow | source
     bind \e\[1\;5A _atuin_search # bind CTRL+<UP> to atuin search
     starship init fish | source
