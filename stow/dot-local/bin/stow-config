@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-cd $HOME/.dotfiles/stow || { echo "Failed to change directory"; exit 1; }
+cd $HOME/dotfiles/stow || { echo "Failed to change directory"; exit 1; }
 
 echo "Testing"
 if stow --no --dotfiles -R -t "$HOME" . "$@"; then
