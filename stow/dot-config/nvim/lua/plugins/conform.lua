@@ -18,10 +18,8 @@ return {
 	cmd = { "ConformInfo" },
 	opts = {
 		formatters_by_ft = {
-			bash = { "shellcheck" },
 			css = { "prettierd", "prettier", stop_after_first = true },
-			fish = { "fish_indent" },
-			gdscript = { "gdformat" },
+			gdscript = { "gdscript-formatter" },
 			html = { "prettierd", "prettier", stop_after_first = true },
 			-- java = { "google-java-format" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -33,10 +31,8 @@ return {
 			end,
 			python = { "ruff_organize_imports", "ruff_fix", "ruff_format" },
 			rust = { "rustfmt", "yew-fmt", lsp_format = "fallback" },
-			sh = { "shellcheck" },
 			svelte = { "prettierd", "prettier", stop_after_first = true },
 			tex = { "tex-fmt" },
-			toml = { "taplo" },
 			typescript = { "prettierd", "prettier", stop_after_first = true },
 			typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 			yaml = { "prettierd", "prettier", stop_after_first = true },
