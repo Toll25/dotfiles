@@ -11,6 +11,7 @@ vim.api.nvim_create_user_command("Format", function(args)
 	require("conform").format({ async = true, lsp_format = "fallback", range = range })
 end, { range = true })
 
+vim.g.autoformat = true
 -- Autoformat with Exceptions
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
@@ -26,7 +27,6 @@ vim.api.nvim_create_user_command("W", function()
 	vim.cmd("write")
 	vim.g.autoformat = true
 end, {})
-
 
 -- -- Activate Codelens
 -- vim.api.nvim_create_autocmd("LspAttach", {
@@ -54,7 +54,6 @@ end, {})
 -- 		end
 -- 	end,
 -- })
-
 
 -- Custom stuff for opening images
 vim.api.nvim_create_autocmd("BufReadCmd", {
@@ -97,7 +96,6 @@ local is_server_running = vim.uv.fs_stat(godot_project_path .. "/server.pipe")
 if is_godot_project and not is_server_running then
 	vim.fn.serverstart(godot_project_path .. "/server.pipe")
 end
-
 
 -- Treesitter Setup
 local languages = {
