@@ -35,6 +35,7 @@ return {
 				"stylua",
 				"ruff",
 				"tex-fmt",
+				"air",
 			},
 			auto_update = true,
 		},

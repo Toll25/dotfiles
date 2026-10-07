@@ -123,6 +123,7 @@ local languages = {
 	"python",
 	"query",
 	"regex",
+	"r",
 	"rust",
 	"sql",
 	"svelte",
