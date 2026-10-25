@@ -13,6 +13,8 @@ return {
 			ensure_installed = {
 				-- GDScript
 				-- "gdscript",
+				"clangd",
+				"clang-format",
 				-- Lua
 				"lua_ls",
 				-- Python

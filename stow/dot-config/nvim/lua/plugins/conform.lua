@@ -18,6 +18,7 @@ return {
 	cmd = { "ConformInfo" },
 	opts = {
 		formatters_by_ft = {
+			c = { "clang-format" },
 			css = { "prettierd", "prettier", stop_after_first = true },
 			gdscript = { "gdscript-formatter" },
 			html = { "prettierd", "prettier", stop_after_first = true },
