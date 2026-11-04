@@ -14,6 +14,10 @@ wk.add({
 })
 local opts = { noremap = true, silent = true }
 
+-- Remove default autocomplete
+vim.keymap.set("i", "<C-n>", "<Nop>")
+vim.keymap.set("i", "<C-p>", "<Nop>")
+
 -- Lazy --
 vim.api.nvim_set_keymap("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Open Lazy UI" })
 
@@ -21,7 +25,6 @@ vim.api.nvim_set_keymap("n", "<leader>l", "<CMD>Lazy<CR>", { desc = "Open Lazy U
 vim.api.nvim_set_keymap("n", "<leader>e", "<CMD>Yazi<CR>", { desc = "Open Yazi" })
 
 -- General Purpose --
-vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<CMD>w<CR><ESC>", opts)
 vim.api.nvim_set_keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit" })
 
 -- Code Actions --
@@ -204,3 +207,26 @@ vim.keymap.set({ "n", "x", "o" }, "<A-i>", function()
 		vim.lsp.buf.selection_range(-vim.v.count1)
 	end
 end, { desc = "Select child treesitter node or inner incremental lsp selections" })
+
+vim.keymap.set({ "n", "i", "s" }, "<c-f>", function()
+	if not require("noice.lsp").scroll(4) then
+		return "<c-f>"
+	end
+end, { silent = true, expr = true })
+
+vim.keymap.set({ "n", "i", "s" }, "<c-b>", function()
+	if not require("noice.lsp").scroll(-4) then
+		return "<c-b>"
+	end
+end, { silent = true, expr = true })
+
+vim.keymap.set("i", "<C-q>", function()
+	local nldocs = require("noice.lsp.docs")
+	local message = nldocs.get("signature")
+	nldocs.hide(message)
+end)
+
+vim.keymap.set("i", "<C-l>", "<Right>")
+vim.keymap.set("i", "<C-h>", "<Left>")
+
+vim.keymap.set("n", "Ü", "z=")

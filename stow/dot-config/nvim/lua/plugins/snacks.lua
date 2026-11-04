@@ -10,7 +10,12 @@ return {
 		words = { enabled = true, debounce = 100 }, -- illuminate replacement
 		bigfile = { enabled = true },
 		bufdelete = { enabled = true },
-		image = { enabled = true },
+		image = {
+			enabled = true,
+			math = {
+				enabled = false,
+			},
+		},
 		dashboard = {
 			enabled = true,
 			sections = {
