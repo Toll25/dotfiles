@@ -97,6 +97,14 @@ if is_godot_project and not is_server_running then
 	vim.fn.serverstart(godot_project_path .. "/server.pipe")
 end
 
+-- Disable spellchecking in terminal buffers
+vim.api.nvim_create_autocmd("TermOpen", {
+	pattern = "*",
+	callback = function()
+		vim.o.spell = false
+	end,
+})
+
 -- Treesitter Setup
 local languages = {
 	"bash",
